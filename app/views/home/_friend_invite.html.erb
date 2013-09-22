@@ -1,0 +1,6 @@
+<h3>和朋友取得聯繫</h3>
+<p><%= image_tag("icons/invite.gif", :class => "icon") %>
+<%= link_to "邀請朋友加入 #{app_name}", new_user_invite_path(logged_in_user) -%></p>
+
+<p><%= image_tag("icons/friend_list_make.gif", :class => "icon") %>
+要找已在 <%= app_name %> 上的朋友嗎？你可以使用 <%= link_to '朋友搜尋器', find_friend_url %>。</p>

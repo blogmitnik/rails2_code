@@ -1,0 +1,24 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<% column_div :type => :primary do -%>
+	<h3><%= @group.name %> 的動態消息</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div id="news">
+	<h4>群組動態消息</h4>
+    <% @activities.each do |activity| %>
+    	<%= render( :partial => "shared/activity", :locals => {:activity => activity}) %>
+  	 <% end %>
+    <div class="clear"></div>
+  	<%= will_paginate @activities, :previous_label => '&laquo; 較新的', :next_label => '較舊的 &raquo;' %>
+   </div>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

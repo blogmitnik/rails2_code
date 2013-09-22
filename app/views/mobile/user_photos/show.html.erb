@@ -1,0 +1,9 @@
+<h3>
+	<%= link_to "#{@photo.user.username} 的圖片", 
+				mobile_user_photos_path(:user_id => @photo.user) %>
+</h3>
+<h2><%=h @photo.gallery.title %></h2>
+
+<%= image_tag @photo.public_filename('thumb'), :id => 'photo' %>
+
+<p><%=h @photo.body %></p>

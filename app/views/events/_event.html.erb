@@ -1,0 +1,44 @@
+<li class="event">
+  <a name="event_<%= event.id %>"></a>
+  <div class="profile-image">
+    <%= image_link event.user, :image => :small %>
+  </div>
+  <p>
+  	 <%= image_tag "icons/event.gif", :class => "icon" %>
+    <%= link_to h(event.title), event, :class => "show-follow", 
+    :title => "#{event.user.f} 新增的事件 - #{event.title}" %>
+  </p>
+  <p class="meta">
+    <%= user_link event.user %> 在
+    <%= time_ago_in_words(event.created_at) %> 前建立
+    <% if logged_in_user?(event.user) -%>
+    | <%= link_to "編輯",  edit_event_path(event) %>
+    <% end -%>
+    <% if admin? || logged_in_user?(event.user) -%>
+    | <%= link_to "刪除",  event, :confirm => "你確定要刪除這項活動嗎？", :method  => :delete %>
+    <% end -%>
+  </p>
+  <p>
+	 活動時間：<abbr class="created" title="<%= event.start_time %>">
+	 	<%= event.start_time.strftime('%m月%d日 %H:%M') %></abbr>
+    <% unless event.end_time.nil? -%>
+     到 <abbr class="created" title="<%= event.end_time %>">
+     	<%= event.end_time.strftime('%m月%d日 %H:%M') %></abbr>
+    <% end -%>
+  </p>
+  <p>活動內容：<%=h event.description %></p>
+
+  <% unless event.event_attendees_count == 0 -%>
+  <p>
+    已經有 <%= event.event_attendees_count %> 位使用者參與這項活動
+  </p>
+  <% end -%>
+  <p>
+    <% unless event.attending?(logged_in_user) -%>
+    	<%= link_to "參與這項活動", attend_event_path(event) %>
+    <% else -%>
+    	<%= image_tag("icons/vote.png") %>你已經參與活動 
+    	<%= link_to "取消參與這項活動", unattend_event_path(event) %>
+    <% end -%>
+  </p>
+</li>

@@ -1,0 +1,88 @@
+	<div id="new-news-item">
+	  <%= f.text_field :title, {:label => "標題"} %>
+	  <%= f.text_area :body, {:class => 'mceEditor', :label => "內容"} %>
+	  
+	  <div class="clear"></div>
+	  
+	  <div class="meta instruction">
+		 你可以使用 [youtube: 影片網址] 來嵌入 Youtube 網站上的影片<br>
+		 例如 [youtube: http://www.youtube.com/watch?v=xxx_xxxxxxx]<br>
+		 你可以先<a href="http://www.youtube.com/my_videos_upload" target="_blank">上傳影片至 Youtube</a>
+	  </div>
+	  <%= f.text_field :video, { :label => "影片網址", :size => 50} -%>
+  	  <div class="meta instruction">你可以直接貼上 Youtube 或 Google Video 的影片網址</div>
+	  <%= f.text_field :tag_list, { :label => "Tag 標籤" } -%>
+		<div class="clear"></div>
+	  <div class="meta instruction">建立一些標籤來幫助使用者搜尋這個內容，使用逗號來分隔標籤</div>
+
+  <% if defined?(show_photo_upload) && show_photo_upload -%>
+    <div id="upload_icon">
+  		<h4>上傳文章相片</h4>
+  		<label>為目前這個文章內容上傳相片</label>
+  		<%= file_column_field( "news_item", "icon", :size => 15) %>
+  		<div class="clear"></div>
+  		<% unless @news_item.icon.blank? %>
+  		<div id="avatar_edit">
+  		  <span id="user_icon_picture">
+  		    <%= icon @news_item %>
+  		    <%= link_to_remote "刪除圖片", :url => delete_icon_news_path(@news_item), :method => :delete, :confirm => "你確定要刪除這張相片嗎？" %>
+  		  </span>
+  		</div>
+  		<% end %>
+  		<input type="hidden" name="switch" value="image" />
+    </div>
+  <% end -%>
+    
+		<div class="row button">
+	   	<%= f.submit @news_item.new_record? ? "發佈文章" : "儲存變更", :class => 'button', :id => 'create_news' -%>
+		   <div id="progress-bar" style="display:none;">
+		  	  <img src="/images/loadingAnimation.gif" alt="progress bar"> 
+		  	  <div>請稍後...正在發佈你的文章</div>
+		   </div>
+	  </div>
+	</div>	
+
+
+<%
+case @news_item.newsable
+when Group
+  group = @news_item.newsable
+  load_images_path = group_uploads_url(group) + '/images.js'
+  load_files_path = group_uploads_url(group) + '/files.js'
+  pages_path = group_news_index_url(group, :format => 'js')
+when User
+  user = @news_item.newsable
+  load_images_path = user_uploads_url(user) + '/images.js'
+  load_files_path = user_uploads_url(user) + '/files.js'
+  pages_path = user_notes_url(user, :format => 'js')
+when Widget 
+  load_images_path = admin_uploads_path + '/images.js'
+  load_files_path = admin_uploads_path + '/files.js'
+  pages_path = admin_member_stories_path(:format => 'json')
+when Site
+  load_images_path = admin_uploads_path + '/images.js'
+  load_files_path = admin_uploads_path + '/files.js'
+  pages_path = admin_uploads_path(:format => 'js')
+else
+  load_images_path = ''
+  load_files_path = ''
+  pages_path = ''
+end
+-%>
+<%= mce_fields(load_images_path, load_files_path, pages_path, @news_item.newsable.class.to_s, @news_item.newsable.id) -%>
+<%= include_tiny_mce_js_if_needed -%>
+<%= tiny_mce_init_if_needed -%>
+<% content_for :head do  -%>
+	<%= javascript_include_tag 'tiny_mce_helper' %>
+<% end -%>
+
+<script type='text/javascript'>
+jQuery(document).ready(function()
+{
+    jQuery("#create_news").click(function()
+    {
+        jQuery("#create_news").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

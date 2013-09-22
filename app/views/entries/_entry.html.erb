@@ -1,0 +1,30 @@
+<li class="post">
+  <p> 
+    <a name="entry_<%= entry.id %>"></a>
+    <%= link_to sanitize(entry.title), user_entry_path(entry.user, entry),
+                :class => "show-follow" %>
+    <% if logged_in_user?(@user) -%>
+      <%= link_to image_tag("icons/page_white_edit.png",
+                            :class => 'actioner'),
+                  edit_user_entry_path(entry.user, entry) %>
+      <%= link_to image_tag("icons/page_white_delete.png",
+                            :class => 'actioner'),
+                  user_entry_path(entry.user, entry),
+                  :method => :delete,
+                  :confirm => "你確定刪除這篇文章嗎？" %>
+    <%- end -%>
+  </p>
+  
+  <%= entry_body_content entry %>
+  
+  <p class="meta published">
+  	<%= link_to entry.user.f, profile_path(entry.user) %>
+    發佈於 <%= entry.created_at.strftime('%m月%d日 %H:%M') %> | 
+	 <% if entry.updated_at != entry.created_at %>
+		在 <%= time_ago_in_words entry.updated_at %> 前更新 |
+	 <% end %>
+    <%- n = entry.comments_count -%>
+    <%= link_to "#{n}篇回應", user_entry_path(entry.user, entry),
+                :class => "show-follow" %>    
+  </p>
+</li>

@@ -1,0 +1,29 @@
+<%-
+#locals
+profile ||= false
+user ||= @user
+size ||= 5
+google_docs ||= user.public_google_docs.find :all, :limit => size, :order => 'created_at DESC'
+
+total = user.public_google_docs.count
+-%>
+
+<h3>轉貼連結</h3>
+	<% unless notes.empty? %>
+		<% if profile -%>
+		  <span class="left">顯示 <%= total > size ? link_to("#{total} 個連結", user_shared_entries_path(@user)) + "中的其中 #{size} 篇。" : "#{total} 個連結" %></span>
+		  <div class="clear"></div>
+		<% end -%>
+
+		<ul id="google_docs">
+		  <% google_docs.each do |doc| -%>
+		    <p id="shared_entry_<%= doc.id %>"><%= image_tag("icons/post.gif", :class => "icon") %> <%= "#{link_to(doc.title, user_shared_entry_path(@user, doc))}" -%><br/>
+			 	<%= doc.created_at.strftime('%y年%m月%d日 %H:%M') %>
+			 	<% if doc.wall_comments_count > 0 -%>| <%= link_to "#{doc.wall_comments_count}則留言", user_shared_entry_path(@user, doc) %><% end -%>
+			 </p>
+		  <% end -%>
+		</ul>
+	<%- else -%>
+		<p>目前尚無轉貼連結。
+		  <%= link_to "轉貼連結", /share if is_me?(@user) %></p>
+	<%- end -%>

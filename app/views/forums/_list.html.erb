@@ -1,0 +1,64 @@
+<div id="forum-container">
+  <h4><%= h @forum.name %></h4>
+
+  <p class="subtitle">
+    <%= feed_icon_tag @forum.name, formatted_forum_posts_path(@forum, :rss) %> 
+    顯示 <%= count_for('則討論主題', @forum.topics.size) %>,
+    共有 <%= count_for('則討論貼文', @forum.posts.size) %>。
+    <% if can_participate? -%>
+      <%= link_to '新增討論話題', new_forum_topic_path(@forum), :class => "utility" %>
+    <% end %>
+  </p>
+
+  <%= will_paginate @topics, :previous_label => '&laquo; 較新的', :next_label => '較早的 &raquo;' %>
+
+  <table border="0" cellspacing="0" cellpadding="0" class="wide topics">
+  <tr>
+    <th class="la" colspan="2">討論話題列表</th>
+    <th width="1%">文章</th>
+    <th width="1%">觀看</th>
+    <th class="la">最近張貼回覆</th>
+  </tr>
+  <% for topic in @topics %>
+  <tr class="hentry">
+    <td style="padding:5px; width:16px;" class="c1">
+      <% 
+      icon = "comment"
+      color = ""
+      if topic.locked?
+        icon = "lock"
+        post = ", 這個話題已上鎖"
+        color = "darkgrey"
+      end
+      %>
+      <% if recent_topic_activity(topic) %>
+      <%= image_tag "clearbits/#{icon}.gif", :class => "icon green", :title => "最近有文章 #{post}" %>
+      <% else %>
+        <%= image_tag "clearbits/#{icon}.gif", :class => "icon grey #{color}", :title => "最近沒有文章 #{post}" %>
+      <% end %>
+    </td>
+    <td class="c2">
+      <%= "已黏貼: <strong>" if topic.sticky? %>
+      <%= topic_title_link (topic), :class => "entry-title", :rel => "bookmark" %>
+      <%= "</strong>" if topic.sticky? %>
+      <% if topic.paged? -%>
+      <small><%= link_to '上一篇', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page) %></small>
+      <% end -%>
+    </td>
+    <td class="ca inv stat"><%= topic.posts.size %></td>
+    <td class="ca inv stat"><%= number_with_delimiter(topic.views) %></td>
+    <td class="lp">
+    	<%= "<span class=\"author\"><strong class=\"fn\">#{user_link_with_image(topic.replied_by_user)}</strong></span>" if topic.replied_by_user -%> 在
+      <abbr class="updated" title="<%= topic.replied_at.xmlschema %>"><%= time_ago_in_words(topic.replied_at) %></abbr> 前張貼
+      <span><%= link_to '查看', forum_topic_path(:forum_id => @forum, :id => topic, :page => topic.last_page, :anchor => "posts-#{topic.last_post_id}") %></span>
+    </td>
+  </tr>
+  <% end %>
+  </table>
+
+  <%= will_paginate @topics %>
+
+  <% if can_participate? -%>
+    <p><%= link_to '新增討論話題', new_forum_topic_path(@forum), :class => "utility" %></p>
+  <% end%>
+</div>

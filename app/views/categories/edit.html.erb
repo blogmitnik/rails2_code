@@ -1,0 +1,6 @@
+<h2>編輯文章分類</h2>
+<%= error_messages_for :category %>
+<% form_for(:category, :url => category_path(@category), :html => {:method => :put}) do |f| -%>
+	<p>分類名稱:<br><%= f.text_field :name, :size => 60 %></p>
+	<%= submit_tag '儲存' %> or <%= link_to '取消', admin_categories_url %>
+<% end %>

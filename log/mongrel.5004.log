@@ -1,0 +1,771 @@
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+/home/david/workspace/railscoder/config/routes.rb:41: undefined local variable or method `user' for main:Object (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:441:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:432:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `each'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /home/david/workspace/railscoder/config/routes.rb:39
+	 ... 25 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:93: undefined method `cattr_accessor' for ActionController::Dispatcher:Class (NoMethodError)
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/dispatcher.rb:23
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `require'
+	from /usr/lib/ruby/1.8/mongrel/rails.rb:156:in `rails'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:121:in `cloaker_'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:138:in `call'
+	 ... 6 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:93: undefined method `cattr_accessor' for ActionController::Dispatcher:Class (NoMethodError)
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/dispatcher.rb:23
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `require'
+	from /usr/lib/ruby/1.8/mongrel/rails.rb:156:in `rails'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:121:in `cloaker_'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:138:in `call'
+	 ... 6 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:93: undefined method `cattr_accessor' for ActionController::Dispatcher:Class (NoMethodError)
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/dispatcher.rb:23
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `require'
+	from /usr/lib/ruby/1.8/mongrel/rails.rb:156:in `rails'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:121:in `cloaker_'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:138:in `call'
+	 ... 6 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 0.0.0.0:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:218:in `establish_connection': production database is not configured (ActiveRecord::AdapterNotSpecified)
+	from /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:209:in `establish_connection'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:332:in `initialize_database'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:120:in `process'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `send'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `run'
+	from /home/mitnik/radrails_project/railscode/config/environment.rb:13
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	 ... 9 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:218:in `establish_connection': production database is not configured (ActiveRecord::AdapterNotSpecified)
+	from /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:209:in `establish_connection'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:332:in `initialize_database'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:120:in `process'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `send'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `run'
+	from /home/mitnik/radrails_project/railscode/config/environment.rb:13
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	 ... 9 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:218:in `establish_connection': production database is not configured (ActiveRecord::AdapterNotSpecified)
+	from /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:209:in `establish_connection'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:332:in `initialize_database'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:120:in `process'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `send'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `run'
+	from /home/mitnik/radrails_project/railscode/config/environment.rb:13
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	 ... 9 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+/usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:218:in `establish_connection': production database is not configured (ActiveRecord::AdapterNotSpecified)
+	from /usr/lib/ruby/gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/connection_specification.rb:209:in `establish_connection'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:332:in `initialize_database'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:120:in `process'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `send'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:93:in `run'
+	from /home/mitnik/radrails_project/railscode/config/environment.rb:13
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	 ... 9 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+These gems that this application depends on are missing:
+ - ruby-openid
+Run "rake gems:install" to install them.
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+These gems that this application depends on are missing:
+ - ruby-openid
+Run "rake gems:install" to install them.
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+These gems that this application depends on are missing:
+ - ruby-openid
+Run "rake gems:install" to install them.
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/inflections.rb:23: [BUG] Segmentation fault
+ruby 1.8.6 (2007-09-24) [i486-linux]
+
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 11048
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+WARNING: making https request to https://openid.claimid.com/server without verifying server certificate; no CA path was specified.
+Generated checkid_setup request to https://openid.claimid.com/server with assocication {HMAC-SHA1}{48e98715}{woJ1aQ==}
+WARNING: making https request to https://open.login.yahooapis.com/openid/op/auth without verifying server certificate; no CA path was specified.
+Generated checkid_setup request to https://open.login.yahooapis.com/openid/op/auth with assocication 62tshlRGjUE7zIrl877fkMD96hgpAlxofTAf.nDZFmCNZ4XPAPn0zmcBah.V1IWM9LMM7IB8rCn2IVyfiqmtWb1LaRwcLopiPMoznLcKJwiwUZawG6n.I67OL.93yZsU4w--
+WARNING: making https request to https://api.screenname.aol.com/auth/openidServer without verifying server certificate; no CA path was specified.
+Generated checkid_setup request to https://api.screenname.aol.com/auth/openidServer with assocication diAyLjAgayAwIGdJN0t5bU96ZlJWVkl5VDdKS01QcERMUTBaWT0%3D-j5HRXRB1VbPyg48jGKE1Q3gr0EFGZA4Xhs2t%2FZI7J8PeR0a1BbZu%2FPpgsiev3UxBMHWy7Ge8qb0%3D
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{48d7a9a9}{1bYgCg==}
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 11759
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 10851
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 18659
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 10684
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 11224
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 12160
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 7834
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+WARNING: making https request to https://api.screenname.aol.com/auth/openidServer without verifying server certificate; no CA path was specified.
+Generated checkid_setup request to https://api.screenname.aol.com/auth/openidServer with assocication diAyLjAgayAwIFBIRlA1UmVoL2p6T1BLa29BYmFNd20xZzBadz0%3D-j5HRXRB1VbPyg48jGKE1Q9CXRaucH4hBsHbMz60OqcqolHfvCchm9IFK0t8eHfbjhP5Wn%2FCnOo0%3D
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 13957
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 15405
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Transaction traces will be sent to the RPM service
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 22886
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:278:in `load_missing_constant': uninitialized constant OpenID::VERSION (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:467:in `const_missing'
+	from /usr/lib/ruby/gems/1.8/gems/ruby-openid-2.1.2/lib/openid/fetchers.rb:117
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/ruby-openid-2.1.2/lib/openid/kvpost.rb:2
+	 ... 43 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 23537
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 15901
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 17791
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 18647
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 19070
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 19439
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:278:in `load_missing_constant': uninitialized constant OpenID::VERSION (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:467:in `const_missing'
+	from /usr/lib/ruby/gems/1.8/gems/ruby-openid-2.1.2/lib/openid/fetchers.rb:117
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/ruby-openid-2.1.2/lib/openid/kvpost.rb:2
+	 ... 43 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:212:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 20890
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+Generated checkid_setup request to http://www.myopenid.com/server with assocication {HMAC-SHA1}{490de2a6}{kb8d5Q==}
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 22536
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 23098
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with production environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 26488
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] Connected to NewRelic Service at collector.newrelic.com:80.
+** [NewRelic] Reporting performance data every 60 seconds
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.5004.pid and log/mongrel.5004.log for info.
+** Starting Mongrel listening at 127.0.0.1:5004
+** Starting Rails with development environment...
+** [NewRelic] New Relic RPM Agent Initialized: pid = 25245
+** [NewRelic] Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.5004.log
+** [NewRelic] NewRelic Agent (Developer Mode) enabled.
+** [NewRelic] To view performance information, go to http://localhost/newrelic
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 127.0.0.1:5004
+** Writing PID file to tmp/pids/mongrel.5004.pid
+** TERM signal received.

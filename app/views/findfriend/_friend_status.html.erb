@@ -1,0 +1,31 @@
+<% unless is_logged_in? and user == logged_in_user %>
+	<%= friendship_status_mini(@logged_in_user, user) %>
+	<br>
+	<% if Friendship.exists?(@logged_in_user, user) %>
+		<% if @logged_in_user.requested_friends.include?(user) %>
+			<%= link_to "接受成為好友", 
+                      :controller => "friends", :action => "accept", 
+                      :id => user %>
+                      <br> 
+          <%= link_to "取消這個請求", 
+                      { :controller => "friends", :action => "decline", 
+                      :id => user, }, 
+                      :confirm => "你確定要取消這個好友請求嗎？" %>
+		<% elsif @logged_in_user.pending_friends.include?(user) %>
+	      <%= link_to "取消好友邀請", 
+	                      { :controller => "friends", :action => "cancel", 
+	                        :id => user }, 
+	                      	:confirm => "你確定要取消傳送這個好友邀請嗎？" %>
+	   <% else %>
+			<%= link_to "刪除這位好友", 
+	                      { :controller => "friends", :action => "delete", 
+	                        :id => user }, 
+	                      	:confirm => "你確定要刪除這位好友嗎？" %>
+		<% end %>
+	<% else %>
+	  	<%= link_to "加為你的好友", 
+	      new_user_friend_path(:user_id => logged_in_user, 
+	                      :friend_id => user), 
+	        :confirm => "你確定要將這個使用者加為好友？" %>
+	<% end %>
+<% end %>

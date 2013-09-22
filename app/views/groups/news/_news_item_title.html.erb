@@ -1,0 +1,15 @@
+<ul class="list comments full">
+  <li class="left group-news-item-title">
+    <div class="profile-image">
+		<%= link_to icon_tag(news_item_title, :tiny), group_news_path(@group, news_item_title) %>
+		<%= image_tag("icons/marketplace.gif", :class => "icon") %>
+	 </div>
+	 <div>
+		<%= link_to "#{sanitize(news_item_title.title)}", group_news_path(@group, news_item_title) %>
+		<p>
+		<%= summarize(news_item_title.body, 120) %>
+		<%= link_to "繼續閱讀", group_news_path(@group, news_item_title) %>
+		</p>
+	 </div>
+  </li>
+</ul>

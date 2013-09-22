@@ -1,0 +1,55 @@
+<ul>
+	<li><%= link_to_unless_current '回到首頁', index_url %></li>
+	<li><%= link_to_unless_current '新聞文章', articles_path %></li>
+	<li><%= link_to_unless_current '討論區', forums_path %></li>
+	<li><%= link_to_unless_current '瀏覽美食評論', reviews_path %></li>
+	<li><%= link_to_unless_current '圖片標籤', tags_path %></li>
+	<li><%= link_to_unless_current '瀏覽使用者', users_path %></li>
+	<li><%= link_to_unless_current '尋找朋友', find_friend_url %></li>
+	<li><%= link_to_unless_current '手機版頁面', mobile_url %></li>
+
+	<li><hr size="1" width="90%" align="left"></li>
+
+	<% if is_logged_in? %>
+	   <li>嗨 <%= highlight(logged_in_user.f, logged_in_user.f) %></li>
+	   <li><%= link_to_unless_current "收件匣 (#{logged_in_user.unread_messages.count})", messages_url %></li>
+	   <li><%= link_to_unless_current '瀏覽群組', groups_path %></li>
+	   <li><%= link_to_unless_current '活動事項', :controller => 'events' %></li>
+		<li><%= link_to_unless_current '設定頭像', upload_avatar_path %></li>
+		<li><%= link_to_unless_current '個人檔案', profile_path(logged_in_user) %></li>
+		<li><%= link_to_unless_current '帳號設定', user_path(logged_in_user) %><li>
+		<li><%= link_to_unless_current '我的朋友', user_friends_path(logged_in_user) %></li>
+		<li><%= link_to_unless_current '我的網誌', user_notes_path(logged_in_user) %></li>
+		<li><%= link_to_unless_current '我的日記', blog_path(logged_in_user.blog) %></li>
+		<li><%= link_to_unless_current '我的相簿', user_galleries_path(logged_in_user) %></li>
+		<li><%= link_to_unless_current '轉貼連結', '/share' %></li>
+		<li><%= link_to_unless_current '管理相片', user_photos_path(logged_in_user) %></li>
+		<li><%= link_to_unless_current '自訂模版', usertemplates_path %><li>
+		<li><%= link_to_unless_current '登出', '/account/logout', :method => :post %><li>
+	<% else %>
+    	<li><%= link_to_unless_current 'Yahoo! ID 登入', yahooLogin_url %></li>
+    	<li><%= link_to_unless_current 'OpenID 登入', openid_login_url %></li>
+    	<li><%= link_to_unless_current '登入帳號', login_url -%></li>
+		<li><%= link_to_unless_current '註冊使用者', signup_url -%><li>
+	<% end %>
+	
+	<% if admin? %>
+	<li><hr size="1" width="90%" align="left"></li>
+	<li><b>管理員選項</b></li>
+	<li><%= link_to_unless_current '全域組態設定', admin_preferences_path %></li>
+	<li><%= link_to_unless_current '管理使用者', admin_users_path %></li>
+	<li><%= link_to_unless_current '管理全部群組', admin_groups_path %></li>
+	<li><%= link_to_unless_current '瀏覽全部相片', photos_path %></li>
+	<li><%= link_to_unless_current '撰寫新聞訊息', admin_member_stories_path %></li>
+	<li><%= link_to_unless_current '編輯網站文章', pages_path %></li>
+	<li><%= link_to_unless_current '發送網站訊息', newsletters_path %></li>
+	<% end %>
+	
+	<% if moderator? %>
+	<li><hr size="1" width="90%" align="left"></li>
+	<li><b>編輯者選項</b></li>
+	<li><%= link_to_unless_current '管理新聞文章', admin_articles_path %></li>
+	<li><%= link_to_unless_current '文章分類列表', admin_categories_path %></li>
+	<li><%= link_to_unless_current '網誌文章分類', admin_ecategories_path %></li>
+	<% end %>
+</ul>

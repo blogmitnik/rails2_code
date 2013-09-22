@@ -1,0 +1,5 @@
+<li>
+	<%= link_to image_tag(photo.public_filename('thumb')), 
+			user_photo_path(photo.owner, photo), 
+			:title => "#{photo.body}" %>
+</li>

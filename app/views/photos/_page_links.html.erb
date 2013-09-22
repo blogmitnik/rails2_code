@@ -1,0 +1,15 @@
+<p class="pagination">
+<% if @photo_pages.page_count > 1 %>
+
+	<% if @photo_pages.current.previous %>
+		<%= link_to '&laquo; 上一頁', :page => @photo_pages.current.previous %>
+	<% end %>
+	
+	<%= pagination_links @photo_pages, :params => params %>
+	
+	<% if @photo_pages.current.next %>
+		<%= link_to '下一頁 &raquo;', { :page => @photo_pages.current.next } %>
+	<% end %>
+
+<% end %>
+</p>	

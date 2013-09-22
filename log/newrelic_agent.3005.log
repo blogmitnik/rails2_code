@@ -1,0 +1,5 @@
+# Logfile created on Wed Apr 01 16:31:48 +0800 2009 by /
+[04/01/09 16:31:48 (5926)] INFO : New Relic RPM Agent Initialized: pid = 5926
+[04/01/09 16:31:48 (5926)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3005.log
+[04/01/09 16:31:48 (5926)] INFO : Runtime environment: Mongrel
+[04/01/09 16:31:48 (5926)] INFO : Transaction tracing is enabled in the agent

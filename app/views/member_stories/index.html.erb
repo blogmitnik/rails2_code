@@ -1,0 +1,4 @@
+<h3>新聞文章</h3>
+<% if admin? -%><p><%= link_to "撰寫新聞文章", new_admin_news_item_path %><% end -%></p>
+<%= render :partial => 'member_story_summary', :collection => @news_items -%>
+<%= will_paginate @news_items %>

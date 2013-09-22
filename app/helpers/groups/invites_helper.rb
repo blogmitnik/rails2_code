@@ -1,0 +1,2 @@
+module Groups::InvitesHelper
+end

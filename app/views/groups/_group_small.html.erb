@@ -1,0 +1,5 @@
+<div class="group-small">
+  <%= image_link(group_small, :image_options => { :class => "photo fn" },
+                              :link_options =>  { :class => "url" }) %>
+  <%= link_to truncate_html(group_small.name, 10), group_path(group_small) %>
+</div>

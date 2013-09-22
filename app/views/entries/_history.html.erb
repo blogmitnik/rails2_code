@@ -1,0 +1,14 @@
+<% 
+#locals
+entries ||= @entries
+
+unless entries.empty?
+%>
+
+<h3>最近發佈的評論</h3>
+
+<ul id="post_history">
+<%= entries_li entries %>
+</ul>
+
+<% end %>

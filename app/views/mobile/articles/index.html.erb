@@ -1,0 +1,30 @@
+<h2>網站新聞</h2>
+
+<% if @articles_pages.page_count > 1 %>
+<p class="pagination">頁次: <strong>
+	<%= pagination_links @articles_pages, :params => params %>
+</strong></p>
+<% end %>
+
+<% @articles.each do |article| %>
+<div class="article">
+	<h3><%= article.title %></h3>
+	<% if article.category %>
+	<p class="category">
+		文章分類: '<%= link_to article.category.name, 
+					mobile_category_articles_path(article.category) %>'
+	</p>
+	<% end %>
+	
+	<p>
+		<%= article.user.username %> 發佈於 <%= article.created_at.to_s(:short) %><br>
+		<%= link_to '閱讀全文', mobile_article_url(article) %>
+	</p>
+</div>
+<% end %>
+
+<% if @articles_pages.page_count > 1 %>
+<p class="pagination">頁次: <strong>
+	<%= pagination_links @articles_pages, :params => params %>
+</strong></p>
+<% end %>

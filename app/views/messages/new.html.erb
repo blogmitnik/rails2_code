@@ -1,0 +1,71 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%
+#locals
+message ||= @message
+message ||= Message.new params[:message]
+recipient ||= @recipient
+recipient ||= [@user] #used on someone's profile page
+hide_header ||= false
+
+if message.reply?
+  message.subject = "回覆: " + message.subject
+end
+%>
+
+<%- column_div :type => :primary do -%>
+<h3>撰寫訊息</h3>
+
+  <%= error_messages_for :message %>
+  
+  <%- unless @preview.nil? -%>
+    <h3>預覽訊息</h3>
+    <div id="user_data"><%= display @preview %></div>
+  <%- end -%>
+  
+  <div id="progress-bar" style="display:none;" align="center">
+    <img src="/images/indicator_blue_large.gif" alt="progress bar">
+    <div>請稍後...正在傳送你的訊息</div>
+  </div>
+  
+  <div id="send-message-error" style="display:none">你無法發送一項空白的訊息。</div>
+
+  <div id="compose-message-form" class="thickbox_form">
+  		<% cate_remote_form_for(:message, :url => messages_path, 
+								  		:html => {:id => "submit-message-form"}, 
+								  		:complete => "Field.clear('message_body')") do |f| %>
+      <%= f.wrap('選擇收件人') {recipient.to_select :message, 
+      						:recipient_id, :selected => (params[:message][:recipient_id].to_i rescue ''), 
+      						:name => :f} %>
+      <%= f.text_field :subject, {:label => "訊息主旨"} %>
+      <%= f.text_area :content, {:label => "訊息內容"} %>
+      
+      <%- if message.reply? -%>
+        <%= f.hidden_field :parent_id %>
+        <%= set_focus_to "message_body" %>
+      <%- else -%>
+        <%= set_focus_to "message_subject" %>
+      <%- end -%>
+    
+	    <div id="submit_message" class="row button">
+	      <%= f.submit "傳送訊息", :class => "button", :id => "submit" %>
+	    </div>
+  		<% end %>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+
+	jQuery("#submit-message-form").submit(function() {
+	  jQuery("#compose-message-form").hide();
+	  jQuery("#progress-bar").show();
+  });
+  
+});
+</script>

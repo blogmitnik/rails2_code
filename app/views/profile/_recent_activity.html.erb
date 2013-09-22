@@ -1,0 +1,15 @@
+<%- if @user.recent_activity.empty? -%>
+  <h3>動態消息</h3>
+  <p>即時動態中沒有文章。</p>
+<%- else -%>
+  <h3>動態消息 <span class="meta"><%= link_to "顯示全部", profile_activities_path(@user) %></span></h3>
+  <%- unless @user.last_login_at.nil? -%>
+    <span class="meta"><%= @user.short_name %>上次登入時間在 
+      <%= @user.last_login_at.strftime('%m月%d日 %H:%M') %>
+    </span>    
+  <%- end -%>
+  
+  <% @recent_activity.each do |activity| %>
+    <%= render( :partial => "shared/activity", :locals => {:activity => activity, :recent => true}) %>
+  <% end %>
+<%- end -%>

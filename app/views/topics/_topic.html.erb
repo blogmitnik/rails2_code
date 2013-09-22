@@ -1,0 +1,30 @@
+<li class="topic">
+  <a name="topic_<%= topic.id %>"></a>
+  <div class="profile-image">
+    <%= image_link topic.user, :image => :small %>
+  </div>
+  <div class="topic_body">
+    <%- n = topic.posts.count -%>
+    <%= image_tag "icons/post.gif", :class => "icon" %>
+    <%= link_to h(topic.title), 
+                forum_topic_path(topic.forum, topic, :comments => n),
+                :class => "show-follow" %>
+    <span class="meta">（共有<%= n %>篇討論文章）</span>
+    <p class="meta">
+      	由 <%= user_link topic.user %> 在
+      <abbr class="created" title="<%= topic.created_at %>">
+      <%= time_ago_in_words(topic.created_at) %></abbr> 前張貼
+      <%- if moderator? -%>
+        <%= link_to image_tag("icons/note_edit.png", :class => 'actioner'),  
+          edit_forum_topic_path(topic.forum, topic),
+          :title => '編輯主題名稱' %>
+      <%= link_to image_tag("icons/note_delete.png", :class => 'actioner'), 
+               forum_topic_path(topic.forum, topic), 
+               :method => :delete,
+               :confirm => "你確定要刪除這個討論主題嗎？",
+          :title => "刪除這個主題" %>
+      <%- end -%>
+    </p>
+  </div>
+  <div class="clear"></div>
+</li>

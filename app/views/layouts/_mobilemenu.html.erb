@@ -1,0 +1,13 @@
+<ul>
+	<li>0&nbsp;<%= link_to '首頁', mobile_index_url, :accesskey => '0' %></li>
+	<li>1&nbsp;<%= link_to '新聞', mobile_articles_path, :accesskey => '1' %></li>
+	<li>2&nbsp;<%= link_to '論壇', mobile_forums_path, :accesskey => '2' %></li>
+	<li>3&nbsp;<%= link_to '網誌', mobile_blogs_path, :accesskey => '3' %></li>
+	<li>4&nbsp;<%= link_to '圖片', mobile_photos_path, :accesskey => '4' %></li>
+	
+	<% if is_logged_in? %>
+		<li><%= link_to '登出', mobile_logout_path %></li>
+	<% else %>
+		<li><%= link_to '登入', mobile_login_path %></li>
+	<% end %>
+</ul>

@@ -1,0 +1,7 @@
+<h2><%= @article.title %></h2>
+<p>
+	<%= @article.created_at.to_s(:short) %><br>
+	<%= textilize(@article.body) %><br>
+</p>
+
+<p><%= link_to '返回新聞列表', mobile_articles_url %></p>

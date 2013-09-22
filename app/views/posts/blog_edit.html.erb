@@ -1,0 +1,7 @@
+<%- column_div :type => :primary do -%>
+<h3>編輯文章</h3>
+<%= error_messages_for :post %>
+<%= render :partial => 'blog_form',
+           :locals => { :url => blog_post_path(@blog, @post),
+                        :method => :put }%>
+<%- end -%>

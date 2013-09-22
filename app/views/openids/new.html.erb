@@ -1,0 +1,31 @@
+<h3>新增 OpenID 帳號</h3>
+
+<% form_for :openid, :url => open_id_complete_on_user_path do %>
+<div id="profile_edit">
+    <div>OpenID 帳號：</div>
+    <%= text_field_tag "openid_url", "http://" %>
+    
+    <p>
+    	<%= submit_tag '前往認證', :class => 'button' %>
+    </p>
+
+    <p>你可以使用下列格式的 OpenID 帳號：</p>
+    <ul>
+	    <li>Flickr: http://<%= link_to 'flickr.com', 'http://flickr.com/' %>/photos/名稱</li>
+	    <li>Blogger: http://名稱.<%= link_to 'blogspot.com', 'http://blogspot.com' %></li>
+	    <li>ClaimID: http://<%= link_to 'claimid.com', 'http://claimid.com' %>/名稱</li>
+	    <li>MyOpenID: http://名稱.<%= link_to 'myopenid.com', 'http://myopenid.com' %></li>
+    </ul>
+    <p>你也可以從下面選擇其他帳號類型：</p>
+	<style> @import 'http://www.clickpass.com/stylesheets/container.css'; </style>
+	<div id="clickpass_button" style="width: 136px; height: 18px; position: relative; z-index : 9999 ;">
+	  <iframe src="http://www.clickpass.com/embedded_buttons/index/nzYw0v0aZA?mode=connect&override_openid_callback_url=http://railscode.mine.nu/users/add_openid" width="136" height="18" frameborder="0" allowtransparency="true" scrolling="no" style="z-index:9999;position: absolute; top: 0; left: 0;"></iframe> 
+	</div>
+	<script type="text/javascript" src="http://www.clickpass.com/javascripts/ClickpassPanel.class.external.js?v1"></script>
+	<script type="text/javascript">  
+	      var clickpassPanel = new ClickpassPanel('clickpass_button');   </script>
+</div>
+<% end %>
+
+<%= link_to '&#171; 返回帳號設定', user_path(logged_in_user) %>
+

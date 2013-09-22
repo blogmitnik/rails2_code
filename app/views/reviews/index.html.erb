@@ -1,0 +1,20 @@
+<h3>使用者的網誌文章</h3>
+
+<div id="profile_show">
+<% @entries.each do |entry| %>
+	<p>
+		<%= link_to entry.title, user_entry_url(entry.user, entry), 
+			:title => "#{entry.title} - 由 #{entry.user.f} 在 #{time_ago_in_words(entry.created_at)} 發佈" %>
+		<br>
+		<%= entry.user.f %> 在 <%= time_ago_in_words(entry.created_at) %> 前發佈
+		<br>
+		(有 <%= entry.comments_count %> 篇回覆)
+	</p>
+<% end %>
+</div>
+
+<% if @entry_pages.page_count > 1 %>
+	<p class="pagination">頁次: <strong>
+		<%= pagination_links @entry_pages, :params => params %>
+	</strong></p>
+<% end %>

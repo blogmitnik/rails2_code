@@ -1,0 +1,8 @@
+<li>
+	<%= role.name %>
+	[<% if @user.has_role?(role.name) %>
+		<%= link_to '移除權限', user_role_url(:id => role.id, :user_id => @user.id), :method => :delete %>
+	<% else %>
+		<%= link_to '指派權限', user_role_url(:id => role.id, :user_id => @user.id), :method => :put %>
+	<% end %>]
+</li>

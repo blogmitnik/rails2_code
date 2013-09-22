@@ -1,0 +1,58 @@
+<%-
+comment ||= @wall_comment || @wall_comments
+user ||= @user
+wall ||= false
+leave_comment ||= false
+
+truncate = truncate.nil? ? true : truncate
+youtube_videos = comment.body.scan(/\[youtube:+.+\]/)
+c = comment.body.dup.gsub(/\[youtube:+.+\]/, '')
+-%>
+
+<div id="<%= comment.dom_id %>">
+<ul class="list comments full">
+  <li>
+  <div class="profile-image">
+  	<%- if facebook_user && is_me?(comment.commenter) -%>
+	  <fb:profile-pic uid="<%= facebook_user %>" size="square" facebook-logo="true" ></fb:profile-pic>
+	<%- else -%>
+      <%= image_link(comment.commenter, :image => :tiny) %>
+	<%- end -%>
+    <%= image_tag "icons/comment.png", :class => "icon" %>
+  </div>
+  
+  <%= user_link comment.commenter %> 於
+  <%= comment.created_at.strftime('%m月%d日 %H:%M') %> 留言
+  <%= x_comment_link(user, comment) -%>
+  <%= display c %>
+  
+  <p class="video">
+  <% unless youtube_videos.empty? %>
+  <%= image_tag "icons/motion.gif", :class => "icon" %>
+  <strong>留言中附有 <%= youtube_videos.size %> 則影片連結：</strong><br/>
+  	 <% youtube_videos.each do |o| %>
+	 <%= tb_video_link(o.gsub!(/\[youtube\:|\]/, '')) %>
+	 <% end
+  end %>
+  </p>
+  
+  <p class="meta">
+  <% if wall %>
+	  <%- if logged_in_user?(comment.commenter) && logged_in_user.friends.include?(comment.commented_user) && logged_in_user.has_wall_with(comment.commented_user) -%>
+	  	· <%= link_to "瀏覽雙向塗鴉牆", user_wall_comments_path(comment.commented_user) %>
+	  <% elsif !me && !logged_in_user?(comment.commenter) && logged_in_user.friends.include?(comment.commenter) && logged_in_user.friends.include?(comment.commented_user) && comment.commented_user.friends.include?(comment.commenter) && comment.commented_user.has_wall_with(comment.commenter) %>
+	  	· <%= link_to "瀏覽雙向塗鴉牆", user_wall_comment_path(comment.commented_user, comment.commenter) %>
+	  <% elsif me && !logged_in_user?(comment.commenter) && logged_in_user.friends.include?(comment.commenter) && comment.commented_user.has_wall_with(comment.commenter) %>
+	  	· <%= link_to "瀏覽雙向塗鴉牆", user_wall_comments_path(comment.commenter) %>
+	  <%- end -%>
+  <% end %>
+  
+  <% if leave_comment %>
+	  <%- if !logged_in_user?(comment.commenter) && logged_in_user.friends.include?(comment.commenter) -%>
+	  	· <%= link_to "到 #{comment.commenter.f} 的塗鴉牆", profile_path(comment.commenter) %>
+	  <% end %>
+  <% end %>
+  </p>
+  </li>
+</ul>
+</div>

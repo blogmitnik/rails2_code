@@ -1,0 +1,62 @@
+<%= javascript_include_tag "jquery", "tooltip" %>
+
+<h3>使用者登入</h3>
+
+<div id="profile_edit">
+<p>登入 Cateplaces</p>
+<p>你也可以使用 <%= link_to 'OpenID', openid_login_url, :title => "我們接受使用 OpenID 帳號來登入網站" %> 
+	或 <%= link_to 'Yahoo! ID', yahooLogin_url, :title => "我們接受使用 Yahoo! 帳號來登入網站" %> 登入</p>
+<% form_for :user, :url => {:action => 'authenticate'} do |f| -%>
+	<div class="form_row">登入帳號：<br><%= f.text_field :email, 
+		:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH -%>
+		<div id="help_persistent"></div></div>
+	<div class="form_row">密碼：<br><%= f.password_field :password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+	<div class="form_row" title ="為了確保你的訊息安全，請不要在網咖或者公共場所選擇此項！如果今後要取消此選項，只需點擊網站的“登出”連結即可">
+		<%= f.check_box :remember_me -%>記住我的帳號，下次自動登入。</div>
+	
+	<div class="row button">
+		<%= submit_tag '登入', :class => 'button' -%> 或<%= link_to "申請加入 #{app_name}", signup_url %>
+	</div>
+	
+	<p>
+		<%= link_to "忘記密碼？", password_reset_url %>
+	</p>
+<% end -%>
+
+<p>或是你也可以選擇其他登入方式：</p>
+<div style="margin-left: 3px;">
+  <p><%= render :partial => 'shared/fbconnect_button' %></p>
+  <p><%= link_to  image_tag( 'twitter_login.png', { :alt => '透過 Twitter 帳號登入' } ), twitterOAuth_url  %></p>
+</div>
+
+<style> @import 'http://www.clickpass.com/stylesheets/container.css'; </style>
+<div id="clickpass_button" style="width: 176px; height: 28px; margin-top: 5px; position: relative; z-index : 9999 ;">
+  <iframe src="http://www.clickpass.com/embedded_buttons/login-standard/nzYw0v0aZA" width="176" height="28" frameborder="0" allowtransparency="true" scrolling="no" style="z-index:9999;position: absolute; top: 0; left: 0;"></iframe> 
+</div>
+<script type="text/javascript" src="http://www.clickpass.com/javascripts/ClickpassPanel.class.external.js?v1"></script>
+<script type="text/javascript">  
+      var clickpassPanel = new ClickpassPanel('clickpass_button');   </script>
+</div>
+
+<script language=javascript>
+try{ ycn_login_auto_focus();}catch(e){}
+</script>
+
+<!--{start:tips CSS & JS -->
+<style>
+/* tip */
+.tip{background-color:#FFFBB8;border:1px solid #FFC30E;font-family:arial,sans-serif;font-size:12px;color:#9C7600;padding:5px;text-align:left;width:15.3em;position:absolute;z-index:999;}
+#help_persistent{display:inline-block;display:-moz-inline-box;*display:inline;*zoom:1;vertical-align:top;width:17px;height:17px;overflow:hidden;background:url(/images/question_inactive.gif) no-repeat;margin:3px 0 0 3px;}
+.help_con{display:none;}
+</style>
+
+<script>
+//help tip
+try{document.execCommand('BackgroundImageCache',false,true);}catch(e){};(function(){var tipsStr="請輸入您在註冊 Cateplaces 帳號時所填寫的 Email 地址";var supportMouseover=1;var cnTipInput=document.getElementById("user_email");var cnTipHandle=document.getElementById("help_persistent");var img_active=new Image();img_active.src="/images/question_active.gif";var ctip=document.createElement("div"),ctip_style=ctip.style;ctip.className="tip";ctip.innerHTML=tipsStr;ctip.style.top="-9999px";ctip.style.left="-9999px";function addEvent(obj,type,fn){if(obj.addEventListener)obj.addEventListener(type,fn,false);else if(obj.attachEvent){obj["e"+type+fn]=fn;obj[type+fn]=function(){obj["e"+type+fn](window.event);}
+obj.attachEvent("on"+type,obj[type+fn]);}}
+addEvent(window,'load',function(){document.body.appendChild(ctip)})
+function displayTip(o){var bn=o,pos=[0,0];for(var p=bn;(p=p.offsetParent)!=null;pos[0]+=p.offsetLeft,pos[1]+=p.offsetTop);pos=[pos[0]+bn.offsetLeft-ctip.offsetWidth+bn.offsetWidth,pos[1]+bn.offsetTop+bn.offsetHeight+4];cnTipHandle.style.background="url("+img_active.src+") no-repeat";if(ctip){ctip.style.display="block";ctip.style.left=pos[0]+1+"px";ctip.style.top=pos[1]+"px";}}
+function hiddenTip(){cnTipHandle.style.background="url("+img_active.src.replace("_active","_inactive")+")";if(ctip){ctip.style.left="-9999px";}}
+cnTipInput.onmouseover=function(){if(supportMouseover){if(!cnTipInput.value){displayTip(this);}}};cnTipInput.onmouseout=function(){hiddenTip();};cnTipInput.onkeydown=function(){setTimeout(hiddenTip,800);};cnTipHandle.onmouseover=function(){displayTip(cnTipInput);};cnTipHandle.onmouseout=function(){hiddenTip();};})();</script>
+<!--}end:tips CSS & JS -->

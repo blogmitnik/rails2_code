@@ -1,0 +1,15 @@
+<p id="forum_name">
+  <table border="0" cellspacing="0" cellpadding="0" class="noborder nopad wide">
+    <td>
+      <label>名稱<%= 'Title'[:title_title] %></label><br />
+      <%= form.text_field :name, :label => '名稱', :class => "primary" %>
+    </td>
+    <td style="text-align:right">
+      <label>位置<%= 'Position'[:position_title] %></label><br />
+      <%= form.text_field :position, :label => '位置', :size => 5 %>
+    </td>
+  </table>
+</p>
+<p id="forum_descripion">
+  <label>內容<%= 'Description'[:description_title] %></label><br />
+  <%= form.text_area :description, :label => '內容', :rows => 10 %></p>

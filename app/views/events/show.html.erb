@@ -1,0 +1,72 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+event ||= @event
+wall_comments ||= @wall_comments
+@count = wall_comments.total_entries
+
+parent ||= @event
+parent = @event || nil
+-%>
+
+<% column_div :type => :primary do -%>
+
+  <h3>活動內容</h3>
+  <%= link_to "建立新的活動", new_event_path, :title => "建立一項新的活動" %> |
+  <%= link_to "返回活動項目首頁", events_path %>
+  
+  <ul class="list full">
+    <%= render :partial => @event %>
+  </ul>
+
+  <h4>將出席活動的成員</h4>
+  <% unless @attendees.empty? -%>
+  <p>共有<%= @event.event_attendees_count %>位成員將會出席這個活動:</p>
+    <% paginated_section @attendees do  %>
+	    <%- @attendees.each do |attendee| -%>
+	      <div class="group-member">
+	        <%= image_link attendee, :image_options => { :class => "photo" },
+	                               :link_options => { :class => "url" },
+	                               :image => :tiny %>
+	        <div class="name"><%= link_to h(attendee.full_name), profile_path(attendee) %></div>
+	      </div>
+	    <%- end -%>
+    <% end -%>
+  <% else -%>
+  	<p>目前還沒有使用者參與這項活動</p>
+  <% end -%>
+
+  <h3>回應活動</h3>
+  <%- if has_attending? -%>
+    <a name="add-event-comment"></a>
+	 <p>
+		<%= inline_tb_link("回應這個活動", "new_comment", :title => "在 '#{@event.title}' 的活動頁面留言") %>
+		<% if @count > 0 -%>
+		| <%= link_to "顯示全部回應", event_comments_path(@event) %>
+		<% end -%>
+	 </p>
+    <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	 	<%= render :partial => 'form' %>
+	 </div>
+    <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	 	<%= render :partial => 'hidden_form' , :locals => {:with_form => true} %>
+	 </div>
+  <%- else -%>
+  	<div class="notice">你必須參與這個活動才能發表回應</div>
+  <%- end -%>
+  
+  <a name="blog-post-comment"></a>
+  <div id="<%= "comments_for_#{dom_id(parent)}" %>">
+ 	  <% @event.wall_comments.each do |c| %>
+      <%= render :partial => 'wall_comments/comment', :locals => { :comment => c } %>
+    <% end %>
+  </div>
+
+<% end -%>
+
+<% column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'calendar',
+             :locals => { :events => @month_events, :date => @date } %>
+<%= render :partial => 'shared/minifeed' %>
+<% end -%>

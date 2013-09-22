@@ -1,0 +1,11 @@
+<% if message.sender == logged_in_user %>
+  <% other_person = message.recipient %>
+  <h2>傳送給 <%= name_link logged_in_user %></h2>
+<% else %>
+  <% other_person = message.sender %>
+  <h2>來自 <%= name_link logged_in_user %></h2>
+<% end %>
+<div><%= name_link message.sender %></div>
+<div class="status-mail">
+  <%= email_link logged_in_user, :replying_to => message %>
+</div>

@@ -1,0 +1,62 @@
+<% content_for :head do  -%>
+<%= auto_discovery_link_tag :rss, formatted_user_entries_url(@user, :rss), :title=>"#{@user.name} 的美食評論" %>
+<% end -%>
+
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<%= javascript_include_tag 'prototype', 'effects' %>
+
+<% entry ||= @entry %>
+
+<% column_div :type => :primary do -%>
+<h3><%= entry.user.name %> 的美食評論</h3>
+
+<%= link_to "瀏覽全部文章", user_entries_path(entry.user) %> |
+<%= link_to "返回 #{entry.user.name} 的個人檔案", profile_path(entry.user) %>
+
+<ul class="list blog">
+	<%= render :partial => 'entry' %>
+</ul>
+
+<% if @map %>
+	<div id="gmap">
+		<%= link_to_function '隱藏地圖', 
+			"Element.hide('gmap'); Element.show('showmaplink')" %>
+		<%= @map.to_html %>
+		<%= @map.div(:width => 510, :height => 200) %><br>
+	</div>
+	<%= link_to_function '顯示地圖', 
+		"Element.show('gmap'); Element.hide('showmaplink')", 
+		:id => 'showmaplink', :style => 'display:none' %>
+<% end %>
+
+<script type="text/javascript">addthis_pub  = 'blogmitnik';</script>
+<a href="http://www.addthis.com/bookmark.php" onmouseover="return addthis_open(this, '', '[URL]', '[TITLE]')" onmouseout="addthis_close()" onclick="return addthis_sendto()">
+<img src="http://s9.addthis.com/button1-bm.gif" width="125" height="16" border="0" alt="" /></a>
+<script type="text/javascript" src="http://s7.addthis.com/js/152/addthis_widget.js"></script>
+
+<div id="comments_for_entry_<%= @entry.id %>"> 
+	<%= render :partial => "comments/comment" %> 
+</div>
+
+<h3>新增回應</h3>
+<% if is_logged_in? %> 
+  <div id="add_comment_link_for_entry_<%= @entry.id %>">
+    <%= link_to_remote "新增文章回應", 
+                       {:url => new_user_entry_comment_path(@entry.user, @entry), 
+                       :method => :get}, 
+                       :href => new_user_entry_comment_path(:user_id => @entry.user, :entry_id => @entry) %> 
+  </div> 
+  <div id="new_comment_form_for_entry_<%= @entry.id %>"></div>
+<% else %>
+	你必須先<%= link_to '登入', login_url %>才能新增回應。
+<% end %>
+
+<% end %>
+
+<% column_div :type => :secondary do -%>
+	<%= render :partial => "searches/box" %>
+	<%= render :partial => 'history' %>
+<% end -%>

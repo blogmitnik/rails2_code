@@ -1,0 +1,36 @@
+<% unless @forum.description.blank? %>
+  <%= @forum.description_html %>
+  <hr />
+<% end %>
+
+<!-- <% if false %>
+TODO integrate moderators and group managers
+<h3 style="margin-bottom:1.0em;">討論區管理員</h3>
+<% unless @forum.moderators.empty? -%>
+  <% @forum.moderators.each do |user| -%>
+    <div class="group-member-small">
+      <%= image_link(user, :image_options => { :class => "photo fn" },
+                           :link_options =>  { :class => "url" }, 
+                           :image => :icon) %>
+      <div class="name"><%= link_to h(user.full_name), profile_path(user) %></div>
+    </div>
+  <% end -%>
+<% else -%>
+  <p>這個討論區尚無管理員</p>
+  <p>參與討論時請遵守禮貌，嚴禁發表任何具有攻擊性的言論</p>
+<% end -%>
+<hr />
+<% end %> -->
+
+
+<% if @topic -%>
+  <h4>誰參與了討論</h4>
+  <% @topic.voices.each do |user| %>
+    <div class="group-member-small">
+      <%= image_link(user, :image_options => { :class => "photo fn" },
+                           :link_options =>  { :class => "url" }, 
+                           :image => :icon) %>
+      <div class="name"><%= link_to h(user.full_name), profile_path(user) %></div>
+    </div>
+  <% end %>
+<% end -%>

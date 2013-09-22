@@ -1,0 +1,11 @@
+<h3><%= @user.username %> 所有符合 <%=h params[:id] %> 的相片</h3>
+
+<p>
+	<%= link_to "顯示所有使用者符合 #{h(params[:id])} 的相片", tag_path(h(params[:id])) %>
+</p>
+
+<div id="tag_cloud">
+	<ul id="photos">
+		<%= render :partial => 'photos/photo', :collection => @photos %>
+	</ul>
+</div>

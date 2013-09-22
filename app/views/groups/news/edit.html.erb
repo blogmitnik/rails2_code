@@ -1,0 +1,6 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<h3>編輯新聞訊息</h3>
+<% custom_form_for @news_item, :url => group_news_path(@group, @news_item), :html => { :method => :put, :multipart => true, :class => "box no_top" } do |f| -%>
+	<%= render :partial => 'news/form', :locals => { :f => f, :show_photo_upload => true } %>
+<% end %>

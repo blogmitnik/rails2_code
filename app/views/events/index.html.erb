@@ -1,0 +1,21 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+<h3>事件活動清單</h3>
+<%= link_to "建立新的活動", new_event_path, :title => "建立一項新的活動" %>
+
+<ol class="list full">
+  <%= render :partial => @events %>
+</ol>
+
+<div class="clear"></div>
+	<%= will_paginate @events %>
+<div class="clear"></div>
+<% end -%>
+
+<% column_div :type => :secondary do -%>
+	<%= render :partial => 'searches/box' %>
+	<%= render :partial => 'calendar',
+	           :locals => { :events => @month_events, :date => @date } %>
+	<%= render :partial => 'shared/minifeed' %>
+<% end -%>

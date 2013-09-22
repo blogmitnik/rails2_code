@@ -1,0 +1,42 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+event ||= @event
+user ||= @user
+wall_comments ||= @wall_comments
+
+parent ||= @parent
+parent = @event || nil
+-%>
+
+<%- column_div :type => :primary do -%>
+	<h3>活動留言板</h3>
+	<a name="wall"></a>
+	<% if is_logged_in? && @event.attendees.include?(logged_in_user) %>
+	  <%= inline_tb_link("新增留言", "new_comment", :title => "在 '#{event.title}' 活動頁面留言") %> |
+	  <% if parent.eventable_type == "Group" -%>
+	    <%= link_to "返回#{parent.title}", group_event_path(parent.eventable, parent) %>
+	  <% else -%>
+	    <%= link_to "返回#{parent.title}", event_path(parent) %>
+	  <% end -%>
+	
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'events/form' %>
+	  </div>
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'events/hidden_form'%>
+	  </div>
+	<% end %>
+	
+	<%- unless @event.wall_comments.empty? -%>
+	  <div id="<%= "comments_for_#{dom_id(parent)}" %>">
+	    <% @event.wall_comments.each do |c| %>
+	      <%= render :partial => 'wall_comments/comment', 
+	      			  :locals => { :comment => c, :leave_comment => false } %>
+	    <% end %>
+	  </div>
+	<%- end -%>
+   <div class="clear"></div>
+  		<%= will_paginate @wall_comments %>
+	<div class="clear"></div>
+<%- end -%>

@@ -1,0 +1,8 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<div class="activity_box">
+	<h3>寫文章</h3>
+	<% custom_form_for @news_item, :url => user_notes_path, :html => { :method => :post, :multipart => true, :class => "box no_top" } do |f| -%>
+		<%= render :partial => 'news/form', :locals => {:f => f } %>
+	<% end %>
+</div>

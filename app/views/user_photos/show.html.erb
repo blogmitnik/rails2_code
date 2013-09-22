@@ -1,0 +1,126 @@
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<script type="text/javascript">
+var fader = null;
+function start_progress() {
+    fader = new Effect.BlindUp($('others'));
+}
+function stop_progress() {
+    new Effect.BlindDown($('others'));
+    $("count").value = parseInt($("count").value) + 1; 
+    new Effect.Appear($('others'));
+    new Effect.Appear($('search_photo_link'));
+    new Effect.Fade($('ajax-loader'));
+}
+</script>
+
+<%-
+photo ||= @photo
+user ||= @user
+wall_comments ||= @wall_comments
+photos_counts = photo.gallery.photos_count
+
+parent ||= @parent
+parent = @photo || nil
+-%>
+
+<h3><%= h photo.owner.name %> 的相片 - <%=h photo.gallery.title %></h3>
+
+<% if photo.owner_type == "User" %>
+	<p>來自 <%= photo.owner.name %> 的相片</p>
+	<p><%= h(photos_counts) %> 張相片中的第 <%= h(photo.position) %> 張
+		<% if is_logged_in? %>
+			<% if logged_in_user?(photo.owner) %>
+				<%= link_to '編輯相片', edit_user_photo_path(photo.owner, photo) %> | 
+				<%= link_to '刪除相片', user_photo_path(photo.owner, photo), 
+											:confirm => '確定要刪除嗎?', :method => :delete %> |
+			<% end %>
+			<%= link_to "返回相簿", gallery_path(photo.gallery) %> |
+			<%= link_to "返回 #{photo.owner.name} 的個人檔案", profile_path(photo.owner) %>
+		<% end %>
+	</p>
+<% elsif photo.owner_type == "Group" %>
+	<p>來自 <%= photo.owner.name %> 的相片</p>
+	<p><%= h(photos_counts) %> 張相片中的第 <%= h(photo.position) %> 張
+		<% if is_logged_in? %>
+			<% if logged_in_user.own_groups.include?(photo.owner) %>
+				<%= link_to '編輯相片', edit_group_photo_path(photo.owner, photo) %> | 
+				<%= link_to '刪除相片', group_photo_path(photo.owner, photo), 
+											:confirm => '確定要刪除嗎?', :method => :delete %> |
+			<% end %>
+			<%= link_to "返回相簿", gallery_path(photo.gallery) %> |
+			<%= link_to "返回群組頁面", group_path(photo.owner) %>
+		<% end %>
+	</p>
+<% end %>
+
+<% if is_logged_in? %>
+	<p>相簿：<%= link_to "#{photo.gallery.title}", gallery_path(photo.gallery) %></p>
+<% end %>
+
+<% if photo.owner_type == "User" %>
+<p>相片標籤：
+	<% photo.tags.each do |tag| %>
+		<a class="tag">
+			<%= link_to tag.name, user_tag_path(photo.owner, tag.name) %>
+		</a>
+	<% end %>
+</p>
+<% end %>
+
+
+<% if @map %>
+	<div id="gmap">
+		<%= link_to_function '隱藏地圖', 
+			"Element.hide('gmap'); Element.show('showmaplink')" %>
+		<%= @map.to_html %>
+		<%= @map.div(:width => 640, :height => 230) %><br>
+	</div>
+	<%= link_to_function '顯示地圖', 
+		"Element.show('gmap'); Element.hide('showmaplink')", 
+		:id => 'showmaplink', :style => 'display:none' %>
+<% end %>
+
+<span id="params">
+	<%= hidden_field_tag "title", photo.gallery.title %>
+	<%= hidden_field_tag "count", "1" %>
+</span>
+
+<%= image_tag photo.public_filename, :id => 'photo' %>
+<div><%= h(photo.body) %></div>
+
+<h3>搜尋相關相片</h3>
+<div id="ajax-loader" style="display:none;" align="center">
+  <img src="/images/indicator_blue_small.gif" alt="progress bar" float:left>
+  <small>正在載入...</small>
+</div>
+<span class="link-button" id="search_photo_link">
+	<%= link_to_remote "搜尋和 #{photo.gallery.title} 相關相片", :update => :others, :url => { :action => 'mix' }, 
+		:html => {:id => 'button-search'}, 
+		:submit => :params, :before => "start_progress();", 
+		:complete => "stop_progress();" %>
+</span>
+<div id="others"></div>
+
+<%= render :partial => 'user_photos/wall', :locals => {:with_form => true} %>
+
+<div class="clear"></div>
+<div align="center">
+	<span>傳送此連結與朋友分享這張相片：<br>
+	<%= user_photo_url(photo.owner, photo) %></span>
+</div>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+
+	jQuery("#button-search").click(function() {
+	  jQuery("#search_photo_link").hide();
+	  jQuery("#ajax-loader").show();
+  });
+  
+});
+</script>

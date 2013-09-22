@@ -1,0 +1,24 @@
+<%= javascript_include_tag 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+  <h3>我的收件匣</h3>
+
+  <%= render :partial => 'message_nav' %>
+  
+  <%- if @messages.empty? -%>
+    <h3 class="blankslate">沒有任何訊息</h3>
+  <%- else -%>
+    <ul class="list messages full">
+      <%= render :partial => "message", :collection => @messages %>
+    </ul>
+    <div class="clear"></div>
+    	<%= will_paginate %>
+    <div class="clear"></div>
+  <%- end -%>
+
+<% end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

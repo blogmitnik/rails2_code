@@ -1,0 +1,7 @@
+<h2>使用者登入</h2>
+
+<% form_for :user, :url => {:action => 'authenticate'} do |f| -%>
+	<p>使用者名稱:<br><%= f.text_field :username %></p>
+	<p>密碼:<br><%= f.text_field :password %></p>
+	<%= submit_tag '登入' %>
+<% end %>

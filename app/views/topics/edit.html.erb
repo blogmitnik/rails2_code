@@ -1,0 +1,18 @@
+<%- column_div :type => :primary do -%>
+	<h3>編輯主題名稱</h3>
+	
+	<%= error_messages_for :topic %>
+	
+	<% form_for(:topic, :url => forum_topic_path(:id => @topic, :forum_id => @topic.forum), 
+							:html => { :method => :put }) do |f| %>
+							
+		<div class="form_row">
+			<%= f.label :name, "討論主題名稱：" %>
+			<%= f.text_field :name, :size => 40 %>
+		</div>
+		
+		<div class="row button">
+			<%= submit_tag "儲存變更", :class => 'button' %>
+		</div>
+	<% end %>
+<% end -%>

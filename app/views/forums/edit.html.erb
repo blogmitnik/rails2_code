@@ -1,0 +1,13 @@
+<%- column_div :type => :primary do -%>
+<h3>編輯討論區</h3>
+<div id="forum-container">
+  <div class="crumbs">
+    <%= link_to '回到討論區', forums_path %> <span class="arrow">&rarr;</span>
+  </div>
+  <h4>編輯討論區</h4>
+  <% form_for :forum, :url  => forum_path(@forum), :html => { :method => :put } do |f| -%>
+    <%= render :partial => "form", :object => f %>
+    <%= submit_tag '儲存變更', :or => link_to('取消', forums_path) %>
+  <% end -%>
+</div>
+<% end -%>

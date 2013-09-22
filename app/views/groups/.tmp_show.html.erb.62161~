@@ -1,0 +1,110 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+  <div class="profile vcard">
+    <h3><span class="fn n"><%= h @group.name %></span></h3>
+    <%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+    <%- if @group.can_edit?(logged_in_user) -%>
+      <%- if @group.description.blank? -%>
+        <div class="error">
+          	群組簡介是空白的，請為這個群組
+          <%= link_to "建立群組簡介", edit_group_path(@group) %>
+        </div>
+      <%- else -%>
+        <div class="notice">
+          	你是這個群組的管理員，你可以
+          <%= link_to "修改群組內容", edit_group_path(@group) %> 和
+          <%= link_to "管理群組成員", members_group_path(@group) %>
+        </div>
+      <%- end -%>
+    <%- end -%>
+    <div class="toolbox">
+      <%= image_tag @group.main_photo, :class => "profile-image photo",
+                                        :alt => h(@group.name) %>
+      <ul class="tools">
+        <%- unless group_owner?(logged_in_user,@group) -%>
+          <%- unless Membership.exist?(logged_in_user,@group) -%>
+            <li>
+              <%= link_to "加入這個群組", group_memberships_path(@group), 
+              								:method => :post %>
+            </li>
+          <%- else -%>
+              <%- if @group.has_invited?(logged_in_user) -%>
+                  <li>你已經被邀請加入群組 <%= link_to "(加入群組)", edit_membership_path(Membership.find_by_group_id(@group,
+                  															:conditions => ["user_id = ?", logged_in_user])) %></li>
+              <%- end -%>
+          <%- end -%>
+          <%- if Membership.connected?(logged_in_user,@group) -%>
+            <li>你已經是群組的成員 
+                <%= link_to "退出群組", membership_path(Membership.mem(logged_in_user, @group)), 
+                        	 :method => :delete, :confirm => "確定要退出 #{@group.name} 嗎？" %>
+            </li>
+            <li><%= link_to "查看討論區", group_forums_path(@group) -%></li>
+            <li><%= link_to "查看群組活動", group_events_path(@group) -%></li>
+            <li><%= link_to "查看新聞文章", group_news_index_path(@group) -%></li>
+            <li><%= link_to "查看群組日記", blog_path(@group.blog) -%></li>
+            <li><%= link_to "查看群組相簿" , group_galleries_path(@group) -%></li>
+            <li><%= link_to "查看分享檔案", group_uploads_path(@group) -%></li>
+            <li><%= link_to "邀請人們加入", invite_group_path(@group) %></li>
+            <li><%= link_to "邀請非 #{app_name} 朋友參與群組", new_group_invite_path(@group) -%></li>
+          <%- end -%>
+          <%- if Membership.pending?(logged_in_user, @group) -%>
+            <li>你的請求已送至 <%= h @group.name%> 的管理員等待確認</li>
+          <%- end -%>
+        <%- else -%>
+            <li>你是這個群組的管理員 
+                <%= link_to "刪除群組", group_path(@group), :confirm => '你確定要刪除這個群組嗎？', :method => :delete %>
+            </li>
+            <li>這是一個<%= get_groups_modes[@group.mode][0] %></li>
+            <li><a href="<%= new_group_invite_path(@group) -%>">邀請非 <%= app_name %> 朋友參與群組</a></li>
+            <%- if @group.hidden? -%>
+            	<li><%= link_to "邀請人們加入", invite_group_path(@group) %></li>
+            <% end %>
+        <%- end -%>
+        <%- if admin? -%>
+          <li>
+          <%= link_to "刪除這個群組",
+                admin_group_path(@group),:confirm => '你確定要刪除這個群組嗎？', :method => :delete%> 
+          </li>
+        <%- end -%>
+      </ul>
+    </div>
+
+    <%= display @group.description %>
+    <% unless @group.email.blank? %><div>電子郵件：<%= h @group.email %></div><% end %>
+    <% unless @group.office.blank? %><div>辦公室：<%= h @group.office %></div><% end %>
+    <% unless @group.address.blank? %><div>地點：<%= h @group.address %></div><% end %>
+    <% unless @group.city.blank? %><div>城市：<%= h @group.city %></div><% end %>
+    <% unless @group.website.blank? %><div>網站：<%= h @group.website %></div><% end %>
+  </div>
+  
+  <% unless @group.news.blank? %>
+  	<h3>最近新聞</h3>
+  	<%= display @group.news %>
+  <% end %>
+
+  <%= render :partial => 'groups/recent_news' %>
+  <%= render :partial => 'groups/recent_activity' %>
+  <%= render :partial => 'groups/wall', :locals => {:with_form => true} %>
+  <%= render :partial => 'groups/recent_topic' %>
+  <%= render :partial => 'posts/list' %>
+  <%= render :partial => 'groups/group_gallery', :locals => {:mini => true} %>
+  <%= render :partial => 'groups/shared_entry', :locals => {:profile => true} -%>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => "category" %>
+  <% if @group.pending_request.length > 0 && @group.can_edit?(logged_in_user) %>
+    <%= render :partial => "people", 
+               :locals => {:members => (@group.pending_request), :title => "等候請求"} %>
+  <% end %>
+  <% if @group.public? || @group.owner?(logged_in_user) || admin? || @group.is_member?(logged_in_user) %>
+    <%= render :partial => "people", 
+               :locals => {:members => @some_members, :title => "成員"} %>
+  <%= render :partial => "people", 
+             :locals => {:members => @some_managers, :title => "管理員"} %>
+  <% end %>
+  <%= render :partial => "people", 
+             :locals => {:members => ([] << @group.owner), :title => "建立者"} %>
+<%- end -%>

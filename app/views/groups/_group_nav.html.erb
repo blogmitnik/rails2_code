@@ -1,0 +1,12 @@
+<div id="group_nav">
+	<%= link_to "返回群組", group_path(@group) %>
+	<%= link_to "新聞", group_news_index_path(@group) %>
+	<%= link_to "活動", group_events_path(@group) %>
+	<%= link_to "塗鴉牆", group_comments_path(@group) %>
+	<%= link_to "動態快報", group_activities_path(@group) %>
+	<%= link_to "瀏覽成員", members_group_path(@group) %>
+	<%= link_to "討論區", group_forums_path(@group) %>
+	<%= link_to '文章', blog_path(@group.blog) %>
+	<%= link_to "相簿" , group_galleries_path(@group) %>
+	<%= link_to "檔案", group_uploads_path(@group) if member? %>
+</div>

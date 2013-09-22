@@ -1,0 +1,2 @@
+module Users::StatusUpdatesHelper
+end

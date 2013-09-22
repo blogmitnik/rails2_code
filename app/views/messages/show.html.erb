@@ -1,0 +1,27 @@
+<%= javascript_include_tag 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+  <% if logged_in_user?(@message.sender) %>
+    <% heading = "寄給 #{h @message.recipient.f} 的訊息" %>
+  <% else %>
+    <% heading = "來自 #{h @message.sender.f} 的訊息" %>
+  <% end %>
+  
+  <h3><%= heading %></h3>
+
+  <%= render :partial => 'message_nav' %>
+  
+  <h4 class="subject"><%= sanitize @message.subject %></h4>
+  <ul class="list person small">
+    <% all_messages =  @message.conversation.messages %>
+    <%= render :partial => 'full_message',
+               :collection => all_messages,
+               :locals => { :n_messages => all_messages.length } %>
+  </ul>
+
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

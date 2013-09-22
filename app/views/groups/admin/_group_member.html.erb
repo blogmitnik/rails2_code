@@ -1,0 +1,16 @@
+<tr>
+<td>
+	<%= image_link group_member, :image_options => { :class => "photo" },
+                            	  :link_options => { :class => "url" },
+                            	  :image => :tiny %> 
+   <%= link_to h(group_member.full_name), profile_path(group_member) %> 
+   <%= link_to image_tag("icons/user_delete.png"), unsuscribe_membership_path(group_member.memberships.find(:first, :conditions => ['group_id = ?',@group])), 
+                  		 :method => "delete",
+                  		 :title => '從群組中刪除這位成員',
+                  		 :confirm => "你確定要刪除這位群組成員嗎？" %> 
+</td>
+<td class='center'><%= radio_button_tag ('group_member_role[' + group_member.id.to_s + ']'), 'manager', group_member.role == 'manager' %></td>
+<td class='center'><%= radio_button_tag ('group_member_role[' + group_member.id.to_s + ']'), 'member', group_member.role == 'member' %></td>
+<td class='center'><%= radio_button_tag ('group_member_role[' + group_member.id.to_s + ']'), 'observer', group_member.role == 'observer' %></td>
+<td class='center'><%= radio_button_tag ('group_member_role[' + group_member.id.to_s + ']'), 'banned', group_member.role == 'banned' %></td>
+</tr>

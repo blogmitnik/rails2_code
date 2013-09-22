@@ -1,0 +1,9 @@
+# TODO Operate on the page object
+if @location.success
+  page << "geolocateAddress(#{@coord[0]},#{@coord[1]},'#{@location.full_address}')"
+else
+  page.alert("抱歉，無法找到你輸入的地址")
+  page << "map.clearOverlays();"
+  page << '$("#event_lat").val(0);'
+  page << '$("#event_lng").val(0);'
+end

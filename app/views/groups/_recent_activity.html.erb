@@ -1,0 +1,9 @@
+<h3>動態快報 <span class="meta"><%= link_to "顯示全部", group_activities_path(@group) %></span></h3>
+<%- if @group.recent_activity.empty? -%>
+  <p>目前尚無任何動態。</p>
+<%- else -%>
+  <%= render :partial => 'shared/activity',
+              :collection => @group.recent_activity,
+              :locals => { :destroy => @group.can_edit?(logged_in_user),
+                           :recent => true } %>
+<%- end -%>

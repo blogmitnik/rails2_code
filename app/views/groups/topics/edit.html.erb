@@ -1,0 +1,23 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div id="forum-container">
+    <h4>編輯討論主題</h4>
+    <%= error_messages_for :topic %>
+    <% form_for :topic, :url  => forum_topic_path(@forum, @topic), :html => { :method => :put } do |f| -%>
+      <%= render :partial => "form", :object => f %>
+      <br/>
+      <%= submit_tag '儲存變更', :or => link_to('取消', forum_topic_path(@forum, @topic)) %>
+    <% end -%>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

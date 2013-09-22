@@ -1,0 +1,11 @@
+development:
+  api_key: "QfaoWhs3HCOm8Yjj23iQ5f_DCvvtqqXuTO1VjNEdogj4qbrEaTBC7x5xLbYadSzF"
+  secret_key: "-sP6q3IpFWDwylwDnuOIxOJRGMoE28jIpVwD6e7kix0Ar9cF8fBMc9hQrgqTuj2n"
+
+test:
+  api_key: "QfaoWhs3HCOm8Yjj23iQ5f_DCvvtqqXuTO1VjNEdogj4qbrEaTBC7x5xLbYadSzF"
+  secret_key: "-sP6q3IpFWDwylwDnuOIxOJRGMoE28jIpVwD6e7kix0Ar9cF8fBMc9hQrgqTuj2n"
+
+production:
+  api_key: "QfaoWhs3HCOm8Yjj23iQ5f_DCvvtqqXuTO1VjNEdogj4qbrEaTBC7x5xLbYadSzF"
+  secret_key: "-sP6q3IpFWDwylwDnuOIxOJRGMoE28jIpVwD6e7kix0Ar9cF8fBMc9hQrgqTuj2n"

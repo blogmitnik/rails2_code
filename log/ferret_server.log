@@ -1,0 +1,45 @@
+# Logfile created on Tue Oct 21 23:23:51 +0800 2008 by /
+ferret server error File Not Found Error occured at <except.c>:117 in xpop_context
+Error occured in fs_store.c:329 - fs_open_input
+	tried to open "/home/mitnik/radrails_project/railscode/index/production/user/_k.cfs" but it doesn't exist: <No such file or directory>
+
+
+/usr/lib/ruby/gems/1.8/gems/ferret-0.11.6/lib/ferret/index.rb:285:in `delete'
+/usr/lib/ruby/gems/1.8/gems/ferret-0.11.6/lib/ferret/index.rb:285:in `<<'
+/usr/lib/ruby/gems/1.8/gems/ferret-0.11.6/lib/ferret/index.rb:8:in `synchrolock'
+/usr/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+/usr/lib/ruby/gems/1.8/gems/ferret-0.11.6/lib/ferret/index.rb:8:in `synchrolock'
+/usr/lib/ruby/gems/1.8/gems/ferret-0.11.6/lib/ferret/index.rb:267:in `<<'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/local_index.rb:154:in `add'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:102:in `send'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:102:in `method_missing'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:170:in `reconnect_when_needed'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:97:in `method_missing'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:164:in `with_class'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:96:in `method_missing'
+/usr/lib/ruby/1.8/drb/drb.rb:1555:in `__send__'
+/usr/lib/ruby/1.8/drb/drb.rb:1555:in `perform_without_block'
+/usr/lib/ruby/1.8/drb/drb.rb:1515:in `perform'
+/usr/lib/ruby/1.8/drb/drb.rb:1589:in `main_loop'
+/usr/lib/ruby/1.8/drb/drb.rb:1585:in `loop'
+/usr/lib/ruby/1.8/drb/drb.rb:1585:in `main_loop'
+/usr/lib/ruby/1.8/drb/drb.rb:1581:in `start'
+/usr/lib/ruby/1.8/drb/drb.rb:1581:in `main_loop'
+/usr/lib/ruby/1.8/drb/drb.rb:1430:in `run'
+/usr/lib/ruby/1.8/drb/drb.rb:1427:in `start'
+/usr/lib/ruby/1.8/drb/drb.rb:1427:in `run'
+/usr/lib/ruby/1.8/drb/drb.rb:1347:in `initialize'
+/usr/lib/ruby/1.8/drb/drb.rb:1627:in `new'
+/usr/lib/ruby/1.8/drb/drb.rb:1627:in `start_service'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:79:in `start'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/unix_daemon.rb:18:in `call'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/unix_daemon.rb:18:in `platform_daemon'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/unix_daemon.rb:41:in `fork'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/unix_daemon.rb:41:in `safefork'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/unix_daemon.rb:11:in `platform_daemon'
+/home/mitnik/radrails_project/railscode/vendor/plugins/acts_as_ferret/lib/ferret_server.rb:77:in `start'
+./script/../vendor/plugins/acts_as_ferret/lib/server_manager.rb:41:in `send'
+./script/../vendor/plugins/acts_as_ferret/lib/server_manager.rb:41
+script/ferret_server:4:in `require'
+script/ferret_server:4
+ferret_server not configured for development

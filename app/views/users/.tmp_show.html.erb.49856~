@@ -1,0 +1,75 @@
+<% user ||= @user %>
+<h3>
+	<%= image_tag "icons/edit_profile.gif", :class => "icon" %>
+	帳號設定
+</h3>
+
+<div id="profile_edit">
+<p>
+<% if is_logged_in? and user.id == logged_in_user.id %>
+	<%= link_to '編輯帳號設定', edit_user_path(logged_in_user) %>
+<% end %>
+</p>
+
+<div id="profile_show">
+<div>姓名：<% unless user.f.blank? %><%= user.f %><% end %></div>
+<div class="hidden"></div>
+<div>你的真實姓名。</div>
+</div>
+
+<div id="profile_show">
+<div>暱稱：<% unless user.username.blank? %><%= user.username %><% end %></div>
+<div class="hidden"></div>
+<div>你在這個網站上的暱稱。</div>
+</div>
+
+<div id="profile_show">
+<div>電子郵件：<% unless user.email.blank? %><%= user.email %><% end %></div>
+<div class="hidden"></div>
+<div>設定以哪個電子信箱來接收通知。</div>
+</div>
+
+<div id="profile_show">
+<div>密碼：********</div>
+<div class="hidden"></div>
+<div>你的登入密碼。</div>
+</div>
+
+<div id="profile_show">
+<div>安全問題：<% unless user.question.blank? %><%= user.question %><% end %></div>
+<div class="hidden"></div>
+<div>用來確認你是帳號所有人。</div>
+</div>
+
+<div id="profile_show">
+<div>OpenID：</div>
+<div class="hidden"></div>
+<div>已認證過的 OpenID 帳號 (你可以使用這些帳號登入)</div>
+<div><%= image_tag 'openid_logo.gif' %></div>
+<% @user_openids.map do |o| %>
+	<p><%= link_to(o.denormalized_url, o.openid_url) %>
+	[<%= link_to('移除', user_openid_path(@user, o), 
+		:confirm => "你確定要移除這個 OpenID 嗎？", :method => :delete) %>]</p>
+<% end %>
+
+<% form_tag open_id_create_path do %>
+<div class="row button">
+	<%= submit_tag "新增 OpenID 帳號", :class => 'button' -%>
+</div>
+<% end %>
+</div>
+
+<div id="profile_show">
+<div>停用帳號：</div>
+<div class="hidden"></div>
+<div>不要忘記，您可以隨時用您的電子郵件帳號與密碼登入以重新啟動您的帳號。</div>
+<p>安全驗證：輸入以下所有字，並以空格來分隔。</p>
+<% form_tag(user_path, :method => 'delete') do %>
+<div><%= recaptcha_tags %></div>
+<div class="row button">
+	<%= submit_tag '停用我的帳號', :disable_with => "請稍後&hellip;", :class => 'button', 
+		:onclick=>"return confirm('你確定要停用這個帳號嗎？');" %></div>
+</div>
+<% end %>
+
+</div>

@@ -1,0 +1,12 @@
+<ul id="message-nav">
+  <%= list_link_with_active "收件匣 (#{logged_in_user.unread_messages.count})", messages_path %>
+  <%= list_link_with_active "寄件備份", sent_messages_path %>
+  <%= list_link_with_active "垃圾桶", trash_messages_path %>
+  <li class="compose">
+    <%= link_to "撰寫訊息", new_message_path %>
+  </li>
+</ul>
+
+<div id="new_direct_message" class="hidden">
+	<%= render :partial => 'messages/form', :locals => {:hide_header => true} %>
+</div>

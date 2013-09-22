@@ -1,0 +1,17 @@
+<h3>尋找朋友</h3>
+<div id="profile_edit">
+  <p>依英文字母排序</p>
+  <% @letters.each do |letter| %>
+    <% letter_class = (letter == @initial) ? "letter_current" : "letter" %>
+    <%= link_to letter, { :action => "index", :id => letter },
+                :class => letter_class %>
+  <% end %>
+  <br clear="all" />
+<%= render :partial => "result_summary" %>
+<%= render :partial => "user_table" %>
+</div>
+
+<% if @initial.nil? %>
+	<%= render :partial => "search_form" %>
+	<%= render :partial => "browse_form" %>
+<% end %>

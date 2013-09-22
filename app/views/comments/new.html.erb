@@ -1,0 +1,19 @@
+<h3>新增回覆</h3>
+
+<%= error_messages_for :comment %>
+
+<% form_for(:comment, :url => comments_path(:entry_id => @entry)) do |f| -%>
+	<h4>新增回應</h4>
+	<p>可使用 [youtube: 影片網址] 來嵌入 Youtube 影片</p>
+	
+	<p>
+		<%= f.text_area :body, :rows => Comment::BODY_ROWS, :cols => Comment::BODY_COLS %></p>
+	<p>
+	
+	<p><%= show_simple_captcha(:label => "(我們需要確認你不是機器人)", 
+		:image_style => 'simply_red', :distortion => 'medium') %></p>
+	
+	<p>
+		<%= submit_tag '新增回應', :class => 'button' %>
+	</p>
+<% end %>

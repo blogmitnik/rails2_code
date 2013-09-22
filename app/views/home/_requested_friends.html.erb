@@ -1,0 +1,22 @@
+<%- unless @requested_friends.empty? -%>
+  <h3>交友邀請</h3>
+  <p class="meta">你有 <%= @requested_friends.length %> 個交友邀請</p>
+  	
+   <%- @requested_friends.each do |friend| -%>
+   <%- conn = Friendship.conn(logged_in_user, friend) -%>
+     <ul class="list comments small">
+       <li>
+        <div class="profile-image">
+          <%= image_link friend %>
+          <%= image_tag "icons/friend.gif", :class => "icon" %>
+        </div>
+        <%= user_link friend %> 希望成為你的朋友 - 
+        <%= link_to "確認", :controller => 'friends', :action => 'accept', :id => friend.id %> |
+	     <%= link_to "略過", :controller => 'friends', :action => 'deceline', :id => friend.id %>
+        <p class="meta">
+          <%= time_ago_in_words(conn.created_at).sub(/about /, '') %> 前
+        </p>
+       </li>
+     </ul>
+   <%- end -%>
+<%- end -%>

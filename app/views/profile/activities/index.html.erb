@@ -1,0 +1,12 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<% column_div :type => :primary do -%>
+  <h3><%= @user.name %> 的動態消息</h3>
+  <%= link_to "返回 #{@user.short_name} 的個人檔案", profile_path(@user) %>
+  <% @activities.each do |activity| %>
+    <%= render( :partial => "shared/activity", :locals => {:activity => activity}) %>
+  <% end %>
+  <div class="clear"></div>
+  	 <%= will_paginate @activities, :previous_label => '&laquo; 較新的', :next_label => '較舊的 &raquo;' %>
+  <div class="clear"></div>
+<%- end -%>

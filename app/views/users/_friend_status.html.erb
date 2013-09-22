@@ -1,0 +1,29 @@
+<% unless logged_in_user?(@user) %>
+	<% if Friendship.exists?(@logged_in_user, @user) %>
+		<%- if Friendship.pending?(@user, logged_in_user) -%>
+			<span>
+			<%= h @user.short_name %> 已經傳送朋友邀請給你。
+			<%= link_to "接受邀請", 
+                     :controller => "friends", :action => "accept", :id => @user %> 或
+         <%= link_to "略過請求", 
+                     { :controller => "friends", :action => "decline", 
+                      :id => @user, }, 
+                      :confirm => "你確定要略過 #{@user.name} 的朋友邀請嗎？" %>
+         </span>
+		<%- elsif Friendship.pending?(logged_in_user, @user) -%>
+	      <span>
+	      <%= h @user.short_name %> 需要確認你們是朋友。
+	      	(<%= link_to "取消邀請", 
+	                      { :controller => "friends", :action => "cancel", 
+	                        :id => @user }, 
+	                      	:confirm => "你確定要取消傳送這個朋友邀請嗎？" %>)
+	      </span>
+		<% end %>
+	<% else %>
+	  	<span>
+	  	<%= link_to "新增 #{@user.short_name} 至朋友名單", 
+	      				new_user_friend_path(:user_id => logged_in_user, :friend_id => @user), 
+	        				:confirm => "你確定要將 #{@user.f} 加為你的朋友嗎？" %>
+	   </span>
+	<% end %>
+<% end %>

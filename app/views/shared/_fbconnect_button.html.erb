@@ -1,0 +1,5 @@
+<% if global_prefs.graph_api %>
+	<%= link_to  image_tag( 'facebook-connect.png', { :alt => '透過 Facebook 帳號登入' } ), fbOAuth_url  %>
+<% else %>
+	<fb:login-button v="1" onclick='facebook_button_onclick()'></fb:login-button>
+<% end %>

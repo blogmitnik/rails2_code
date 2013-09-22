@@ -1,0 +1,11 @@
+<ul class="list comments full">
+  <li class="left group-topic-title">
+	 <div>
+		<%= topic_title_link (topic_title), :class => "entry-title" %>
+		<br/>
+		<%= count_for('個人', topic_title.voices.size) %>發表了 
+		<%= count_for('篇', topic_title.posts.size) %>討論文章。於
+      <%= time_ago_in_words(topic_title.replied_at).sub(/about /, '') %> 前更新
+	 </div>
+  </li>
+</ul>

@@ -1,0 +1,42 @@
+<% unless @entry.comments.empty? %>
+<h3>文章回覆</h3>
+<% end %>
+
+<a name="blog-comment"></a>
+<% @entry.comments.each do |comment| -%>
+
+<%-
+truncate = truncate.nil? ? true : truncate
+youtube_videos = comment.body.scan(/\[youtube:+.+\]/)
+c = comment.body.dup.gsub(/\[youtube:+.+\]/, '')
+-%>
+
+<div id="comment_<%= comment.id %>" class="comment">
+<ul class="list comments full">
+	<div class="profile-image">
+	  	<%= image_link comment.user, :image => :tiny %>
+	  	<%= image_tag "icons/comment.png", :class => "icon" %>
+	</div>
+	<p class="meta published">
+	   <%= link_to comment.user.f, profile_path(comment.user) %> 
+				寫於 <%= comment.created_at.strftime('%m月%d日 %H:%M') %>
+		    	<% if logged_in_user?(@entry.user) or logged_in_user?(comment.user) -%>
+					<%= link_to_remote image_tag("icons/comment_delete.png", :title => "刪除留言"), 
+										{:url => user_entry_comment_path(:user_id => @entry.user, :entry_id => @entry.id, :id => comment.id), 
+										:confirm => '你確定要刪除這個回覆嗎？', :method => :delete}, 
+										:href => user_entry_comment_path(:user_id => comment.entry.user, :entry_id => comment.entry.id, :id => comment.id), 
+																					:confirm => '你確定要刪除這篇回覆嗎?', :method => :delete %>
+				<% end %>
+	</p>
+	<p class="commentbody"><%= display c %></p>
+	<p>
+	<% unless youtube_videos.empty? %>
+	   <strong>內容包含以下 <%= youtube_videos.size %> 則影片連結：</strong><br/>
+	   <% youtube_videos.each do |o| %>
+	   <%= tb_video_link(o.gsub!(/\[youtube\:|\]/, '')) %>
+	   <% end
+  	end %>
+  	</p>
+</ul>
+</div>
+<% end %>

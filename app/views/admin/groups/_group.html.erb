@@ -1,0 +1,15 @@
+<li class="vcard person">
+  <div class="profile-image">
+    <%= image_link group, :image => :tiny %>
+  </div>
+  <p>
+    <%= user_link group, :class => "url fn" %>
+    |
+    <%= link_to "瀏覽成員", members_group_path(group) %>
+    |
+    <%= link_to "刪除群組", admin_group_path(group), 
+    							 :confirm => '你確定要刪除這個群組嗎？', 
+    							 :method => :delete %>    
+  </p>
+  <%= display(truncate(group.description, 100)) %>
+</li>

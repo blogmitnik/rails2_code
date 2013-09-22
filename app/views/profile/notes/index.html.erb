@@ -1,0 +1,24 @@
+<% content_for :head do  -%>
+  <%#= auto_discovery_link_tag :rss, formatted_user_notes_url(@user, :rss), :title => "#{@user.name}的網誌文章" %>
+<% end -%>
+
+<%- column_div :type => :primary do -%>
+  <% if is_me?(@user) -%>
+	 <h3>你的網誌</h3>
+  <% else -%>
+	 <h3><%= @user.name %> 的網誌</h3>
+  <% end -%>
+	
+  <% if @notes.empty? %>
+    <%= "#{@user.name} 尚未發佈網誌文章" %>
+  <% else %>
+    <%= render :partial => 'note', :collection => @notes %>
+  <% end %>
+  <div class="clear"></div>
+    <%= will_paginate @notes, :previous_label => '&laquo; 下一頁', :next_label => '下一頁 &raquo;' -%>
+  <div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'profile/notes_history', :locals => {:bio => true} %>
+<%- end -%>

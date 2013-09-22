@@ -1,0 +1,18 @@
+<%- unless logged_in_user.recent_messages.empty? -%>
+<h3>最近收到的訊息</h3>
+  <span class="left">
+  	<%- if logged_in_user.has_unread_messages? -%>
+      有 <%= link_to "#{h(logged_in_user.unread_messages.count)}", messages_path %> 則未讀訊息
+   <% else %>沒有新訊息。<% end %>
+  </span>
+  <span class="right">
+    <%= inline_tb_link "寫訊息", "new_direct_message", {:title => "寫訊息給朋友"}, {:height => 380} %>
+  </span>
+  <div class="clear"></div>
+  
+  <div id="new_direct_message" class="hidden">
+	 <%= render :partial => 'messages/form', :locals => {:hide_header => true} %>
+  </div>
+
+  <%= render :partial => 'message', :collection => logged_in_user.recent_messages %>
+<%- end -%>

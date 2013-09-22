@@ -1,0 +1,43 @@
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<h3>上傳新相片</h3>
+
+<%= error_messages_for :photo %>
+	
+<% form_for @photo,:url=>{:controller => :user_photos, :action => :create, :gallery_id => @gallery}, :html => { :multipart => true } do |f| -%>
+<p>選擇要上傳的圖片檔案</p>
+<p><b>日期：</b><%= f.date_select :created_at %></p>
+<p><b>時間：<%= f.time_select :created_at %></b></p>
+<p><b>選擇相片：</b><br><%= f.file_field 'uploaded_data' %></p>
+<p><b>相片標題：</b><br><%= f.text_field 'title' %></p>
+<p><b>相片敘述：</b><br><%= f.text_area 'body', :rows => 6, :cols => 40 %></p>
+<p><b>緯度座標：</b><%= f.text_field 'geo_lat', :size => '10' %></p>
+<p><b>經度座標：</b><%= f.text_field 'geo_long', :size => '10' %></p>
+<p><%= f.check_box 'show_geo' %>是否顯示地圖？</p>
+
+<div id="gmap">
+	<%= @map.to_html %>
+	<%= @map.div(:width => 635, :height => 300) %>
+</div>
+
+<div class="row button">
+	<%= submit_tag '上傳相片', :class => 'button', :id => 'create_photo' %>
+	<div id="progress-bar" style="display:none;">
+		<img src="/images/loadingAnimation.gif" alt="progress bar"> 
+	  	<div>請稍後...正在上傳相片</div>
+	</div>
+</div>
+<% end %>
+
+<script type='text/javascript'>
+$(document).ready(function(){
+
+    jQuery("#create_photo").click(function()
+    {
+        jQuery("#create_photo").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

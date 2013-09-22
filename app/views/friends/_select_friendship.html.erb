@@ -1,0 +1,45 @@
+<p>編輯你和 <%= user_link_with_image(@friend) %> 的相識關係</p>
+
+<p>
+	<strong>友誼關係</strong><br>
+	<%= f.radio_button :xfn_friendship, :xfn_contact %>聯絡人
+	<%= f.radio_button :xfn_friendship, :xfn_acquaintance %>同事
+	<%= f.radio_button :xfn_friendship, :xfn_friend %>朋友
+	<%= f.radio_button :xfn_friendship, false %>沒有關係
+</p>
+
+<p>
+	<strong>實際關係</strong><br>
+	<%= f.check_box :xfn_met %>曾經相遇
+</p>
+
+<p>
+	<strong>生意關係</strong><br>
+	<%= f.check_box :xfn_coworker %>生意夥伴
+	<%= f.check_box :xfn_colleague %>公司同事
+</p>
+
+<p>
+	<strong>居住關係</strong><br>
+	<%= f.radio_button :xfn_geographical, :xfn_coresident %>住在一起
+	<%= f.radio_button :xfn_geographical, :xfn_neighbor %>住在附近
+	<%= f.radio_button :xfn_geographical, false %>沒有關係
+</p>
+
+<p>
+	<strong>家庭關係</strong><br>
+	<%= f.radio_button :xfn_family, :xfn_child %>子女
+	<%= f.radio_button :xfn_family, :xfn_parent %>父母
+	<%= f.radio_button :xfn_family, :xfn_sibling %>兄弟姊妹
+	<%= f.radio_button :xfn_family, :xfn_spouse %>婚姻關係
+	<%= f.radio_button :xfn_family, :xfn_kin %>親友
+	<%= f.radio_button :xfn_family, false %>沒有關係
+</p>
+
+<p>
+	<strong>情感關係</strong><br>
+	<%= f.check_box :xfn_muse %>心靈伴侶
+	<%= f.check_box :xfn_crush %>心儀對象
+	<%= f.check_box :xfn_date %>約會對象
+	<%= f.check_box :xfn_sweetheart %>親密對象
+</p>

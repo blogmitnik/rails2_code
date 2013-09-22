@@ -1,0 +1,5 @@
+page.hide "add_comment_link_for_entry_#{@entry}"
+form_div = "new_comment_form_for_entry_#{@entry}"
+page.hide form_div
+page.replace_html form_div, :partial => "new"
+page.visual_effect :blind_down, form_div

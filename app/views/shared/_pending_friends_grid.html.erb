@@ -1,0 +1,15 @@
+<ul class="grid contacts medium">
+  <%- @user.pending_friends.each do |pending_friend| -%>
+    <li class="vcard contact">
+      <%= image_link pending_friend, :image_options => { :class => "photo" },
+		                               :link_options => { :class => "url" },
+		                               :vcard => true,
+		                               :image => :tiny %>
+	   <%= link_to image_tag("icons/user_delete.png"), 
+	                      { :controller => "friends", :action => "cancel", 
+	                        :id => pending_friend }, 
+	                        :title => "取消傳送邀請給 #{pending_friend.name}", 
+	                      	:confirm => "你確定要取消這個朋友邀請嗎？" %>
+    </li>
+  <%- end -%>
+</ul>

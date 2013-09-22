@@ -1,0 +1,110 @@
+<h3>編輯個人帳號設定</h3>
+
+<p><%= link_to '顯示帳號資料', user_path(@user) -%></p>
+
+<%= error_messages_for :user -%>
+
+<div id="profile_edit">
+	
+<div>姓名（請填寫您的真實姓名）</div>
+<div id="profile_show">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+	<div class="form_row">姓氏: <br><%= f.text_field :first_name, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">中間名：<small>(選填項目)</small><br><%= f.text_field :middle_name, 
+		:size => User::MIDDLE_NAME_SIZE, :maxlength => User::MIDDLE_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">名字：<br><%= f.text_field :last_name, 
+		:size => User::LAST_NAME_SIZE, :maxlength => User::LAST_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">全名：<small>(選填項目)</small><br><%= f.text_field :full_name, 
+		:size => User::FULL_NAME_SIZE, :maxlength => User::FULL_NAME_MAX_LENGTH -%><br>
+	<small>附註：全名只會用來搜尋，不會出現在您的個人檔案中。</small></div>
+	
+	<%= hidden_field_tag "attribute", "姓名", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '變更姓名', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+<div>電子郵件（設定以哪個電子信箱來接收通知）</div>
+<div id="profile_show">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+	<div class="form_row">聯絡電子信箱：<br><%= f.text_field :email, 
+		:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH -%><br>
+		<small>附註：你的聯絡電子郵件必須是有效的。</small></div>
+
+	<%= hidden_field_tag "attribute", "電子郵件", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '更改電子郵件', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+<div>密碼（您的登入密碼）</div>
+<div id="profile_show">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+<% unless @user.hashed_password.blank? and @user.yahoo_userhash %>
+	<div class="form_row">目前的密碼：<br><%= f.password_field :current_password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+<% end %>
+	<div class="form_row">新密碼：<br><%= f.password_field :password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+		
+	<div class="form_row">確認密碼：<br><%= f.password_field :password_confirmation, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+		
+	<%= hidden_field_tag "attribute", "密碼", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '更改密碼', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+<div>安全問題（如果你需要與我們聯絡，我們會用這些資料來確認你的帳號與身份。）</div>
+<div id="profile_show">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+	<div class="form_row">問題：<br><%= f.select :question, User::QUESTION_SELECT, :prompt=>"請選擇一個安全問題：" -%></div>
+	<div class="form_row">答案：<br><%= f.text_field :answer, :size => User::ANSWER_SIZE, :maxlength => User::ANSWER_MAX_LENGTH %></div>
+
+	<%= hidden_field_tag "attribute", "安全性問題", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '變更安全性問題', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+<div>與外部網站連結：</div>
+<div id="profile_show">
+<% unless @user.twitter_id && @user.screen_name && @user.token && @user.secret && @user.profile_image_url %>
+  <%= link_to  image_tag( 'twitter_login.png', { :alt => '透過 Twitter 帳號登入' } ), twitterOAuth_url  %>
+<% else %>
+  <p>你已經使用Twitter帳號 <strong><%= @user.screen_name %></strong> 登入！</p>
+<% end %>
+</div>
+
+<div>其他資料（我們會自動接收這些網站的更新內容，並將內容顯示在您的個人檔案頁面）</div>
+<div id="profile_show">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+	<div class="form_row">站外網誌：<small>（您在 <%= app_name %> 以外的個人網誌）</small><br><%= f.text_field :blog_link, 
+		:size => User::BLOG_TITLE_SIZE -%></div>
+		
+	<div class="form_row">Flickr ID：<small>(您在 Flickr 上傳的相片將會顯示在個人檔案)</small><br><%= f.text_field :flickr_username, 
+		:size => User::FLICKR_ACCOUNT_SIZE, :maxlength => User::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">Youtube ID：<small>(您在 Youtube 上傳的影片將會顯示在個人檔案)</small><br><%= f.text_field :youtube_username, 
+		:size => User::FLICKR_ACCOUNT_SIZE, :maxlength => User::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">您的個人簡介：<small>(您的個人簡介會顯示在個人檔案中)</small><br><%= f.text_area :description,
+		:rows => User::COMMON_ROWS, :cols => User::COMMON_COLS -%></div>
+		
+	<%= hidden_field_tag "attribute", "其他帳號", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '更改其他資料', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+		
+</div>

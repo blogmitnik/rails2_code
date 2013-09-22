@@ -1,0 +1,19 @@
+<h3>建立新的即時訊息</h2>
+
+<%= error_messages_for :newsletter %>
+
+<div id="profile_edit">
+<p>訊息會傳送給網站上的所有用戶</p>
+<% form_for(:newsletter, :url => newsletters_path) do |f| %>
+	<p><b>標題</b><br><%= f.text_field :subject, :size => 50 %></p>
+	
+	<p><b>內容</b><br><%= f.text_area :body, :cols => 50, :rows => 10 %></p>
+	
+	<p>
+		<%= submit_tag "儲存訊息", :class => 'button' %>
+	</p>
+	
+	<p>你可以使用@user來存取User模型的內容.<br>
+	例如: &lt;%= @user.username %&gt; 或 &lt;%= @user.email %&gt;</p>
+<% end %>
+</div>

@@ -1,0 +1,11 @@
+<% form_tag({ :action => "search" }, :method => "get") do %>
+<div id="profile_edit">
+<p>依姓名搜尋</p>
+  <div class="form_row">
+   輸入姓名或Email：<%= text_field_tag "people", params[:people] %>
+  </div>
+  <div class="row button">
+  	<input type="submit" value="依姓名搜尋", class="button" />
+  </div>
+</div>
+<% end %>

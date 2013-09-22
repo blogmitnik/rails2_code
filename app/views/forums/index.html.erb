@@ -1,0 +1,69 @@
+<div id="forum-container">
+  
+  <h3 style="margin-top:0;">討論區</h3>
+  <p class="subtitle">
+    <%= feed_icon_tag "最近張貼的討論帖", formatted_posts_path(:format => 'rss') %>
+    顯示 <%= count_for('個人參與的', User.count(:conditions => "site_forum_posts_count > 0")) %>
+    <%= count_for('則主題中的', Topic.count(:conditions => "group_id IS NULL")) %>
+    <%= count_for('則討論貼文', ForumPost.count(:conditions => "group_id IS NULL")) %>。
+  </p>
+  <p>
+    <% if moderator? %>你是討論區編輯 <%= link_to '建立討論區', new_forum_path %><% end %>
+  </p>
+
+  <table border="0" cellspacing="0" cellpadding="0" class="wide forums">
+    <tr>
+      <th class="la" width="70%" colspan="3">討論區</th>
+  <!--
+      <th width="5%">Topics</th>
+      <th width="5%">Posts</th>
+  -->
+      <th class="la" width="30%" colspan="1">最後張貼的帖</th>
+    </tr>
+  <% for forum in @forums do %>  
+    <tr>
+      <td class="vat c1">
+        <% if recent_forum_activity(forum) %>
+          <%= image_tag "clearbits/comment.gif", :class => "icon green", :title => '最近有張貼討論帖' %>
+        <% else %>
+          <%= image_tag "clearbits/comment.gif", :class => "icon grey", :title => '最近沒有張貼討論帖' %>
+        <% end %>
+      </td>
+      <td class="c2 vat">
+        <%= link_to h(forum.name), forum_path(forum), :class => "title" %>
+        <div class="posts">
+          <%= count_for('則主題', forum.topics.size) %>, 
+          <%= count_for('則討論貼文', forum.posts.size) %>
+        </div>
+        <p class="desc"><%= forum.description_html %></p>
+      </td>
+      <td class="c3">
+        <%= link_to '編輯', edit_forum_path(forum), :class => "tiny", :rel => "directory", :style => "float:right" if moderator? %>
+      </td>
+      <td class="inv lp">
+        <% if forum.recent_post %>
+          <%= time_ago_in_words(forum.recent_post.created_at) %> 前由<br />
+          <%= "<strong>#{h(forum.recent_post.user.short_name)}</strong>" %> 張貼
+          <span>(<%= link_to '查看', forum_topic_path(:forum_id => forum, :id => forum.recent_post.topic_id, :page => forum.recent_post.topic.last_page, :anchor => forum.recent_post.dom_id) %>)</span>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+
+  <p>
+  	 <% if moderator? %><%= link_to '建立討論區', new_forum_path %> |<% end %>
+    <%= link_to '最近的討論帖', all_posts_path %>
+  </p>
+
+  <% online_users = User.currently_online -%>
+  <% unless !online_users || online_users.empty? %>
+    <div class="stats">
+      <div class="users">
+        <% unless !online_users || online_users.empty? %>
+          誰在線上：<%= online_users.map { |u| link_to "<strong>#{h u.short_name}</strong>", profile_path(u) } * ", " %><br />
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

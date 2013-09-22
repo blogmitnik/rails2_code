@@ -1,0 +1,51 @@
+<%- column_div :type => :primary do -%>
+<h3><%= h @user.name %> 的所有朋友</h3>
+
+<% unless @friends.empty? -%>
+	<p class="meta published">
+		<%= logged_in_user == @user ? "你" : "#{h(@user.name)} " %>有 <%= h(@user.friends.count) %> 個朋友。
+	</p>
+		 
+	<% if logged_in_user?(@user) %>
+		<%= render :partial => 'shared/edit_friends_grid',
+	              :locals => { :friends => @friends } %>
+	<% else %>
+		<%= render :partial => 'shared/friends_grid',
+	              :locals => { :friends => @friends } %>
+	<% end %>
+	               
+  <% if @user.friendships.count > User::MAX_SHOW_FRIENDS %>
+    <%= will_paginate @friends %>
+  <% end %>
+<% else %>
+  <h4>目前沒有任何朋友</h4>
+<% end -%>
+
+
+<% if logged_in_user?(@user) && logged_in_user.requested_friends.count > 0 %>
+<h3>已收到的朋友邀請</h3>
+
+<p class="meta published">
+	你有 <%= h(@user.requested_friends.count) %> 個已收到的朋友邀請
+</p>
+
+    <%= render :partial => 'shared/requested_friends_grid' %>
+<% end %>
+
+
+<% if logged_in_user?(@user) && logged_in_user.pending_friends.count > 0 %>
+<h3>已傳送的朋友邀請</h3>
+
+<p class="meta published">
+	你有 <%= h(@user.pending_friends.count) %> 個等待對方確認的朋友邀請
+</p>
+
+    <%= render :partial => 'shared/pending_friends_grid' %>
+<% end %>
+
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => "searches/box" %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

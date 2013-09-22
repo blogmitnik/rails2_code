@@ -1,0 +1,24 @@
+<%- column_div :type => :primary, :class => "hentry" do -%>
+<h3><%= h @blog.owner.name %> 的文章</h3>
+
+<%- if (@blog.owner.class.to_s == "User" and logged_in_user?(@blog.owner)) or
+    (@blog.owner.class.to_s == "Group" and logged_in_user?(@blog.owner.owner)) -%>
+  <p><%= link_to "寫新文章", new_blog_post_path(@blog) %></p>
+<%- end -%> 
+
+<%- if @posts.empty? -%>
+  <h4 class="blankslate">
+   	目前沒有任何文章.
+  </h4> 
+<%- else -%>
+  <ul class="list blog full">
+    <%= render :partial => 'posts/blog_post', :collection => @posts %>
+  </ul>
+<%- end -%>
+
+<%= will_paginate(@posts) %>
+<% end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

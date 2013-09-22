@@ -1,0 +1,6 @@
+<div class="group-member">
+	<%= image_link group_member, :image_options => { :class => "photo" },
+                                  :link_options => { :class => "url" },
+                                  :image => :tiny %>
+	<div class="name"><%= link_to h(group_member.full_name), profile_path(group_member) %></div>
+</div>

@@ -1,0 +1,8 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<div class="activity_box">
+	<h3>建立群組新聞</h3>
+	<% custom_form_for @news_item, :url => group_news_index_path(@group), :html => { :method => :post, :multipart => true, :class => "box no_top" } do |f| -%>
+		<%= render :partial => 'news/form', :locals => {:f => f, :show_photo_upload => true } %>
+	<% end %>
+</div>

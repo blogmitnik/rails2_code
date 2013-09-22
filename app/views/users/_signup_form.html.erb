@@ -1,0 +1,26 @@
+<% if fbgraph_user %>
+<div class="form_row">暱稱：<em>(只能包含英文字母，數字或底線)</em><br><%= f.text_field :username, 
+	:size => User::USERNAME_SIZE, :maxlength => User::USERNAME_MAX_LENGTH, 
+	:class => "validate['required','length[4,16]','alphanum'] text-input",
+	:placeholder => "jason_23", 
+	:value => fbgraph_user.username -%><br></div>
+	
+<div class="form_row">姓氏：<br><%= f.text_field :first_name, 
+	:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+	:class => "validate['required','length[1,-1]','nodigit'] text-input", 
+	:placeholder => "Allen", 
+	:value => fbgraph_user.first_name -%></div>
+
+<div class="form_row">名字：<br><%= f.text_field :last_name, 
+	:size => User::LAST_NAME_SIZE, :maxlength => User::LAST_NAME_MAX_LENGTH, 
+	:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+	:class => "validate['required','length[1,-1]','nodigit'] text-input", 
+	:placeholder => "Chen", 
+	:value => fbgraph_user.last_name -%></div>
+	
+<div class="form_row">電子郵件：<em>(你用來登入 <%= app_name %> 的帳號)</em><br><%= f.text_field :email, 
+	:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH, 
+	:class => "validate['required','email'] text-input", 
+	:placeholder => "your_mail@example.com", 
+	:value => fbgraph_user.email -%></div>
+<% end %>

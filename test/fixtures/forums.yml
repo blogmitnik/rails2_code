@@ -1,0 +1,17 @@
+# == Schema Information
+# Schema version: 32
+#
+# Table name: forums
+#
+#  id           :integer(11)     not null, primary key
+#  name         :string(255)
+#  description  :text
+#  created_at   :datetime
+#  updated_at   :datetime
+#  topics_count :integer(11)     default(0), not null
+#
+
+valid_forum:
+  id: 1
+  name: Forum 1
+  description: Just a test forum

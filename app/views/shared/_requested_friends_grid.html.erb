@@ -1,0 +1,19 @@
+<ul class="grid contacts medium">
+  <%- @user.requested_friends.each do |requester| -%>
+    <li class="vcard contact">
+      <%= image_link requester, :image_options => { :class => "photo" },
+                              :link_options => { :class => "url" },
+                              :vcard => true,
+                              :image => :tiny %>
+	   <%= link_to image_tag("icons/friend_accept.gif"), 
+	               { :controller => "friends", :action => "accept", 
+	               :id => requester }, 
+	               :title => "接受 #{requester.name} 成為我的朋友" %>
+	   <%= link_to image_tag("icons/friend_request.gif"), 
+	               { :controller => "friends", :action => "decline", 
+	                 :id => requester, }, 
+	                 :title => "略過來自 #{requester.name} 的朋友邀請", 
+	                 :confirm => "你確定要略過這個朋友邀請嗎？" %>
+    </li>
+  <%- end -%>
+</ul>

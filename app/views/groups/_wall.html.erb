@@ -1,0 +1,39 @@
+<%-
+group ||= @group
+wall_comments ||= @wall_comments
+size ||= 5
+total = group.wall_comments_count
+
+parent ||= @parent
+parent = @group || nil
+-%>
+
+<h3>留言板</h3>
+<a name="group-wall"></a>
+<% if total > 0 %>
+  <span class="left">顯示全部 <%= total > size ? link_to("#{total} 則留言", group_comments_path(group)) + "中的其中 #{size} 則。" : "#{total} 則留言" %></span>
+<% else %>
+  <span class="left">目前尚無任何留言。</span>
+<% end %>
+    
+<% if can_participate? -%>
+  <span class="right">
+    <%= inline_tb_link("新增留言", "new_comment", :title => "在#{group.name}的留言板留言") if with_form %> |
+    <%= link_to "顯示全部", group_comments_path(group) %>
+  </span>
+  <div class="clear"></div>
+  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	  <%= render :partial => 'form' %>
+  </div>
+  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	  <%= render :partial => 'hidden_form' if with_form %>
+  </div>
+<%- end -%>
+<div class="clear"></div>
+
+<div id="<%= "comments_for_#{dom_id(parent)}" %>">
+  <% @group.wall_comments.each do |c| %>
+    <%= render :partial => 'wall_comments/comment', :locals => { :comment => c, :leave_comment => false } %>
+  <% end %>
+</div>
+

@@ -1,0 +1,21 @@
+<%- unless minifeed_item.item.nil? -%>
+<div class="feed_item" id="<%= minifeed_item.dom_id %>">
+<ul class="list comments small">
+  <li>
+    <span class="left activity_detail">
+      <div class="profile-image">
+    	  <%= avatar_icon(minifeed_item, :icon) %>
+  	   </div>
+      <%= minifeed_message minifeed_item %>
+      <p class="meta published">
+        <%= time_ago_in_words(minifeed_item.created_at).sub(/about /, '') %> 前
+      </p>
+    </span>
+  
+    <span class="right">
+      <%= feed_icon minifeed_item %>
+    </span>
+  </li>
+</ul>
+</div>
+<%- end -%>

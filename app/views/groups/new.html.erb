@@ -1,0 +1,90 @@
+<%- column_div :type => :primary do -%>
+  <h3>建立群組</h3>
+
+  <% form_for(@group) do |f| %>
+    <%= f.error_messages %>
+    
+    <div class="form_row">
+      <div id="profile_edit">注意：不允許群組對特定人士或某類人攻擊 (如種族歧視、性別歧視、或其他仇恨群組)。
+      		建立這類群組者，我們會立即終止你的 Cateplaces 帳號。</div>
+    </div>
+
+    <div class="form_row">
+      <label for="name">群組名稱：<small>(必填)</small><br></label>
+      <%= f.text_field :name, :size => 40 %>
+    </div>
+
+    <div class="form_row">
+      <label for="description">群組簡介：<small>(必填)</small><br></label>
+      <%= f.text_area :description, :cols => 60, :rows => 6 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="news">近期新聞：<br></label>
+      <%= f.text_area :news, :cols => 60, :rows => 6 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="office">辦公室：<br></label>
+      <%= f.text_field :office, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="email">電子郵件：<br></label>
+      <%= f.text_field :email, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="address">地址：<br></label>
+      <%= f.text_field :address, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="city">城市 / 鄉鎮：<br></label>
+      <%= f.text_field :city, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="website">網站：<br></label>
+      <%= f.text_field :website, :size => 40 %>
+    </div>
+
+    <div class="form_row">
+      <label for="mode">群組模式：<br></label>
+      <%= radio_button 'group', 'mode', 2 %> 隱藏群組 <small>(只有被群組管理員邀請加入的成員才能瀏覽群組內容)</small><br/>
+		<%= radio_button 'group', 'mode', 1 %> 私人群組 <small>(只有經過群組管理員確認的成員才能加入這個群組)</small><br/>
+		<%= radio_button 'group', 'mode', 0 %> 公開群組 <small>(任何人都可以加入這個群組並參與群組活動)</small>
+    </div>
+    
+    <div class="form_row">
+      <label for="group_default_role">群組成員預設權限：<br></label>
+      <%= radio_button 'group', 'default_role', 'member' %> 一般的成員 <small>(瀏覽群組內容並參與群組活動，這是預設值)</small><br/>
+      <%= radio_button 'group', 'default_role', 'observer' %> 受限的成員 <small>(只受限於瀏覽內容，無法參與群組活動)</small>
+    </div>
+    
+    <div class="row button">
+      <%= f.submit "建立群組", :id => 'create-group', :class => 'button' %>
+      <div id="progress-bar" style="display:none;">
+			<img src="/images/loadingAnimation.gif" alt="progress bar"> 
+			<div>正在建立您的群組，請稍後...</div>
+	  	</div>
+    </div>
+    
+  <% end %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <h3>最近建立的群組</h3>
+  <%= render :partial => 'groups/group_small', :collection => @groups %>
+<%- end -%>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#create-group").click(function()
+    {
+        jQuery("#create-group").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

@@ -1,0 +1,33 @@
+<h2><%= @user.username %> 的網誌</h2>
+
+<% if @entry_pages.page_count > 1 %>
+<p>
+	<% if @entry_pages.current.previous %>
+	<%= link_to '&laquo; 上一頁', :page => @entry_pages.current.previous %>
+	<% end %>
+	
+	<% if @entry_pages.current.next %>
+	<%= link_to '下一頁 &raquo;', :page => @entry_pages.current.next %>
+	<% end %>
+</p>
+<% end %>
+
+<ul>
+	<% @entries.each do |entry| -%>
+	<li><%= link_to entry.title, mobile_entry_path(:user_id => @user, :id => entry) -%>
+	(<%= entry.created_at.to_s(:short) %>)
+	</li>
+	<% end -%>
+</ul>
+
+<% if @entry_pages.page_count > 1 %>
+<p>
+	<% if @entry_pages.current.previous %>
+	<%= link_to '&laquo; 上一頁', :page => @entry_pages.current.previous %>
+	<% end %>
+	
+	<% if @entry_pages.current.next %>
+	<%= link_to '下一頁 &raquo', :page => @entry_pages.current.next %>
+	<% end %>
+</p>
+<% end %>

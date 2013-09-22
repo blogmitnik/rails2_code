@@ -1,0 +1,29 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+   <div class="crumbs" style="margin-top:1.1em;">
+    <%= link_to "回到討論串", group_forums_path(@group) %> <span class="arrow">&rarr;</span>
+    <%= link_to h(@topic.title), group_forum_topic_path(@group, @topic.forum, @topic) %> <span class="arrow">&rarr;</span>
+   </div>
+	<div id="forum-container">
+    <h4>回覆: <%= @topic.title %></h4>
+    <%= error_messages_for :topic %>
+    <%= render :partial => 'posts/new' %>
+    <span class="button_or">或 <%= link_to('取消', group_forum_topic_path(@group, @forum, @topic, :page => params[:page], :per_page => @per_page)) %></span>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>
+
+
+
+
+    

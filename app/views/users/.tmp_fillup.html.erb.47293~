@@ -1,0 +1,6 @@
+<h3>重新啟用您的帳號</h3>
+
+<div id="profile_edit">
+<p><%= @user.username %>您使用 <%= @user.identity_url %> 這個 OpenID 帳號所登入的使用者已經失效。
+再過不久, 我們將會發送一封通知您如何重新啟動帳號的電子信件到您的信箱 <%= @user_openid.user.email %></p>
+</div>

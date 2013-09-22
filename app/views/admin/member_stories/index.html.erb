@@ -1,0 +1,24 @@
+
+  <h3>管理新聞訊息</h3>
+  <p><%= link_to "撰寫新聞訊息", new_admin_member_story_path %></p>
+	<table class="manage">
+		<thead>
+		<tr>
+			<th>顯示圖示</th>
+			<th>新聞標題</th>
+			<th>新聞內容</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+		<% @news_items.each do |story| -%>
+		<tr>
+			<td><%= icon story, :small -%></td>
+			<td><%= link_to "#{summarize(story.title, 80)}", admin_member_story_path(story) %></td>
+			<td><%= summarize(story.body, 100) %></td>
+			<td><%= render :partial => 'member_stories/admin', :locals => { :member_story => story } -%></td>
+		</tr>
+		<% end -%>
+		</tbody>
+	</table>
+	<%= will_paginate @news_items %>

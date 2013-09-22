@@ -1,0 +1,29 @@
+<%= javascript_include_tag "jquery", "tooltip" %>
+
+<h3>使用者登入</h3>
+
+<div id="profile_edit">
+<p>登入 Cateplaces</p>
+<p>你可以選擇使用 OpenID 或是 Clickpass 帳號來登入</p>
+<% form_tag open_id_complete_path do -%>
+	<div class="form_row">OpenID：(<%= link_to '什麼是 OpenID ?', "http://openid.net/", 
+												:title => "不知道 OpenID 嗎？先到這裡了解一下" %>)<br>
+		<%= text_field_tag "openid_url" %></div>
+	<div class="form_row"><small>例如: http://you.myopenid.com</small></div>
+	<div class="row button">
+		<%= submit_tag 'OpenID 登入', :class => 'button' -%> 
+			或 <%= link_to '註冊新的帳號', signup_url, 
+					:title => "你還沒有 Cateplaces 帳號嗎？現在可以立即註冊一個新的帳號" -%>
+	</div>
+<% end %>
+
+<div class="form_row">你也可以使用下列的 Clickpass 帳號登入</div>
+<style> @import 'http://www.clickpass.com/stylesheets/container.css'; </style>
+<div id="clickpass_button" style="width: 176px; height: 28px; position: relative; z-index : 9999 ;">
+  <iframe src="http://www.clickpass.com/embedded_buttons/login-standard/nzYw0v0aZA" width="176" height="28" frameborder="0" allowtransparency="true" scrolling="no" style="z-index:9999;position: absolute; top: 0; left: 0;"></iframe> 
+</div>
+<script type="text/javascript" src="http://www.clickpass.com/javascripts/ClickpassPanel.class.external.js?v1"></script>
+<script type="text/javascript">  
+      var clickpassPanel = new ClickpassPanel('clickpass_button');   </script>
+ 
+</div>

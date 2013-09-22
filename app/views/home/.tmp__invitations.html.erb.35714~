@@ -1,0 +1,20 @@
+<%- unless @invitations.empty? -%>
+  <h3>群組邀請函</h3>
+  <p class="meta">你有 <%= @invitations.length %> 個群組邀請函</p>
+  
+  <%- @invitations.each do |invitation| -%>
+  <%- mem = Membership.mem(logged_in_user, invitation.group) -%>
+    <ul class="list comments small">
+      <li>
+        <div class="profile-image">
+          <%= image_link invitation.group %>
+          <%= image_tag "icons/group.gif", :class => "icon" %>
+        </div>
+        <%= group_link invitation.group %>
+        <p>你已被 <%= user_link invitation.group.owner %> 邀請。</p>
+        <p>你想加入這個群組嗎？</p>
+        <p><%= link_to "回覆邀請", edit_membership_path(mem) %></p>
+      </li>
+    </ul>
+  <%- end -%>
+<%- end -%>

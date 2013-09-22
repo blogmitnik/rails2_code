@@ -1,0 +1,5 @@
+page.visual_effect :slide_up, "new_comment_form_for_entry_#{@entry.id}"
+page.replace_html "comments_for_entry_#{@entry.id}", 
+                            :partial => "comments/comment"
+page.show "add_comment_link_for_entry_#{@entry.id}"
+page.visual_effect :highlight, "comment_#{@comment.id}", :duration => 2

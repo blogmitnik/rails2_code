@@ -1,0 +1,47 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+group ||= @group
+user ||= @user
+wall_comments ||= @wall_comments
+
+parent ||= @parent
+parent = @group || nil
+-%>
+
+<%- column_div :type => :primary do -%>
+	<h3>群組塗鴉牆</h3>
+	<a name="wall"></a>
+	<% if can_participate? -%>
+	  <%= inline_tb_link("新增留言", "new_comment", :title => "在#{@group.name}的塗鴉牆留言") %> |
+	  <%= link_to "返回#{parent.name}", group_path(parent) %>
+	
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'groups/form' %>
+	  </div>
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'groups/hidden_form'%>
+	  </div>
+	<%- end -%>
+	
+	<%- unless @group.wall_comments.empty? -%>
+	  <div id="<%= "comments_for_#{dom_id(parent)}" %>">
+	    <% @group.wall_comments.each do |c| %>
+	      <%= render :partial => 'wall_comments/comment', 
+	      			  :locals => { :comment => c, :leave_comment => false } %>
+	    <% end %>
+	  </div>
+	<%- end -%>
+   <div class="clear"></div>
+  		<%= will_paginate @wall_comments %>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

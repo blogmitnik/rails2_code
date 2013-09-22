@@ -1,0 +1,19 @@
+<%- column_div :type => :primary do -%>
+<h3>群組成員請求</h3>
+
+<% if params[:invitation] %>
+    <p><%= image_link @membership.user, :image => :main_photo %></p>
+    <p><%= user_link @membership.user %> 希望加入你的群組 <%= group_link @membership.group %>，是否接受他的請求？</p>
+<% else %>
+    <p><%= image_link @membership.group, :image => :main_photo %></p>
+    <p><%= user_link @membership.group.owner %> 邀請你加入 <%= group_link @membership.group %> 群組，是否要加入這個群組？</p>
+<% end %>
+
+<% form_for(@membership) do |f| %>
+  <div class="row button">
+    <%= f.submit "接受請求", :class => "button" %>
+    <%= f.submit "略過請求", :id => nil, :class => "button" %>
+    <%= hidden_field_tag "invitation", params[:invitation]%>
+  </div>
+<% end %>
+<%- end -%>

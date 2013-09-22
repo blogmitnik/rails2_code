@@ -1,0 +1,147 @@
+<%= javascript_include_tag 'mootools', 'formcheck', 'jquery' %>
+
+<script type="text/javascript">
+window.addEvent('domready', function(){
+    new FormCheck('formular');
+});
+</script>
+
+<%- column_div :type => :primary do -%>
+<h3>註冊新的使用者</h3>
+<%= error_messages_for :user %>
+<div id="send-error" class="hidden">你必須填滿所有的欄位。</div>
+
+<p><%= link_to '已經是會員了?', login_url, :title => "請至登入頁面登入你的使用者帳號" -%> 或者您也可以使用其他第三方服務的帳號來註冊！</p>
+
+<% unless @user.yahoo_userhash %>
+<%= link_to image_tag( 'Sign-In-with-Yahoo-ID.png', { :alt => '透過 Yahoo! 帳號登入', :title => "我們接受使用 Yahoo! 帳號來登入網站" } ), yahooLogin_url %>
+<% end %>
+
+<% unless params[:fb_user] %>
+	<%= render :partial => '/shared/fbconnect_button' %>
+<% end %>
+
+<% unless @user.twitter_id && @user.screen_name && @user.token && @user.secret && @user.profile_image_url %>
+  <%= link_to  image_tag( 'twitter_login.png', { :alt => '透過 Twitter 帳號登入', :title => "我們接受使用 Twitter 帳號來登入網站" } ), twitterOAuth_url  %>
+<% end %>
+
+<% unless params[:linkedin_user] %>
+  <%= link_to image_tag( 'log-in-linkedin-small.png', { :alt => '透過 Linkedin 帳號登入', :title => "我們接受使用 Linkedin 帳號來登入網站" } ), :controller => 'users', :action => 'new', :linkedin_user => 1 %>
+<% end %>
+
+<p>馬上註冊，開始體驗 <%= app_name %> 的樂趣。</p>
+
+<div style="padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+趕快加入 <%= app_name %> 建立你的 <%= app_name %> 個人檔案，即刻與朋友取得聯繫，隨時保持聯絡並分享照片。 
+只要填寫下面表格，就可以馬上加入！<br><small>（全部為必填欄位）</small>
+</div>
+
+<div id="signup-form" class="">
+<% form_for @user, :html => {:id => "formular", :class => "formular"} do |f| -%>
+	<div class="form_row">暱稱：<em>(只能包含英文字母，數字或底線)</em><br><%= f.text_field :username, 
+		:size => User::USERNAME_SIZE, :maxlength => User::USERNAME_MAX_LENGTH, 
+		:class => "validate['required','length[4,16]','alphanum'] text-input" -%><br></div>
+		
+	<div class="form_row">姓氏：<br><%= f.text_field :first_name, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+		:class => "validate['required','length[1,-1]','nodigit'] text-input" -%></div>
+		
+	<div class="form_row">名字：<br><%= f.text_field :last_name, 
+		:size => User::LAST_NAME_SIZE, :maxlength => User::LAST_NAME_MAX_LENGTH, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+		:class => "validate['required','length[1,-1]','nodigit'] text-input" -%></div>
+		
+	<div class="form_row">電子郵件：<em>(你用來登入 <%= app_name %> 的帳號)</em><br><%= f.text_field :email, 
+		:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH, 
+		:class => "validate['required','email'] text-input" -%></div>
+		
+	<% unless params[:fb_user] || params[:linkedin_user] || @user.yahoo_userhash || @user.twitter_id || @user.wll_uid || @user.youtube_username %>
+	<div class="form_row">密碼：<em>(最少須包含六位數，數字加字母的組合更好)</em><br><%= f.password_field :password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH, 
+		:class => "validate['required','length[6,-1]','alphanum'] text-input" -%><br>
+		<small>Note: Email will not be publicly displayed</small></div>
+		
+	<div class="form_row">確認密碼:<br><%= f.password_field :password_confirmation, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH, 
+		:class => "validate['confirm[password]'] text-input" -%></div>
+	<% end %>
+	
+	<% if params[:fb_user] %>
+		<%= hidden_field_tag(:fb_user, 1) %>
+	<% elsif params[:linkedin_user] %>
+		<%= hidden_field_tag(:linkedin_user, 1) %>
+	<% elsif @user.yahoo_userhash %>
+		<%= f.hidden_field :yahoo_userhash %>
+	<% elsif @user.wll_uid %>
+		<%= f.hidden_field :wll_uid %>
+		<%= f.hidden_field :wll_name %>
+	<% elsif @user.twitter_id && @user.screen_name && @user.token && @user.secret && @user.profile_image_url %>
+		<%= f.hidden_field :twitter_id %>
+		<%= f.hidden_field :screen_name %>
+		<%= f.hidden_field :token %>
+		<%= f.hidden_field :secret %>
+		<%= f.hidden_field :profile_image_url %>
+	<% elsif @user.oauth_token && @user.oauth_secret && @user.youtube_username %>
+		<%= f.hidden_field :oauth_token %>
+		<%= f.hidden_field :oauth_secret %>
+		<%= f.hidden_field :youtube_username %>
+	<% end %>
+		
+	<div class="form_row">使用條款：<a href="/tos" class="printable-version" target="_blank">列印使用條款</a><br>
+		<div class="col-field">
+			<code id="tos">Placerat cum magna! Mauris magnis tortor rhoncus velit? Cum, lacus urna, lundium magna platea nec egestas nunc sit enim? Mus aliquam, porttitor pellentesque turpis! In, turpis magna cursus a odio! Tincidunt habitasse a auctor diam in scelerisque! Auctor dis vut a, magna porttitor integer! Enim dis et odio ridiculus sociis! Dapibus, penatibus. Lacus cum adipiscing tempor, vut cursus etiam ut lundium tincidunt ultricies aenean nisi pid arcu pulvinar natoque diam arcu mus. Tristique! Mattis a ultrices hac in nec nunc nunc. Urna augue velit quis nascetur platea porttitor eu lorem scelerisque urna, amet tempor! Urna integer, in et ultricies! Turpis purus adipiscing eu, magna ridiculus turpis purus lectus, tempor penatibus ultrices tincidunt parturient dolor lectus adipiscing sagittis tincidunt urna adipiscing.<br><br>
+			Mid nec! Porttitor, dignissim pulvinar aliquam hac, natoque? Dictumst. Arcu magna. Odio pulvinar sociis egestas? Habitasse dis, placerat parturient vel cras sit platea, ac aliquam ultrices et parturient scelerisque ac in? Egestas ridiculus? Vel magnis velit porta tincidunt, a a, facilisis diam dolor, porttitor proin odio vel, tincidunt pulvinar rhoncus sit mattis pulvinar, mus elementum ut. Hac, rhoncus, lectus, proin adipiscing! Placerat nisi ridiculus mus et, magnis ac, auctor elementum nisi nunc ac eros eros! Porttitor elit, cras sed pulvinar integer cursus! Amet, ac amet arcu parturient? Ac turpis scelerisque lacus cum turpis rhoncus tincidunt, porttitor, augue? Phasellus platea, hac, augue cum tincidunt a, ut turpis porttitor non nisi auctor massa, aenean augue! Urna tincidunt pid aliquam scelerisque mid.<br><br>
+			Parturient, a aliquam est natoque purus magnis? Purus! Pid tortor nisi, ac lorem ultrices sit quis nascetur a hac! Adipiscing sociis, adipiscing etiam, ac porttitor risus! In augue cum nunc pulvinar pid augue porta, in, mauris amet mauris arcu mid magna placerat ac pulvinar vel pulvinar aenean? Ridiculus, pellentesque? Et arcu magnis mauris magna? Odio platea et porttitor lundium, a parturient nisi pid dignissim? Nunc purus sociis ac pid sociis tristique. Integer montes dolor habitasse elementum adipiscing scelerisque augue? A nisi augue. Urna. Sagittis, est ut et cras, magna egestas risus est ac, mattis massa placerat! Ac quis sed, cras sed turpis, lundium auctor mauris eros augue natoque, magna! Nisi dapibus, penatibus scelerisque phasellus augue elementum eros pid arcu.<br><br>
+			Dignissim elementum habitasse penatibus. Turpis odio in cursus augue nisi porta rhoncus augue nunc tristique, urna, sit adipiscing et mattis ac turpis ut dolor natoque ac mauris? Magna in enim! Porttitor nisi, dignissim porttitor, porta tempor sed magnis mus, nascetur lectus parturient turpis et turpis! Pulvinar lorem quis eros dolor pulvinar nisi quis tempor magnis odio, urna, lorem nisi mid, odio dictumst nunc nascetur nisi in hac magna ac rhoncus sed rhoncus. Amet augue cras augue, rhoncus odio. Augue. Proin, aenean, a non proin? In aliquet rhoncus odio pid ac, lorem ac dignissim et. Vut sociis magna ridiculus nisi hac? Porta et, tortor et? Hac cras! Pellentesque phasellus? Platea mus odio nunc non et rhoncus, et penatibus ut in nunc.<br><br>
+			Dolor ut in! Phasellus pulvinar! Massa nec parturient ac, amet, integer ut nisi integer! Amet rhoncus ultrices, etiam sociis sit aliquam magnis integer natoque integer vel a ut phasellus ac, aliquet et scelerisque! Enim habitasse, proin eu est amet? Tempor vel? Facilisis, egestas, odio, lectus tortor magna? Hac, parturient! Parturient. Sit tincidunt massa eu cras lundium pellentesque odio ultricies, a scelerisque! Nisi montes! Purus scelerisque elit etiam nisi, tortor, velit quis etiam odio? Nascetur dolor magna non. Ultrices ultricies. Egestas odio, aliquam platea vut eu natoque, et aenean, urna? Placerat scelerisque. Etiam. Odio magna mus duis, ac massa mauris. Porta magna aliquam mauris duis et rhoncus ac integer sit purus dictumst, odio ultrices, tristique duis, porta vel? Ac sed.
+			</code>
+		</div>
+	</div>
+	
+	<div class="form_row">
+		<input type="checkbox" name="check" value="1" checked="checked" class="validate['required'] checkbox">
+		我已閱讀，並同意使用條款和隱私權政策。
+	</div>
+	
+	<div class="form_row">安全驗證：<em>(輸入以下所有字，並以空格來分隔)</em><br>
+		<script type="text/javascript">
+			var RecaptchaOptions = {
+				theme : 'clean',
+				tabindex : 0
+			};
+		</script>
+		<%= recaptcha_tags %>
+	</div>
+	
+	<div class="form_row">
+		按下"立即註冊"按鈕表示您已經成年並且同意遵守 <%= app_name %> 網站(服務)的<a href="/tos" target="_blank">使用條款</a>和<a href="/privacy" target="_blank">隱私權政策</a>
+	</div>
+		
+	<div class="row button" style="padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+	  <% unless params[:linkedin_user] %>
+		<%= submit_tag '立即註冊', :class => 'button', :id => 'signup' -%>
+	  <% else %>
+		<%= oauth_register_button :value => "Register with LinkedIn", :class => 'linkedin' %>
+	  <% end %>
+	  <div id="progress-bar" style="display:none;">
+		<img src="/images/loadingAnimation.gif" alt="progress bar"> 
+		<div>請稍後...我們正在建立您的帳號</div>
+	  </div>
+	</div>
+	<div class="form_row">
+		無法註冊嗎？查詢 <a href="/help" target="_blank"><%= app_name %> 使用說明</a>
+	</div>
+<% end -%>
+</div>
+<% end -%>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#signup").click(function()
+    {
+        jQuery("#signup").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

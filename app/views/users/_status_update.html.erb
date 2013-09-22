@@ -1,0 +1,87 @@
+<div id="send-error" style="display:none">你無法發送一項空白的內容。
+  <small><a href='#' onclick="$$('div#send-error')[0].hide();return false">關閉</a></small>
+</div>
+
+<div id="status-update" style="padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+  <% remote_form_for(:status_update, :url => user_status_updates_path(@user), 
+									 :html => {:id => 'status_update_form', :title => "在想什麼嗎？"} ) do |f| -%>
+    <table>
+      <tr>
+        <td rowspan="2">
+        <%- if facebook_user -%>
+    		  <fb:profile-pic uid="<%= facebook_user %>" size="square" facebook-logo="true" ></fb:profile-pic></td>
+    		<%- else -%>
+    		  <%= image_link @user, :image => :tiny %></td>
+    		<%- end -%>
+        <td id="current-status">
+          <%= render :partial => 'users/current_status', :locals => {:user => @user} %>          
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>
+          <div id="progress-bar" style="display:none;">
+          	<img src="/images/indicator_blue_small.gif" alt="progress bar" float:left>
+			      <small>正在發佈你的訊息...</small>
+    	  </div>
+          <div id="status-update-field" class="status-update-dim">
+          	<%= f.text_area :text, :id => 'status_update', :value => "在想什麼嗎？", :rows => 1, :cols => 35%>
+		  <div>
+        </td>
+        <td id="submit-button" style="display:none;">
+        	 <%= f.submit '張貼訊息', :id => 'submit_status' %>
+        </td>
+      </tr>
+    </table>
+    
+    <% if facebook_user %>
+      <div id="fb_publish" style="display:none">
+        <% unless facebook_user.has_permission?("publish_stream") %>
+          <div id="fb_no_permission">
+            你尚未授權<%= app_name %>發佈消息至您的Facebook塗鴉牆.
+            <fb:prompt-permission perms="publish_stream" next_fbjs="permission_granted()">是否允許授權？</fb:prompt-permission>
+          </div>
+        <% else %>
+          <%= render :partial => 'shared/fbpublish' %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if fbgraph_user %>
+      <div id="fb_publish" style="display:none">
+        <%= render :partial => 'shared/fgpublish' %>
+      </div>
+    <% end %>
+    
+    <% if twitter_user? %>
+      <div id="tt_publish" style="display:none">
+        <%= render :partial => 'shared/ttpublish' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+  
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+	jQuery('#status_update').val("在想什麼嗎？");
+	jQuery('#status_update').click(function(){
+	  jQuery('#status_update').val("<%= @user.short_name + ' ' %>");
+	  jQuery('#status-update-field').removeClass('status-update-dim');
+	  jQuery('#status-update-field').addClass('status-update-lit');
+	  jQuery("#submit-button").show();
+	  jQuery("#fb_publish").show();
+	  jQuery("#fg_publish").show();
+	  jQuery("#tt_publish").show();
+	});
+	
+	jQuery("#status_update_form").submit(function() {
+	  jQuery("#status-update-field").hide();
+	  jQuery("#submit-button").hide();
+	  jQuery("#fb_publish").hide();
+	  jQuery("#fg_publish").hide();
+	  jQuery("#tt_publish").hide();
+	  jQuery("#progress-bar").show();
+  });
+  
+});
+</script>

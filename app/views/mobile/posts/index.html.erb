@@ -1,0 +1,35 @@
+<h2>主題: <%= @topic.name %></h2>
+
+<h3>
+	<%= link_to '論壇', mobile_forums_path -%> > 
+	<%= link_to @topic.forum.name, mobile_topics_path(:forum_id => @topic.forum) -%> > 
+	<%= @topic.name %>
+</h3>
+
+<p>
+	<% if is_logged_in? -%>
+		<%= link_to '張貼回覆', new_mobile_post_path(:forum_id => @topic.forum, 
+													:topic_id => @topic) -%>
+	<% else -%>
+		<%= link_to '登入並張貼回覆', mobile_login_url -%>
+	<% end -%>
+</p>
+
+<% if @posts_pages.page_count > 1 %>
+<p class="pagination">頁次: <strong>
+	<%= pagination_links @posts_pages, :params => params %>
+</strong></p>
+<% end %>
+
+<% @posts.each do |post| -%>
+<p>
+	<%= link_to post.user.username, mobile_user_path(post.user) -%> 回覆:<br>
+	<%= textilize(post.body) -%>
+</p>
+<% end %>
+
+<% if @posts_pages.page_count > 1 %>
+<p class="pagination">頁次: <strong>
+	<%= pagination_links @posts_pages, :params => params %>
+</strong></p>
+<% end %>

@@ -1,0 +1,7 @@
+<% unless @user == logged_in_user -%>		
+    <% if @user.enabled -%>
+      <li><%= link_to('停用這個使用者帳號', user_url(@user.id), :method => :delete) %></li>
+    <% else -%>
+      <li><%= link_to('重新啟用這個使用者帳號', enable_user_url(@user.id), :method => :put) %></li>
+    <% end -%>
+<% end -%>

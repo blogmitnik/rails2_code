@@ -1,0 +1,14 @@
+<%- column_div :type => :primary do -%>
+  <h3>管理群組</h3>
+
+  <%= will_paginate %>
+  <ul class="list people">
+    <%= render :partial => 'group', :collection => @groups %>
+  </ul>
+  <div class="clear"></div>
+  <%= will_paginate %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+<%- end -%>

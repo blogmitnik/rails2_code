@@ -1,0 +1,22 @@
+<%- unless @requested_memberships.empty? -%>
+  <h3>群組成員請求</h3>
+  <p class="meta">你有 <%= @requested_memberships.length %> 個群組成員請求</p>
+  
+  <%- @requested_memberships.each do |request| -%>
+    <ul class="list comments small">
+      <li>
+        <div class="profile-image">
+          <%= image_link request.group %>
+          <%= image_tag "icons/friend_guy.gif", :class => "icon" %>
+        </div>
+        <p><%= user_link request.user %> 希望加入你的群組 <%= group_link request.group %></p>
+        <p class="meta published">
+          <%= time_ago_in_words(request.created_at) %> ago
+        </p>
+        <p>
+          <%= link_to "回應請求", edit_membership_path(request)+'?invitation=true' %>
+        </p>
+      </li>
+    </ul>
+  <%- end -%>
+<%- end -%>

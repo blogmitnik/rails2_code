@@ -1,0 +1,26 @@
+<div class="activity_box">
+  <h3>我的網誌文章 <span class="meta"><%= link_to '寫新文章', new_user_note_path %></span></h3>
+		<% if @notes.empty? -%>
+	    <p>你沒有張貼任何文章</p>
+		<% else -%>
+		<table class="news">
+			<thead>
+			<tr>
+				<th>文章標題</th>
+				<th>文章內容</th>
+				<th>管理</th>
+			</tr>
+			</thead>
+			<tbody>
+			<% @notes.each do |note| -%>
+			<tr>
+				<td><%= link_to "#{summarize(note.title, 80)}", profile_note_path(@user, note) %></td>
+				<td><%= summarize(note.body, 50) %></td>
+				<td><%= render :partial => 'admin_links', :locals => { :note => note } -%></td>
+			</tr>
+			<% end -%>
+			</tbody>
+		</table>
+		<%= will_paginate @notes, :previous_label => '&laquo; 上一頁', :next_label => '下一頁 &raquo;' %>
+	<% end -%>
+</div>

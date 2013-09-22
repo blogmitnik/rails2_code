@@ -1,0 +1,11 @@
+<h2>建立新的討論主題</h2>
+
+<%= error_messages_for :topic -%>
+<%= error_messages_for :post -%>
+
+<% form_for :topic, :url => mobile_topics_path do |f| -%>
+<p>主題:<br><%= f.text_field :name -%></p>
+<p>內容:<br><%= text_area :post, :body -%></p>
+<%= submit_tag '送出' %> or <%= link_to '取消', 
+	mobile_topics_path(:forum_id => params[:forum_id]) %>
+<% end %>

@@ -1,0 +1,20 @@
+<h3>Facebook朋友</h3>
+<% friends = facebook_user.friends_with_this_app %>
+<% if friends.any? %>
+  <% friends.each do |friend| %>
+    <div class="left fb_friends">
+      <fb:profile-pic uid="<%= friend %>" size="square" facebook-logo="true" ></fb:profile-pic>
+      <span><a href="http://www.facebook.com/profile.php?id=<%= friend %>" target="_blank"><%= friend.name %></a></span>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+  <span class="left">
+    <%= link_to "#{friends.count} 位朋友", user_friends_path(logged_in_user) %>
+  </span>
+  <span class="right">
+    <%= link_to "顯示全部", user_friends_path(logged_in_user) %>
+  </span>
+<% else %>
+   <p>你在<%= app_name %>還沒有Facebook朋友，你可以
+     <%= link_to "邀請朋友", new_user_invite_path(logged_in_user) -%>使用Facebook帳戶來註冊<%= app_name %>。</p>
+<% end %>

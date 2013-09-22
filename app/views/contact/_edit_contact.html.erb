@@ -1,0 +1,46 @@
+<div>聯絡資料</div>
+<div id="profile_show">
+<% form_for :contact, :url => contact_url(@contact), :html => { :method => :put } do |f| -%>
+	<div class="form_row">MSN：<br><%= f.text_field :msn_account, 
+		:size => Contact::COMMON_FIELD_SIZE, :maxlength => Contact::IM_ACCOUNT_MAX_LENGTH, 
+		:label=>'MSN Name' -%></div>
+		
+	<div class="form_row">iChat：<br><%= f.text_field :ichat_account, 
+		:size => Contact::COMMON_FIELD_SIZE, :maxlength => Contact::IM_ACCOUNT_MAX_LENGTH, 
+		:label=>'iChat Name' -%></div>
+		
+	<div class="form_row">GTalk：<br><%= f.text_field :gtalk_account, 
+		:size => Contact::COMMON_FIELD_SIZE, :maxlength => Contact::IM_ACCOUNT_MAX_LENGTH, 
+		:label=>'GTalk Name' -%></div>
+		
+	<div class="form_row">AIM：<br><%= f.text_field :aim_account, 
+		:size => Contact::COMMON_FIELD_SIZE, :maxlength => Contact::IM_ACCOUNT_MAX_LENGTH, 
+		:label=>'AIM Name' -%></div>
+		
+	<div class="form_row">手機：<br><%= f.text_field :cell_phone, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::PHONE_MAX_LENGTH -%></div>
+		
+	<div class="form_row">室內電話：<br><%= f.text_field :phone, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::PHONE_MAX_LENGTH -%></div>
+		
+	<div class="form_row">地址：<br><%= f.text_field :address, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::ADDRESS_MAX_LENGTH -%></div>
+		
+	<div class="form_row">現居國家：<br><%= f.select :city, Contact::CITIES_SELECT, 
+		:prompt => "選擇您目前居住的城市" -%></div>
+		
+	<div class="form_row">所在城市/鄉鎮：<br><%= f.text_field :state, :size => Contact::STATE_SIZE, 
+		:maxlength => Contact::STATE_MAX_LENGTH -%></div>
+		
+	<div class="form_row">郵遞區號：<small>(請輸入5碼的郵遞區號)</small><br><%= f.text_field :zipcode, 
+		:size => Contact::ZIPCODE_SIZE, :maxlength => Contact::ZIP_CODE_MAX_LENGTH -%></div>
+		
+	<div class="form_row">個人網站：<br><%= f.text_area :website, 
+		:rows => Contact::COMMON_ROWS, :cols => Contact::COMMON_COLS -%></div>
+
+	<%= hidden_field_tag "attribute", "聯絡資料", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '儲存變更', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>

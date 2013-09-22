@@ -1,0 +1,16 @@
+<% remote_form_for(:comment, :url => comments_path(:entry_id => @entry), 
+						 :html => {:id => 'submit-comment-form'}, 
+						 :method => :post, :complete => "Field.clear('comment-body')") do |f| -%>
+
+	<div class="form_row">
+		<%= f.text_area :body, :id => 'comment-body', :rows => Comment::BODY_ROWS, :cols => Comment::BODY_COLS %>
+	</div>
+
+	<div id="submit-comment" class="row button">
+		<%= submit_tag '新增回應', :class => 'button' -%>
+		<%= button_to_function "取消", :class => 'button' do |page| 
+        page.visual_effect :blind_up, "new_comment_form_for_entry_#{@entry}" 
+        page.show "add_comment_link_for_entry_#{@entry}" 
+      end %>  
+	</div>
+<% end -%>

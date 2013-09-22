@@ -1,0 +1,19 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @forum.name %></h3>
+   <div class="crumbs" style="margin-top:1.1em;">
+    <%= link_to "回到討論區", forums_path %> <span class="arrow">&rarr;</span>
+    <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> <span class="arrow">&rarr;</span>
+    <%= link_to h(@topic.title), forum_topic_path(@topic.forum, @topic) %> <span class="arrow">&rarr;</span>
+   </div>
+	<div id="forum-container">
+    <h4>回覆: <%= @topic.title %></h4>
+    <%= error_messages_for :topic %>
+    <%= render :partial => 'posts/new' %>
+    <span class="button_or">或 <%= link_to('取消', forum_topic_path(@forum, @topic, :page => params[:page], :per_page => @per_page)) %></span>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+	<%= render :partial => 'searches/box' %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

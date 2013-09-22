@@ -1,0 +1,15 @@
+<p><%= @connection.friend.name %> 已將你新增為 Cateplaces 上的好朋友，
+我們需要確認這個 <%= @connection.friend.name %> 是你認識的人，才能加入你的 Cateplaces 朋友清單。</p>
+
+<p>你可以查看 <%= @connection.friend.name %> 的個人檔案頁面：<br>
+http://<%= @domain %><%= @user_url %></p>
+
+<p>請按照以下連結來確認這個朋友請求：<br>
+http://<%= @domain %><%= @url %></p>
+
+<p>謝謝，<br>
+Cateplaces 團隊</p>
+
+<p>___
+<br>想要掌握從 Cateplaces 收到什麼類型的電子郵件？請前往：<br>
+http://railscode.mine.nu/users/<%= @connection.user.to_param %>/edit</p>

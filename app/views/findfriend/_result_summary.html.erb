@@ -1,0 +1,10 @@
+<% if @pages %>
+<p>
+	結果共有 <%= @pages.item_count %> 人：
+  <% if paginated? %>
+    <% first = @pages.current_page.first_item %>
+    <% last  = @pages.current_page.last_item %>
+    (顯示其中第 <%= first %> &ndash; <%= last %> 人)
+  <% end %>
+</p>
+<% end %>

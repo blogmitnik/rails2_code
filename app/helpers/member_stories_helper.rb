@@ -1,0 +1,2 @@
+module MemberStoriesHelper
+end

@@ -1,0 +1,9 @@
+<h3>群組類別</h3>
+
+<% if @group.public? %>
+	這是一個<%= get_groups_modes[@group.mode][0] %>。任何人都可以加入或邀請其他人加入。
+<% elsif @group.private? %>
+	這是一個<%= get_groups_modes[@group.mode][0] %>。成員必須接受邀請或由管理員批准。
+<% elsif @group.hidden? %>
+	這是一個<%= get_groups_modes[@group.mode][0] %>。只有收到管理員邀請的成員才能加入。
+<% end %>

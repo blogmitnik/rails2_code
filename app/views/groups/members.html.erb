@@ -1,0 +1,21 @@
+<%- column_div :type => :primary do -%>
+  <h3>群組成員</h3>
+
+  <% unless @members.empty? -%>
+    <p>共有 <%=h @members.length %> 位群組成員</p>
+    <%= render :partial => 'groups/group_member', :collection => @members %>
+    <%= will_paginate(@members) %>
+  <% else %>
+    <h4>這個群組目前沒有成員</h4>
+  <% end -%>
+  
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

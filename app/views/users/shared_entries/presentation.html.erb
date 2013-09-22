@@ -1,0 +1,7 @@
+<h3>
+  <%= @entry.title %>
+  <%= ('<span class="link-button" style="vertical-align:middle;letter-spacing:0;font-weight:normal;">' + link_to('編輯內容', edit_user_shared_entry_path(@user, @shared_entry)) + '</span>') if @can_edit == true %>
+</h3>
+<iframe src='http://docs.google.com/EmbedSlideshow?docid=<%= @entry.google_doc_id %>&amp;size=l' 
+  frameborder='0' width='700' height='559' style='float:center;'>
+</iframe>

@@ -1,0 +1,4 @@
+<% c = prepare_captcha :type => :question -%>
+<%= captcha_hidden_field c, 'comment' %>
+<%= captcha_question c, 'comment' %><br>
+<%= captcha_text_field 'comment' %>

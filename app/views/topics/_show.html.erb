@@ -1,0 +1,94 @@
+<% content_for :monitor do -%>
+  <% if is_logged_in? %>
+    <% form_tag forum_topic_monitorship_path(@forum, @topic), :style => 'margin-top:0em; float:right;' do -%>
+      <div>
+        <input id="monitor_checkbox" type="checkbox" <%= "checked='checked'" if @monitoring %> 
+          onclick="if (this.checked) {<%= remote_function :url => forum_topic_monitorship_path(@forum, @topic) %>} else {<%= remote_function :url => forum_topic_monitorship_path(@forum, @topic), :method => :delete %>}" />
+        <label id="monitor_label" for="monitor_checkbox"><%= @monitoring ? '已監督討論串' : '監督討論串' %></label>
+        <%= hidden_field_tag '_method', 'delete' if @monitoring %>
+        <%= submit_tag :Set, :id => 'monitor_submit' %>
+      </div>
+    <% end -%>
+  <% end -%>
+<% end # monitor content -%>
+
+<h4 id="topic-title" style="margin-top:0.5em;">
+  <%= h @topic.title %>
+  <% if @topic.locked? %>
+    <span>(已鎖定)</span>
+  <% end %>
+</h4>
+
+<p class="subtitle">
+  <%= feed_icon_tag @topic.title, formatted_forum_topic_path(@forum, @topic, :rss) %>
+  顯示 <%= count_for('個人', @topic.voices.size) %>的
+  <%= count_for('則', @topic.posts.size) %>討論貼文。
+  <% if is_logged_in? %>
+    <span id="topic_mod">
+      <% if @topic.editable_by?(logged_in_user) -%>
+        <%= link_to('編輯內容', edit_forum_topic_path(@forum, @topic), :class => "utility") %> |
+        <%= link_to('刪除話題', forum_topic_path(@forum, @topic), :class => "utility", :method => :delete, :confirm => '你是否確定要刪除這個討論主題？'[:delete_topic_conf]) %> |
+      <% elsif can_participate? -%>
+        <%= link_to '新增討論話題', new_forum_topic_path(@forum), :class => "utility" %>
+      <% end -%>
+    </span>
+  <% end %>
+</p>
+
+<%= will_paginate @posts, :previous_label => '&laquo; 上一頁', :next_label => '下一頁 &raquo;' %>
+
+<a name="<%= dom_id @posts.first %>" id="<%= dom_id @posts.first %>">&nbsp;</a>
+
+<table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+  <% for post in @posts do %>
+    <tr class="post hentry" id="<%= dom_id post %>-row">
+      <td class="author vcard">
+        <div class="date">
+          <a href="#<%= post.dom_id %>" rel="bookmark">
+          <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+            於 <%= time_ago_in_words(post.created_at) %> 前張貼
+          </abbr>
+          </a>
+        </div>
+        <%= image_link post.user, :image => :tiny %>
+        <span class="fn"><%= link_to truncate(h(post.user.short_name), 15), profile_path(post.user), :class => (post.user == @posts.first.user ? "threadauthor" : nil) %></span>
+        <% if post.user.admin? or post.forum.moderators.include?(post.user) %>
+          <span class="admin">
+            <% if post.user.admin? %>
+              管理員
+            <% elsif post.forum.moderators.include?(post.user) %>
+              編輯者
+            <% end %>
+          </span>
+        <% end %>
+        <span class="posts"><%= count_for('則貼文', post.user.forum_posts.size) %>
+        <% if is_logged_in? && post.editable_by?(logged_in_user) && !post.topic.locked? -%>
+        <p>
+          <span class="edit">
+            <%= link_to('編輯內容', edit_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :id => post.id, :page => params[:page], :per_page => @per_page), :class => "utility") %>
+          	<br/>
+          	<%= link_to('刪除回覆', post_path(:forum_id => post.forum_id, :topic_id => post.topic, :id => post, :page => params[:page], :per_page => @per_page), 
+            							:method => :delete, :confirm => '確定要刪除此張貼？') %>
+          </span>
+        </p>
+        <% end -%>
+      </td>
+      <td class="body entry-content" id="post-body-<%= post.id %>">
+        <%= link_to image_tag('clearbits/comment.gif', :class => 'icon darkgrey reply'), "jQuery('reply').toggle()" if is_logged_in? %>
+        <%= post.body_html %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+     
+<%= will_paginate @posts, :previous_label => '&laquo; 上一頁', :next_label => '下一頁 &raquo;' %>
+
+<% if is_logged_in? -%>
+  <% if @topic.locked? -%>
+    <p><%= image_tag "clearbits/lock.gif", :class => "icon grey", :title => "這個主題已鎖住" %> 
+      <label>這個話題已鎖定</label>
+    </p>
+  <% elsif can_participate? -%>
+    <p><%= link_to '貼文回覆', new_post_path(:forum_id => @forum.id, :topic_id => @topic.id, :page => params[:page], :per_page => @per_page) -%></p>
+  <% end -%>
+<% end -%>

@@ -1,0 +1,4 @@
+<% if admin? -%>
+<p><%= link_to "編輯內容", edit_admin_member_story_path(member_story), :title => "編輯這則新聞訊息" -%> |
+	 <%= link_to "刪除文章", admin_member_story_path(member_story), :method => :delete, :title => "刪除這則新聞訊息" -%></p>
+<% end -%>

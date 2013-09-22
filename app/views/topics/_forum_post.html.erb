@@ -1,0 +1,30 @@
+<li>
+  <a name="post_<%= forum_post.id %>"></a>
+  <div class="profile-image">
+    <%= image_link forum_post.user, :image => :small %>
+  </div>
+
+  <p class="meta published">
+  	<%= image_tag "icons/post.gif", :class => "icon" %>
+  	由 <span class="author"><%= user_link_with_image forum_post.user %></span> 在
+      <abbr class="updated" title="<%= forum_post.created_at %>">
+      <%= time_ago_in_words(forum_post.created_at) %> 前張貼</abbr>
+      <%- if logged_in_user?(forum_post.user) or moderator? -%>
+        <%= link_to image_tag("icons/note_edit.png", :class => 'actioner'),
+                edit_forum_topic_post_path(@forum, @topic, forum_post),
+         :title => '編輯這篇文章' %>
+      <%- end -%>
+      <%- if logged_in_user.has_role?('Moderator') -%>
+        <%= link_to image_tag("icons/comment_delete.png", :class => 'actioner'),
+                      forum_topic_post_path(@forum, @topic, forum_post),
+                      :confirm => '你確定要刪除這篇文章嗎？',
+                      :method => :delete,
+             :title => '刪除這篇文章' %>
+      <%- end -%>
+  </p>
+  
+  <div class="post">
+  	<%= display forum_post.body %>
+  </div>
+  <div class="clear"></div>
+</li>

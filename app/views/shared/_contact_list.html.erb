@@ -1,0 +1,135 @@
+<%- column_div :type => :primary do -%>
+<h3>匯入通訊錄</h3>
+  <div id="progress-bar" style="display:none;" align="center">
+	 <img src="/images/indicator_blue_large.gif" alt="progress bar">
+	 <div>請稍後...正在傳送邀請...</div>
+	 <div>邀請人數多時會需要較多的時間，請耐心等候</div>
+  </div>
+
+  <div id="invite" class="activity_box">
+  <p>邀請你的朋友加入，與他們分享使用 <%= app_name %> 的經驗吧！</p>
+  <p>請從下表中選出你想要加為朋友的人。你也可以試試另一個電郵賬號。</p>
+    <% if @contacts %>
+	  <p>我們在您的通訊錄中找到了<%= @contacts.length%>位聯絡人。</p>
+      <% form_for("invitations",:url => { :action => "invite_them"}, 
+                    				:html => {:id => 'form', :method => "post"}) do -%>
+	  <table>
+		<tr>
+		  <td colspan="2">
+		  <div id='friend-invite-list-select'>
+			<input type='checkbox' id="checkboxslt" class="check" value /> <small>全選/全不選</small>
+		  </div>
+		  <div id='friend-invite-list'>
+		  	<div id="send-invite-notify" style="display:none; width:100%; padding:10px; color:#333; font:smaller sans-serif; background:#fff6bf; border:1px solid #ffd324;">
+		  	  選擇全部的人在傳送時會需要較長的時間，過程中請勿離開此頁面。
+		  	</div>
+			<table>
+			  <% for i in @contacts %>
+			    <tr class="<%= cycle("odd","even") %>">
+			      <td class="checkbox"><%= check_box('checkbox',i[1], :class=>'check', :id => "email_#{i}") %></td>
+			      <td class="name"><%= i[0] %></td>
+				  <td class="email">&lt;<%= i[1] %>&gt;</td>
+				</tr>
+			  <% end %>
+			</table>
+	      </div>
+	      <div class="clear"></div>
+		  </td>
+		</tr>
+		
+		<tr>
+			<td class="important">主旨：</td>
+			<td colspan="2">
+				<div id="subject">
+					<%= text_field_tag :subject, @subject -%>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="important">發訊息：</td>
+			<td colspan="2">
+				<div id="message-body">
+					<%= text_area_tag :message_body, @message_body -%>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div class="meta">
+					<%= app_name %> 將以你的名義，替你發送加入 <%= app_name %> 的邀請函。
+		  		</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div class="row button">
+					<input type='submit' id="checkboxall" value='選取全部' class="button" />
+		    		<%= submit_tag "發送邀請函", :class => "button", :id => "submit_invite" %>
+		  		</div>
+			</td>
+		</tr>
+	  </table>
+      <% end %>
+	<% else %>
+	  <p>抱歉，我們在您的通訊錄中找不到任何聯絡人。你可以試試其他的電郵地址來匯入聯絡人清單。</p>
+	<% end %>
+  </div>
+<%- end -%>
+	
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $("#checkboxall").click(function(){
+      var checked = false;
+      if ($("input#checkboxall").attr("value") == "選取全部"){
+        $("input#checkboxall").attr("value","取消全選");
+		$("input#checkboxslt").attr("value","checked");
+		$("#send-invite-notify").show();
+        var checked = !checked;
+      } else {
+        $("input#checkboxall").attr("value","選取全部");
+		$("input#checkboxslt").attr("value","checked");
+		$("#send-invite-notify").hide();
+      };
+      $("input.check").each(function(){
+        this.checked = checked;
+      });
+      return false;
+    });
+  });
+</script>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $("#checkboxslt").click(function(){
+      var checked = false;
+      if ($("input#checkboxslt").attr("value") == ""){
+        $("input#checkboxslt").attr("value","checked");
+		$("input#checkboxall").attr("value","取消全選");
+		$("#send-invite-notify").show();
+        var checked = !checked;
+      } else {
+        $("input#checkboxslt").attr("value","");
+		$("input#checkboxall").attr("value","選取全部");
+		$("#send-invite-notify").hide();
+      };
+      $("input.check").each(function(){
+        this.checked = checked;
+      });
+      return false;
+    });
+  });
+</script>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#submit_invite").click(function()
+    {
+        jQuery("#invite").hide();
+        jQuery("#progress-bar").show();
+    });
+    
+});
+</script>

@@ -1,0 +1,21 @@
+<%- column_div :type => :primary do -%>
+  <h3><%= h @user.f %> <%= (params[:action] == 'admin_groups' ? "建立的" : "加入的" ) + "群組" %></h3>
+
+  <% unless @groups.empty? -%>
+    <ul class="list people">
+      <%= render :partial => @groups %>
+    </ul>
+  <% else %>
+    <h3>目前沒有任何群組.</h3>
+  <% end -%>
+  
+  <%- if params[:action] == 'admin_groups' -%>
+    <%= link_to '建立群組', new_group_path %>
+  <%- end -%>
+  
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   <head>
+	<meta http-equiv="content-type" content="text/html";charset=UTF-8></meta>
+	<meta http-equiv="Content-language" content="zh">
+	<meta id="description" name="description" content="Cateplaces 是一個聯繫大眾的社交工具。藉著 Cateplaces，工作同事、讀書夥伴和生活週遭的朋友們可以互相保持聯絡，隨心所欲地上傳相片及分享連結、影片等有趣玩意；從而對彼此得到更深入的了解。">
+    <title><%= app_name %> | <%= @title %></title>
+        <%= stylesheet_link_tag "main", "thickbox" %>
+        <%= stylesheet_link_tag "jquery-flora.tabs", "jquery.tooltip", "facebox" %>
+        <%= javascript_include_tag "jquery", "thickbox", "truncator" %>
+        <%= javascript_include_tag "jquery.js", "jquery-ui.js", "jquery-fx.js", "jrails.js", "jquery-plugins/jquery.jgrowl_minimized.js" %>
+        <%= javascript_include_tag "jquery.collection-min.js", "jquery.bgiframe.js", "jquery.tooltip.pack.js",
+	                                "jquery.livequery.js", "facebox.js", "application.js" %>
+        <%= yield :head %>
+        <!--[if IE]> 
+        <script type="text/javascript" src="/javascripts/script1/excanvas-compressed.js"></script> 
+        <![endif]-->
+    	  <!--[if lt IE 7.]>
+        <script defer type="text/javascript" src="/javascripts/script1/pngfix.js"></script>
+        <![endif]-->
+    </head>
+    <body class="<%= @body %>">
+        <div id="container">
+        	 <% if development? %>
+		      <%= render :partial => "shared/debug" %>
+		    <% end %>
+
+            <div id="header">
+            	<%= image_tag 'rails.png', :alt => "Rails" %>
+            	<%= image_tag 'RailsCode.png', :alt => "RailsCode" %>
+            </div>
+            <div id="sidemenu">
+                <%= render :partial => 'layouts/menu' %>
+            </div>
+            <div id="content">
+            
+                <%- if global_prefs.demo? -%>
+                  <p class="error" style="font-weight: bold;">
+	                        這是開發中的網站. 您的任何資料都有可能會在未經通知的情況下被刪除.
+                  </p>
+                <%- end -%>
+                
+                <% if flash[:notice] -%>
+                  <div id="notice" class="flash_message">
+                    <%= flash[:notice] %> <small><a href='#' onclick="$$('div.flash_message')[0].hide();return false">關閉訊息</a></small>
+                  </div>
+                <% elsif flash[:error] -%>
+                  <div id="error" class="flash_message">
+                    <%= flash[:error] %> <small><a href='#' onclick="$$('div.flash_message')[0].hide();return false">關閉訊息</a></small>
+                  </div>
+                <% elsif flash[:success] -%>
+                  <div id="success" class="flash_message">
+                    <%= flash[:success] %> <small><a href='#' onclick="$$('div.flash_message')[0].hide();return false">關閉訊息</a></small>
+                  </div>
+                <% end -%>
+
+                <%= yield %>
+            </div>
+        </div>
+        <script src="http://mitnik.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=cc0000" type="text/javascript"></script>
+        <%= global_prefs.analytics %>
+    </body>
+</html>

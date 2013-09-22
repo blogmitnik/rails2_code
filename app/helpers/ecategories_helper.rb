@@ -1,0 +1,2 @@
+module EcategoriesHelper
+end

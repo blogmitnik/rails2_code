@@ -1,0 +1,91 @@
+<%- column_div :type => :primary do -%>
+  <h3>網站送信功能設定</h3>
+
+  <%= error_messages_for :preferences %>
+
+  <% form_for :preferences,
+              :url => admin_preference_path(@preferences),
+              :html => { :method => :put } do |f| %>
+              
+    <div class="form_row">
+    	<%= f.label :app_name, '應用程式名稱' %>
+      <%= f.text_field :app_name %>
+    </div>
+    
+    <div class="form_row">
+    	<%= f.label :domain, '網域名稱' %>
+      <%= f.text_field :domain %>
+    </div>
+
+    <div class="form_row">
+    	<%= f.label :server_name, '伺服器名稱' %>
+      <%= f.text_field :server_name %>
+    </div>
+
+    <div class="form_row">
+    	<%= f.label :smtp_server, 'Smtp 郵寄伺服器' %>
+      <%= f.text_field :smtp_server %>
+    </div>
+
+    <p class="meta">是否透過郵件發送網站訊息，網誌回覆，圖片回覆，好友通知...等 Email 通知給使用者</p>
+    <div class="form_row">
+    	<%= f.label :email_notifications, '啟用 Email 寄信通知？', :class => 'checkbox' %>
+      <%= f.check_box :email_notifications %>
+    </div>
+
+    <br />
+
+    <p class="meta">是否顯示這目前只是一個測試及尚在開發中的網站</p>  
+    <div class="form_row">
+    	<%= f.label :demo, '顯示這是測試網站？', :class => 'checkbox' %>
+      <%= f.check_box :demo %>
+    </div>
+
+    <br />
+    
+    <p class="meta">是否要整合新版Facebook Graph API功能到網站中</p>  
+    <div class="form_row">
+      <%= f.label :demo, '使用新版Facebook Graph API？', :class => 'checkbox' %>
+      <%= f.check_box :graph_api %>
+    </div>
+            
+    <br />
+    
+    <p class="meta">啟用白名單功能，新註冊的使用者帳號直接會被設為 enabled</p>
+    <div class="form_row">
+      <label for="whitelist" class="checkbox">啟用 Whitelist？</label>
+      <%= f.check_box :whitelist %>
+    </div>
+
+    <br />
+
+    <p class="meta">是否透過 Email 發送認證碼給新註冊的使用者</p>  
+    <div class="form_row">
+    	<%= f.label :email_verifications, '啟用 Email 註冊認證？', :class => 'checkbox' %>
+      <%= f.check_box :email_verifications %>
+    </div>
+
+    <br />
+
+    <div class="form_row">
+      <%= f.label :about, '網站敘述' %>
+      <p><%= formatting_note %></p>
+      <%= f.text_area :about, :rows => 10, :cols => 60 %>
+    </div>
+    
+    <br />
+
+    <div class="form_row">
+      <%= f.label :analytics, 'Google Analytics 程式碼' %>
+      <%= f.text_area :analytics, :rows => 10, :cols => 60 %>
+    </div>
+    
+    <p class="meta">(程式碼會被插入於頁面的 <%= h("</body>") %> 標籤中)</p>
+
+    <div class="row button">
+      <%= f.submit "儲存設定", :class => "button" %> 
+      		或 <%= link_to "返回", admin_preferences_path %>
+    </div>
+      
+  <% end %>
+<%- end -%>

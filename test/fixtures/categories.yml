@@ -1,0 +1,15 @@
+# == Schema Information
+# Schema version: 32
+#
+# Table name: categories
+#
+#  id   :integer(11)     not null, primary key
+#  name :string(255)
+#
+
+site_news:
+  id: 1
+  name: Site News
+gossip:
+  id: 2
+  name: Rails News

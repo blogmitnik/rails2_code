@@ -1,0 +1,17 @@
+<%- column_div :type => :primary, :class => "hentry" do -%>
+<h3><%= @forum.name %></h3>
+<div id="forum-container">
+  <div class="crumbs" xstyle="margin-top:1.1em;">
+    <%= link_to '回到討論區', forums_path %> <span class="arrow">&rarr;</span>
+    <%= link_to h(@forum.name), forum_path(@forum) %> <span class="arrow">&rarr;</span>
+  </div>
+  <h4 id="new_topic">新增討論主題</h4>
+  <p class="subtitle"><%= "由 #{logged_in_user.short_name} 新增" %></p>
+  <%= render :partial => 'topics/new'%>
+</div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'forums/info' %>
+<%- end -%>

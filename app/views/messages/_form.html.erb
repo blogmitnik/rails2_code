@@ -1,0 +1,43 @@
+<%
+#locals
+message ||= @message
+message ||= Message.new params[:message]
+recipient ||= @recipient
+recipient ||= [@user] #used on someone's profile page
+hide_header ||= false
+%>
+
+  <div class="thickbox_form">
+  		<% cate_remote_form_for(:message, :url => messages_path) do |f| %>
+      <%= f.wrap("收件人") {recipient.to_select :message, 
+      						:recipient_id, :selected => (params[:message][:recipient_id].to_i rescue ''), 
+      						:name => :f} %>
+      <%= f.text_field :subject, {:label => "訊息主旨："} %>
+      <%= f.text_area :content, {:label => "訊息內容："} %>
+      
+      <%- if message.reply? -%>
+        <%= f.hidden_field :parent_id %>
+        <%= set_focus_to "message_body" %>
+      <%- else -%>
+        <%= set_focus_to "message_subject" %>
+      <%- end -%>
+    
+	    <div class="row button">
+	      <%= f.submit "傳送訊息", :class => "button", :id => "message_submit" %>
+	      <span id="send-mail-progress" style="display:none;color:black" float:left>
+				<img src="/images/loader.gif" alt="progress bar">
+				<small>請稍後....</small>
+		  	</span>
+	    </div>
+  		<% end %>
+  </div>
+  
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#message_submit").click(function()
+    {
+        jQuery("#send-mail-progress").show();
+    });
+});
+</script>

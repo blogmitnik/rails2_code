@@ -1,0 +1,126 @@
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+    jQuery("#share_to_edit").click(function() {
+	    jQuery("#share_to_edit_instructions").toggle();
+        return true; 
+    });
+    jQuery("#profile").click(function() { 
+	    if ($('profile').checked == true) 
+			$('dashboard').checked = true;
+        return true; 
+    });
+    jQuery("#dashboard").click(function() { 
+	    if ($('dashboard').checked == false) 
+			$('profile').checked = false;
+        return true; 
+    });
+<% if @entry.google_doc -%>
+    jQuery(".friend").click(function() {
+        id = /\[([0-9]+)\]/.exec(this.name)[1];
+        email = friend_emails[id]
+        email_list = $('email_list');
+        listed_emails = email_list.value;
+        if (this.checked == true && listed_emails.indexOf(email) == -1) {
+            if (listed_emails.length > 2 && listed_emails.substring(listed_emails.length-2,listed_emails.length) != ', ')
+                email = ', ' + email;
+            email_list.value += email + ', ';
+        } else {
+            start = email_list.value.indexOf(email);
+            if (start != -1) {
+                before_email = start > 0 ? listed_emails.substring(0,start) : "";
+                end = start + email.length;
+                after_email = (end < listed_emails.length) ? listed_emails.substring(end,listed_emails.length) : "";
+                new_email_list = before_email + after_email;
+                new_email_list = new_email_list.replace(', , ', ', ');
+                new_email_list = new_email_list.replace(',,', ',');
+                if (new_email_list.length > 0 && new_email_list.substring(0,2) == ', ')
+                    new_email_list = new_email_list.substring(2,new_email_list.length);
+                email_list.value =  new_email_list;
+            }
+        }
+    })
+<% end -%>
+});
+<% if @entry.google_doc %>
+var friend_emails = new Array();
+<% @friends.each do |friend| -%>
+friend_emails['<%= friend.id %>'] = '<%= friend.email %>';
+<% end -%>
+<% end -%>
+</script>
+
+<%- column_div :type => :primary do -%>
+ <% form_for([logged_in_user, @entry], :url => user_shared_entries_path(@user)) do |f| %>
+	<h3>轉貼連結</h3>
+
+   <% if !@entry.permalink %>
+	  <div class="row" style="font-size:14px;color:blue;">
+	    <span class='link-button'><a href="javascript:e=encodeURIComponent;w=window;gs=w.getSelection;d=document;dgs=d.getSelection;l=location;s='http://<%= GlobalConfig.application_url -%>/share?u=';w.onerror=function(){l.href=s+e(l.href)+'&t='+e(d.title);};c=gs?gs():dgs?dgs():d.selection?d.selection.createRange().text:'';if(c==''){de=d.getElementsByName('Description');c=de&&de[0]?c=de[0].content:''}l.href=s+e(l.href)+'&t='+e(d.title)+'&c='+e(c);">在 <%= app_name %> 上分享</a></span>
+     </div>
+	  <div class="row" style="font-size:14px;">
+	    <b>提示：</b>將上面的分享按鈕拖曳到你的書籤列上，便可以迅速與朋友分享轉貼內容。<%= link_to "詳情 »", protected_page_path('get_bookmarklet') %>
+     </div>
+   <% end %>
+    
+	<div class="row">
+	  <label for="title">標題：</label><br/><%= f.text_field :title, :size => 100, :limit => 255, :style => 'width:510px' %>
+	</div>
+	
+	<div class="row">
+	  <label for="title">連結：</label><br/><%= f.text_field :permalink, :size => 100, :style => 'width:510px' %>
+	</div>
+
+	<%= render :partial => "shared/share_list" %>
+
+	<div class="row">
+	  <label for="title">回應：</label>
+	  <% if @entry.permalink %><span style="color:blue;font-weight:bold;">(填寫關於這個轉貼連結的內容描述)</span><% end %>
+	  <br /><%= f.text_area :body, {:class => "comment-box"} %>
+	</div>
+
+   <% if @entry.google_doc %>
+	<div style="font-size:100%">
+	<div class="row">
+	  <input type='hidden' name='share_to_view' value='0'/> 
+     <% if @entry.displayable %>
+       <input type="checkbox" name="share_to_view" /> 允許群組成員和我的朋友瀏覽文件 (當你已經公開這個文件)
+     <% else %>
+       <span  style="color:blue;">你尚未公開這個文件，因此只有你在 Google Docs 中設定分享的朋友才能看到這個文件</span>
+       <br>
+       <%= button_to_function("返回 Google Doc 並公開這個文件", "document.location='#{@entry.permalink}'") %> 從 <i>Share</i> 功能表中選擇 <i>Publish as web page...</i>
+     <% end %>
+	</div>
+	<div class="row">
+        <input type="checkbox" name="share_to_edit" id="share_to_edit"/> 允許我所選擇的朋友可以編輯這個文件
+        <div id="share_to_edit_instructions" style='display:none;'> 
+            <p style="color:blue;">從 Email 清單中選擇你要分享這個文件的朋友</p>
+            <textarea id="email_list" style="width:510px;height:55px;"></textarea>
+            <p class="clear"><%= button_to_function("返回 Google Doc 分享這個文件", "window.open('#{@entry.permalink}','_blank')") %> <br>請從 Google Doc 的 <i>Share</i> 功能表選擇 <i>Share with others</i></p>
+        </div>
+    </div>
+	<div class="row">
+     <input type="checkbox" id="dashboard" name="dashboard" checked="true"/> 將文件張貼至個人首頁
+	</div>
+	<div class="row">
+     <input type="checkbox" id="profile" name="profile"/> 將文件張貼至個人檔案頁面
+	</div>
+	</div>
+   <% end %>
+
+	<input type="hidden" name="bookmarklet" value="<%= @entry.permalink? %>"/>
+
+	<div class="row">
+	  <%= button_to_function("分享", "validate()", {:style=>"font-weight:bold;"}) %>
+	  <%= button_to_function("返回", "document.location='#{@entry.permalink}'", {:style=>"font-weight:bold;"}) %>
+	</div>
+	
+ <% end %>
+<%- end -%>
+
+<script type="text/javascript">
+function validate()
+{
+  jQuery('#new_entry').submit();
+  return false;
+}
+</script>

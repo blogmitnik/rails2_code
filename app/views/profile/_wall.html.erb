@@ -1,0 +1,50 @@
+<%-
+user ||= @user
+wall_comments ||= @wall_comments
+size ||= 10
+total = user.wall_comments_count
+
+parent ||= @parent
+parent = @user || nil
+-%>
+
+<%- if is_logged_in? -%>
+  <div class="wall">
+    <h3>塗鴉牆</h3>
+    <a name="wall"></a>
+    <% if total > 0 %>
+    	<span class="left">顯示全部 <%= total > size ? link_to("#{total} 則留言", profile_comments_path(@user)) + "中的其中 #{size} 則。" : "#{total} 則留言" %></span>
+    <% else %>
+    	<span class="left">塗鴉牆目前尚無留言。</span>
+    <% end %>
+
+    <%- if connected_to?(@user) -%>
+    	<span class="right">
+	   <%- if !me && @logged_in_user.has_wall_with(@user) -%>
+			<%= link_to "查看雙向塗鴉牆", user_wall_comments_path(@user) %> |
+		<%- end -%>
+		<%= inline_tb_link("留言給#{@user.short_name}", "new_comment", :title => "在 #{user.name} 的塗鴉牆留言") if with_form %>
+		</span>
+		<div class="clear"></div>
+		<div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+      	<%= render :partial => 'wall_comments/form' %>
+      </div>
+		<div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+      	<%= render :partial => 'wall_comments/hidden_form' %>
+      </div>
+    <%- else -%>
+    <div class="clear"></div>
+      <div class="notice">你必須是 <%= h @user.short_name %> 的朋友，才能在他的塗鴉牆留言。
+        <%= render :partial => "users/friend_status" %>
+      </div>
+    <%- end -%>
+
+    <div id="<%= "comments_for_#{dom_id(parent)}" %>">
+    	<% @user.wall_comments.each do |c| %>
+      	<%= render :partial => 'wall_comments/comment', 
+      				  :locals => { :comment => c, :wall => true, :leave_comment => true } %>
+      <% end %>
+    </div>
+
+  </div>
+<%- end -%>

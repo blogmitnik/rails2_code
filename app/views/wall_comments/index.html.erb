@@ -1,0 +1,40 @@
+<% content_for :head do  -%>  
+  <%= auto_discovery_link_tag(:rss, formatted_user_wall_comments_url(@user, :rss), :title => "我與 #{@user.name} 的雙向留言板") -%>
+<% end -%>
+
+<%= javascript_include_tag 'prototype', 'effects' %>
+
+<%
+#locals
+comments ||= @wall_comments
+parent ||= @parent
+user ||= @user
+
+@count = comments.total_entries
+%>
+
+<% column_div :type => :primary do -%>
+	<h3>我與 <%= user.short_name %> 的雙向塗鴉牆</h3>
+	<p>
+	  <%= link_to "回到我的個人檔案", profile_path(@logged_in_user) %> |
+	  <%= link_to "回到 #{@user.short_name} 的個人檔案", profile_path(@user) %>
+	</p>
+	
+	<div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		<%= render :partial => 'wall_comments/form' %>
+	</div>
+	
+	<% @wall_comments.each do |c| %>
+		<div id="<%= "comments_for_#{dom_id(parent)}" %>" class="inside_box">
+			<%= render :partial => 'wall_comments/comment', :locals => { :comment => c, :leave_comment => true } %>
+		</div>
+	<% end %>
+	
+	<div class="clear"></div>
+		<%= will_paginate comments %>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

@@ -1,0 +1,35 @@
+<%- column_div :type => :primary do -%>
+  <h3>編輯相簿內容</h3>
+
+  <%- form_for(@gallery) do |f| -%>
+    <div class="form_row">
+    <%= f.label :相簿標題 %>
+      <%= f.text_field :title%>
+  </div>
+  
+  <div class="form_row">
+    <label for="location">地點</label>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="form_row">
+    <%= f.label :相簿敘述 %>
+    <p><%= formatting_note %></p>
+    <%= f.text_area :description, :rows => 5 %>
+  </div>
+  
+    <div class="form_row">
+    	<label for="privacy">哪些人可以看得到？</label>
+    	<% if params[:controller] == "users" or !params[:user_id].nil?  %>
+    		<%= f.select :privacy, [["所有人", Gallery::PRIVACY[:public]],["我的朋友", Gallery::PRIVACY[:friends]],["只有我自己", Gallery::PRIVACY[:me]]] %>
+    	<% elsif params[:controller] == "groups" or !params[:group_id].nil? %>
+    		<%= f.select :privacy, [["所有人", Gallery::PRIVACY[:public]],["群組成員", Gallery::PRIVACY[:friends]],["只有我自己", Gallery::PRIVACY[:me]]] %>
+    	<% end %>
+    </div>
+
+  <div class="row button">
+      <%= f.submit "儲存變更", :class => 'button' %> 或
+      <%= link_to "取消", @gallery, :class => "button" %>
+  </div>
+  <%- end -%>
+<%- end -%>

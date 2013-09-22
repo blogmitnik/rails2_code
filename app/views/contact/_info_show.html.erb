@@ -1,0 +1,26 @@
+<% user ||= @user %>
+<div id="profile_edit">
+<div>基本資訊
+	<% if is_logged_in? and user.id == logged_in_user.id %>
+		(<%= link_to '編輯/更改', edit_contact_path(logged_in_user) %>)
+	<% end %>
+</div>
+<div class="hidden"></div>
+<% unless @user.contact.nil? %>
+	<% unless user.contact.gender.blank? %>
+		<% if user.contact.show_gender == true %><div><strong>性別: </strong><%= user.contact.gender %></div>
+		<% else %><div><strong>性別: </strong>使用者不公開</div>
+		<% end %>
+	<% end %>
+	<% unless user.contact.birthday.blank? %><div><strong>年齡: </strong><%= user.contact.age %></div><% end %>
+	<% unless user.contact.birthday.blank? %>
+		<% if user.contact.show_birthday == true %><div><strong>生日: </strong><%= user.contact.birthday %></div>
+		<% else %><div><strong>生日: </strong>使用者不公開</div>
+		<% end %>
+	<% end %>
+	<% unless user.contact.hometown.blank? %><div><strong>家鄉: </strong><%= user.contact.hometown %></div><% end %>
+	<% unless user.contact.affection.blank? %><div><strong>感情狀態: </strong><%= user.contact.affection %></div><% end %>
+	<% unless user.contact.polity.blank? %><div><strong>政治觀: </strong><%= user.contact.polity %></div><% end %>
+	<% unless user.contact.religion.blank? %><div><strong>宗教信仰: </strong><%= user.contact.religion %></div><% end %>
+<% end %>
+</div>

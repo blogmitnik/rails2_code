@@ -1,0 +1,10 @@
+<div id="<%= dom_id @posts.first %>">
+  <%= content_tag 'p', h(flash[:bad_reply]), :class => 'notice' if flash[:bad_reply] %>        																			
+  <% custom_form_for(:post, :url => posts_path(:forum_id => @forum, :topic_id => @topic, :page => @topic.last_page),
+                                   :html => { :id => "#{dom_id(@posts.first)}_reply_form"} ) do |f| -%>
+    <%= f.text_area :body, :label => '回覆', :rows => 10 %>
+    <div class="row buttom">
+    	<%= f.submit '張貼回覆', :class=>"button" %>
+    </div>
+  <% end -%>
+</div>

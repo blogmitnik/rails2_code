@@ -1,0 +1,7 @@
+<h2>
+	<%= link_to "#{@user.username} 的網誌", 
+		mobile_entries_path(:user_id => @user.id) %>
+</h2>
+
+<h3><%=h @entry.title %></h3>
+<p><%= textilize(@entry.body) %></p>

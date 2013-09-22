@@ -1,0 +1,13 @@
+	<li class="vcard contact">
+      <%= image_link group_pending, :image_options => { :class => "photo" },
+                              :link_options => { :class => "url" },
+                              :image => :tiny %>
+      <div class="name"><%= link_to h(group_pending.full_name), profile_path(group_pending) %></div>
+      <div class="accept_or_cancel_membership">
+      	<%= link_to image_tag("icons/user_delete.png"), unsuscribe_membership_path(group_pending.memberships.find(:first, :conditions => ['group_id = ?',@group])), 
+                  	:method => "delete", :title => "略過 #{group_pending.name} 的請求", 
+                		:confirm => "你確定要略過 #{group_pending.name} 的請求嗎？" %>
+         <%= link_to image_tag("icons/accept.png"), suscribe_membership_path(group_pending.memberships.find(:first, :conditions => ['group_id = ?',@group])), 
+                  	:method => "post", :title => "接受 #{group_pending.name} 加入這個群組" %>
+      </div>
+	</li>

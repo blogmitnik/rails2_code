@@ -1,0 +1,25 @@
+<% @title = "分享書籤" %>
+
+<%- column_div :type => :primary do -%>
+  <div id="get-bookmarklet" class="clear normal-text">
+    <h3>分享書籤</h3>
+    <p><span class='link-button'><a href="javascript:e=encodeURIComponent;w=window;gs=w.getSelection;d=document;dgs=d.getSelection;l=location;s='http://<%= GlobalConfig.application_url -%>/share?u=';w.onerror=function(){l.href=s+e(l.href)+'&t='+e(d.title);};c=gs?gs():dgs?dgs():d.selection?d.selection.createRange().text:'';if(c==''){de=d.getElementsByName('Description');c=de&&de[0]?c=de[0].content:''}l.href=s+e(l.href)+'&t='+e(d.title)+'&c='+e(c);">在 <%= app_name %> 上分享</a></span></p>
+    <p>即使你不在 <%= app_name %> 網頁上，只要將這個按鈕拖曳到你的書籤工具列上，就能快速地轉貼，與你的朋友分享任何精彩內容。</p>
+
+  <ol>
+  <script type="text/javascript">
+  if (document.all) document.write("<li>在上方的分享按鈕按右鍵選擇 [將連結加入書籤]</li>");
+  else document.write("<li>將上方的分享按鈕拖曳到你的書籤工具列上</li>");
+  </script>
+  <li>瀏覽任意網頁或 <a href="http://docs.gogole.com/" target="_blank">Google Docs</a> 上的文件，並使用分享書籤來分享連結</li>
+  </ol>
+  
+  <p>&nbsp;</p>
+  
+  <script type="text/javascript">
+  if (document.all) document.write("<p>如果你看不到書籤工具列，在瀏覽器上的［檢視］選單點選［顯示書籤工具列］。</p>");
+  else document.write("<p>如果你看不到書籤工具列，在瀏覽器上的［檢視］選單點選［顯示書籤工具列］。</p>");
+  </script>
+  
+  </div>
+<%- end -%>

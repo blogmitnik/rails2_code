@@ -1,0 +1,13 @@
+<h3>外部網誌</h3>
+<span><%= image_tag "feed.gif", :class => "icon" %> <%= link_to "訂閱 #{h(@user.short_name)} 的外部網誌", "#{@user.blog_rss}" %></span>
+<br/>顯示最近更新的10篇文章
+<div class="clear"></div>
+
+<% remote_blog.entries.each do |i| -%>
+  <div id="profile-remote-blog">
+    <a href='<%= i.url %>'><%= i.title %></a>
+	 <% if defined?(i.date) -%>
+  		<small><%= time_ago_in_words i.date %></small>
+    <% end -%>
+  </div>
+<% end -%>

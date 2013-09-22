@@ -1,0 +1,32 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %>的活動</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div id="events" class="activity_box">
+		<p>最近的群組活動 
+		  <% if manager? -%><span><a href="<%= new_group_event_path(@group) %>" class="view-all">舉辦群組活動</a></span><% end -%>
+		  <span><a target="_blank" href="http://www.google.com/calendar/render?cid=<%=group_events_url(@group, :format => 'ics')%>">
+    	  <img height="20px" alt="將群組的活動增加到 Google calendar" src="http://www.google.com/calendar/images/ext/gc_button1.gif" border="0">
+    	</a></span>
+    	<span>
+  	    <%= link_to image_tag('ical.gif'), formatted_group_events_url(@group, :ics) %>
+  	  </span>
+  	</p>
+    <table class="events-list">
+      <%= render :partial => 'event', :collection => @events %>
+    </table>
+    <div class="clear"></div>
+  	 <%= will_paginate @events, :previous_label => "&laquo; 較新的活動", :next_label => "較舊的活動 &raquo;" %>
+  </div>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

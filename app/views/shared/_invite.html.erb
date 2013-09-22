@@ -1,0 +1,93 @@
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#invite-more").click(function()
+    {
+		html = '<tr id="data-row"><td></td><td class="name"><input id="name[]" name="name[]" type="text" /></td><td class="email"><input id="email[]" name="email[]" type="text" /></td></tr>';
+        jQuery("#invite-row").before(html);
+        return false; 
+    });
+    
+    jQuery("#submit_invite").click(function()
+    {
+        jQuery("#invite").hide();
+        jQuery("#progress-bar").show();
+    });
+    
+});
+</script>
+
+<div id="progress-bar" style="display:none;" align="center">
+	<img src="/images/indicator_blue_large.gif" alt="progress bar">
+	<div>請稍後...正在傳送你的邀請</div>
+	<div>邀請人數較多時傳送會需要多一點時間，請耐心等候</div>
+</div>
+
+<div id="invite" class="activity_box">
+	<p>邀請你的朋友加入 <%= name %>，與他們分享使用 <%= app_name %> 的經驗吧！</p>
+	<% form_tag url, {:autocomplete => 'off'} do -%>
+	<table>
+		<thead>
+		<tr>
+			<td class="important">寄件人：</td>
+			<td colspan="2">
+				<div id="inviter">
+					<%= @user.name -%> &lt;<%= @user.email -%>&gt;
+				</div>
+			</td>
+		</tr>
+		</thead>
+		<tr>
+			<th class="important">收件人：</th>
+			<th class="important">朋友姓名</th>
+			<th class="important">Email地址</th>
+		</tr>
+		<tbody>
+		<tr id="data-row">
+			<td></td>
+			<td class="name"><%= text_field_tag "name[]" -%></td>
+			<td class="email"><%= text_field_tag "email[]" -%></td>
+		</tr>
+		
+		<tr id="invite-row">
+			<td></td>
+			<td><small><%= image_tag "new_media_button_plus_padded.gif" %>
+				<a id="invite-more" href="#">邀請更多朋友</a></small></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td class="important">主旨：</td>
+			<td colspan="2">
+				<div id="subject">
+					<%= text_field_tag :subject, @subject -%>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="important">發訊息：</td>
+			<td colspan="2">
+				<div id="message-body">
+					<%= text_area_tag :message_body, @message_body -%>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div class="meta">
+					<%= app_name %> 朋友邀請通知上會用您的名字寄出，邀請您所列出的朋友加入您在 Cateplaces 的行列。
+		  		</div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td colspan="2">
+				<div class="row button">
+		    	<%= submit_tag "傳送邀請函", :id => 'submit_invite', :class=>'button' %>
+		  		</div>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	<% end -%>
+</div>

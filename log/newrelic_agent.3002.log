@@ -1,0 +1,17 @@
+# Logfile created on Mon Oct 20 01:05:52 +0800 2008 by /
+[10/20/08 01:05:52 (19373)] INFO : New Relic RPM Agent Initialized: pid = 19373
+[10/20/08 01:05:52 (19373)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3002.log
+[10/20/08 01:05:52 (19373)] INFO : Runtime environment: Mongrel
+[10/20/08 01:05:52 (19373)] INFO : Transaction tracing is enabled in the agent
+[04/01/09 16:34:28 (6032)] INFO : New Relic RPM Agent Initialized: pid = 6032
+[04/01/09 16:34:28 (6032)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3002.log
+[04/01/09 16:34:28 (6032)] INFO : Runtime environment: Mongrel
+[04/01/09 16:34:28 (6032)] INFO : Transaction tracing is enabled in the agent
+[06/26/10 22:37:27 (8818)] INFO : New Relic RPM Agent Initialized: pid = 8818
+[06/26/10 22:37:27 (8818)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3002.log
+[06/26/10 22:37:27 (8818)] INFO : Runtime environment: Mongrel
+[06/26/10 22:37:27 (8818)] INFO : Transaction tracing is enabled in the agent
+[06/27/10 18:30:00 (14823)] INFO : New Relic RPM Agent Initialized: pid = 14823
+[06/27/10 18:30:00 (14823)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3002.log
+[06/27/10 18:30:00 (14823)] INFO : Runtime environment: Mongrel
+[06/27/10 18:30:00 (14823)] INFO : Transaction tracing is enabled in the agent

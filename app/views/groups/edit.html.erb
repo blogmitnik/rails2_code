@@ -1,0 +1,76 @@
+<%- column_div :type => :primary do -%>
+  <h3>編輯群組內容</h3>
+  
+  <% form_for(@group) do |f| %>
+    <%= f.error_messages %>
+    
+    <div class="form_row">
+      <div id="profile_edit">注意：不允許群組對特定人士或某類人攻擊 (如種族歧視、性別歧視、或其他仇恨群組)。
+      		建立這類群組者，我們會立即終止你的 Cateplaces 帳號。</div>
+    </div>
+
+    <div class="form_row">
+      <label for="name">群組名稱：<small>(必填)</small><br></label>
+      <%= f.text_field :name, :size => 40 %>
+    </div>
+
+    <div class="form_row">
+      <label for="description">群組簡介：<small>(必填)</small><br></label>
+      <%= f.text_area :description, :cols => 60, :rows => 6 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="news">近期新聞：<br></label>
+      <%= f.text_area :news, :cols => 60, :rows => 6 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="office">辦公室：<br></label>
+      <%= f.text_field :office, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="email">電子郵件：<br></label>
+      <%= f.text_field :email, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="address">地址：<br></label>
+      <%= f.text_field :address, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="city">城市 / 鄉鎮：<br></label>
+      <%= f.text_field :city, :size => 40 %>
+    </div>
+    
+    <div class="form_row">
+      <label for="website">網站：<br></label>
+      <%= f.text_field :website, :size => 40 %>
+    </div>
+
+    <div class="form_row">
+      <label for="mode">群組模式：<br></label>
+      <%= f.select :mode, get_groups_modes %>
+    </div>
+
+    <div class="row button">
+      <%= f.submit "儲存變更", :id => 'submit-form', :class => 'button' %>
+	   <div id="progress-bar" style="display:none;">
+	  		<img src="/images/indicator_blue_small.gif" alt="progress bar" float:left> 
+	  		<small>請稍後...</small>
+	   </div>
+    </div>
+  <% end %>
+<%- end -%>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+
+	jQuery("#submit-form").click(function() {
+	  jQuery("#submit-form").hide();
+	  jQuery("#progress-bar").show();
+  });
+  
+});
+</script>

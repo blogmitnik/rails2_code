@@ -1,0 +1,15 @@
+<%- column_div :type => :primary do -%>
+<h3>管理使用者帳號</h3>
+
+  <%= will_paginate %>
+
+  <ul class="list people admin">
+    <%= render :partial => @users %>
+  </ul>
+  
+  <%= will_paginate %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+<%- end -%>

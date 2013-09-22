@@ -1,0 +1,11 @@
+<h2>新增文章內容</h2>
+
+<%= error_messages_for :post -%>
+
+<h3>討論主題: <%= @topic.name %></h3>
+<% form_for :post, :url => mobile_posts_path(:topic_id => @topic, 
+											 :forum_id => @topic.forum) do |f| %>
+	<p>內容:<br><%= f.text_area :body -%></p>
+	<%= submit_tag '送出' -%> or 
+	<%= link_to '取消', mobile_topics_path(:id => @topic, :forum_id => @topic.forum) -%>
+<% end %>

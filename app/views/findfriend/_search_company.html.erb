@@ -1,0 +1,15 @@
+<% form_tag({ :action => "search" }, :method => "get") do %>
+<div id="profile_edit">
+<p>依公司搜尋</p>
+  <div class="form_row">
+   公司：<%= text_field_tag "company", params[:company] %>
+  </div>
+  <div class="form_row">
+  	姓名：<%= text_field_tag "people", params[:people] %>
+  	<small>(選擇性項目)</small>
+  </div>
+  <div class="row button">
+  	<input type="submit" value="搜尋同事", class="button" />
+  </div>
+</div>
+<% end %>

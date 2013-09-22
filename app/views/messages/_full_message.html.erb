@@ -1,0 +1,28 @@
+<li class="vcard person">
+  <%- if n_messages > 1 -%>
+    <a name="<%= message_anchor(full_message) %>"></a>
+  <%- end -%>
+  <div class="profile-image">
+  <%= image_link full_message.sender, :class => "photo",
+                                      :image => :tiny %>
+  </div>
+  
+  <%= textilize full_message.content %>
+
+  <p class="meta tools">
+    發送於 <%= time_ago_in_words full_message.created_at %> 前
+    <%= link_to image_tag("icons/email_edit.png", :class => 'actioner'), 
+                reply_message_path(full_message),
+                :title => "回覆訊息" %>
+    <% unless @message.trashed?(logged_in_user) -%>
+      <%= link_to image_tag("icons/email_delete.png", :class => 'actioner'), 
+                  @message,
+                  :method => :delete, 
+                  :confirm => %(你確定要刪除這個信件嗎？),
+                  :title => "刪除這個訊息" %>
+    <% else -%>
+      <%= link_to "放回收件匣", undestroy_message_path(full_message), 
+                             :method => :put %>
+    <% end -%>
+  </p>
+</li>

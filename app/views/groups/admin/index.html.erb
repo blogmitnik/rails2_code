@@ -1,0 +1,54 @@
+<!-- TODO (pull in rss from member-->
+
+<%- column_div :type => :primary do -%>
+<h3><%= @group.name %></h3>
+
+<% unless @members.empty? -%>
+	<p>共有 <%= @members.length %> 位群組成員</p>
+
+	<% form_for :memberships, :url => update_memberships_in_group_path(@group) do |f| -%>
+	
+	<table class='news'>
+	    <tr>
+	        <th>使用者權限</th>
+	        <th class='center'>管理員</th>
+	        <th class='center'>一般成員</th>
+	        <th class='center'>瀏覽者</th>
+	        <th class='center'>封鎖</th>
+	   </tr>
+	    <%= render :partial => 'groups/admin/group_member', :collection => @members %>
+	</table>
+	
+	<div class="row button">
+		<%= f.submit '儲存變更', :id => 'update_role', :class => 'button' %>
+	</div>
+	<% end %>
+	<div class="clear"></div>
+		<%= will_paginate @members %>
+	<div class="clear"></div>
+<% else %>
+	<h4>這個群組目前沒有任何成員</h4>
+<% end %>
+
+<% if manager? && !@pending.empty? -%>
+<h3>等待確認的請求</h3>
+<p>共有 <%=h @pending.length %> 個等待確認的請求</p>
+
+<ul class="grid contacts medium">
+	<%= render :partial => 'groups/admin/group_pending', :collection => @pending %>
+</ul>
+
+<div class="clear"></div>
+	<%= will_paginate @pending %>
+<div class="clear"></div>
+<% end -%>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

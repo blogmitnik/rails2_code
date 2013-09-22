@@ -1,0 +1,18 @@
+<h2>Newsletter</h2>
+
+<p><b>標題: </b> <%=h @newsletter.subject %></p>
+
+<p><b>建立於: </b><%=h @newsletter.created_at %></p>
+
+<p><b>更新於: </b><%=h @newsletter.updated_at %></p>
+
+<p><b>狀態: </b><%= yes_no(@newsletter.sent) %></p>
+
+<p><b>內容: </b><br><%=h @newsletter.body %></p>
+
+<% if !@newsletter.sent %>
+	<%= link_to '編輯', edit_newsletter_path(@newsletter) %> | 
+	<%= link_to '發送', sendmails_newsletter_path(@newsletter), 
+			:method => :put, :confirm => '確定要送出訊息嗎?' %> |
+<% end %>
+<%= link_to '返回', newsletters_path %>

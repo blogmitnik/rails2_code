@@ -1,0 +1,27 @@
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, formatted_forum_topic_url(@forum, @topic, :rss), :title=>"#{@topic.title} 的討論文章" %>
+<% end -%>
+
+<div id="forum-container">
+  <%- column_div :type => :primary, :class => "hentry" do -%>
+  	 <h3><%= @topic.forum.name %></h3>
+    <%= yield :monitor %>
+    <div class="crumbs">
+      <%= link_to "回到討論區", forums_path %> <span class="arrow">&rarr;</span>
+      <%= link_to h(@topic.forum.name), forum_path(@topic.forum) %> 
+      <% page=session[:forum_page] ? session[:forum_page][@topic.forum.id] : nil
+      if page and page!=1 %>
+        <small style="color:#ccc">
+          (<%= link_to "第 #{page} 頁", forum_path(:id => @topic.forum, :page => page) %>)
+        </small>
+      <% end %>
+      <span class="arrow">&rarr;</span>
+    </div>
+    <%=render :partial => 'topics/show'%>
+  <%- end -%>
+
+  <%- column_div :type => :secondary do -%>
+    <%= render :partial => 'searches/box' %>
+  	 <%= render :partial => 'forums/info' %>
+  <%- end -%>
+</div>

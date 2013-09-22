@@ -1,0 +1,12 @@
+<h3>建立文章</h3>
+<% form_for :article, 
+            :url => articles_url, 
+            :html => { :method => :post } do |f| -%>
+
+<p>標題:<br><%= f.text_field :title, :size => 60 %></p>
+<p>概要:<br><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p>
+<p>內容:<br><%= f.text_area :body, :rows => 20, :cols => 60 %></p>
+<p>分類: <%= f.collection_select :category_id, Category.find(:all), :id, :name %></p>
+<p>立刻發佈? <%= f.check_box :published %></p>
+<%= submit_tag '送出' %> 或 <%= link_to '取消並返回', articles_url %>
+<% end -%>

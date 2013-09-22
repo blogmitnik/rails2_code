@@ -1,0 +1,19 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div id="forum-container">
+    <h4 id="new_topic">新增討論話題</h4>
+    <p class="subtitle"><%= logged_in_user.name %> 新增討論話題</p>
+    <%= render :partial => 'topics/new'%>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

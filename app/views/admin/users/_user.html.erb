@@ -1,0 +1,33 @@
+<li class="vcard person">
+  <%= user_link_with_image user, :class => "url fn" %> &mdash;
+  <%= h user.enabled ? '使用中' : '已停用' -%>
+  <% if user.enabled? -%>
+  	<%= link_to('停用帳號', user_url(user), :method => :delete) %>
+  <% else %>
+   <%= link_to('啟用帳號', enable_user_url(user), :method => :put) %>
+  <% end %> |
+  <%= link_to '編輯權限', user_roles_url(user) %>
+  
+  <p class="meta">
+  	帳號: <%= highlight(user.username, user.username) %> |
+  	上次登入: <%= h user.last_login_at.strftime('%m月%d日 %H:%M') %>
+  </p>
+  
+  <p class="meta">
+    <strong>討論區文章:</strong> 
+    <%= user.forum_posts_count -%>篇 | 
+    <strong>網誌文章:</strong> 
+    <%= link_to user.blog.posts.count.to_s, blog_path(user) -%>篇 |
+    <strong>朋友:</strong> 
+      <%= link_to user.friends.count, user_friends_path(user) -%>位
+  </p>
+  
+  <p class="meta">
+    <strong>美食評論:</strong> 
+    <%= link_to user.entries_count, user_entries_path(user) -%>篇 | 
+    <strong>相簿:</strong> 
+    <%= link_to user.galleries_count, user_galleries_path(user) -%>本 |
+    <strong>圖片:</strong> 
+      <%= link_to user.photos_count, user_photos_path(user) -%>張
+  </p>
+</li>

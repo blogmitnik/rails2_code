@@ -1,0 +1,29 @@
+<%- unless activity.item.nil? -%>
+<div class="feed_item" id="<%= activity.dom_id %>">
+<ul class="list comments full">
+<li>
+  <div class="left activity_detail">
+    <div class="profile-image">
+    	<%= avatar_icon(activity, :tiny) %>
+    	<%= feed_icon activity %>
+    </div>
+    <%- recent ||= false -%>
+    <%= feed_message(activity, recent) %>
+    <p class="meta published">
+      <%= activity.created_at.strftime('%y年%m月%d日 %H:%M') %>
+    </p>
+  </div>
+  
+  <% if is_logged_in? -%>
+    <div class="right">
+      <%- if activity.owner_type == "User" -%>
+        <%= x_activity_link(activity) if logged_in_user?(activity.owner) %>
+      <%- elsif activity.owner_type == "Group" -%>
+    	  <%= x_activity_link(activity) if activity.owner.can_edit?(logged_in_user) %>
+      <%- end -%>
+    </div>
+  <% end -%>
+</li>
+</ul>
+</div>
+<%- end -%>

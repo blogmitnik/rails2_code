@@ -1,0 +1,10 @@
+<% custom_form_for :post, :url => url, :html => { :method => method,
+                          :id => "blogpost" } do |f| %>
+  <%= f.text_field :title, {:label => "標題"} %>
+  <%= f.text_area :body, {:label => "內容"} %>
+
+  <div class="row button">
+	 <%= f.submit @post.new_record? ? "張貼文章" : "儲存變更", :class => 'button' -%>
+	 <span class="button_or">或 <%= link_to '取消', blog_path(@blog) %></span>
+  </div>
+<% end %>

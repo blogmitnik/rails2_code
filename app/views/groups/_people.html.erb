@@ -1,0 +1,28 @@
+<%- if title.length > 0 -%>
+  <h3><span class="fn n">群組<%= title %></span></h3>
+<%- else -%>
+  <h3><span class="fn n"><%= h @group.name %></span></h3>
+<%- end -%>
+
+<%- unless members.empty? -%>
+  <%- unless title == "建立者" -%>
+  	 <p class="meta">共有 <%= members.length %> 位群組<%= title %></p>
+  <%- end -%>
+
+  <%- members.each do |group_member| -%>
+    <div class="group-member-small">
+      <%= image_link(group_member, :image_options => { :class => "photo fn" },
+                                	:link_options =>  { :class => "url" }, 
+                                	:image => :icon) %>
+      <div class="name"><%= link_to h(group_member.full_name), profile_path(group_member) %></div>
+    </div>
+  <%- end -%>
+    
+  <% if title == "成員" && @some_members.length > User::MAX_DEFAULT_FRIENDS %>
+	  <li class="more">
+	    <%= link_to "瀏覽全部 #{@group.users.count} 位成員", members_group_path(@group) %>
+	  </li>
+  <% end %>
+<%- else -%>
+  <p>群組目前沒有任何<%= title %></p>
+<%- end -%>

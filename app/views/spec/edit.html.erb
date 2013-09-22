@@ -1,0 +1,43 @@
+<h3>編輯個人資訊</h3>
+
+<p><%= link_to '顯示個人資訊', spec_path(@user) -%></p>
+
+<%= error_messages_for :spec -%>
+
+<div id="profile_edit">
+
+<div>個人資訊</div>
+<div id="profile_show">
+<% form_for :spec, :url => spec_url(@spec), :html => { :method => :put } do |f| -%>
+	<div class="form_row">休閒活動：<br><%= f.text_area :activity, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">興趣：<br><%= f.text_area :interest, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">喜愛的音樂：<br><%= f.text_area :music, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">最喜愛的電視節目：<br><%= f.text_area :tv, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">喜愛的電影：<br><%= f.text_area :movie, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">喜愛的書籍：<br><%= f.text_area :book, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">座右銘：<br><%= f.text_area :maxim, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+		
+	<div class="form_row">關於我：<br><%= f.text_area :about_me, 
+		:rows => Spec::COMMON_ROWS, :cols => Spec::COMMON_COLS -%></div>
+	
+	<%= hidden_field_tag "attribute", "個人資訊", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '儲存變更', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+</div>

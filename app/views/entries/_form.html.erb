@@ -1,0 +1,20 @@
+<p><%= formatting_note %></p>
+<p><b>日期：</b><%= form.date_select :created_at %></p>
+<p><b>時間：</b><%= form.time_select :created_at, :default => Time.now %></p>
+<p><b>標題：</b><%= form.text_field :title, :size => Entry::TITLE_SIZE, :maxlength => Entry::TITLE_MAX_LENGTH -%></p>
+<p><b>分類：</b><%= collection_select 'entry', 'ecategory_id', Ecategory.find(:all), :id, :name %></p>
+<p><b>心情：</b> <%= form.select :mood, Entry::MOOD_SELECT, :prompt => "選擇你目前的心情" %></p>
+<p><b>本文：</b>（文章內容最多不可超過 10000 個字）</p>
+<p>你可以使用 [youtube: 影片網址] 來嵌入 Youtube 影片</p>
+<p><%= fckeditor_textarea("entry", "body", :toolbarSet => 'CateplacesBase', :width => '100%', :height => '300px') %></p>
+<p>(標題和本文若和舊的文章相同，這篇文章將不會被儲存)</p>
+<p><%= form.check_box :disable_comment %> 這篇文章不允許任何人回覆</p>
+
+<h3>設定文章發生地點</h3>
+<p>緯度座標：<%= form.text_field 'geo_lat', :size => '8' %></p>
+<p>經度座標：<%= form.text_field 'geo_long', :size => '8' %></p>
+<p>是否顯示地圖？<%= form.check_box 'show_geo' %></p>
+<div id="gmap">
+	<%= @map.to_html %>
+	<%= @map.div(:width => 535, :height => 300) %>
+</div>

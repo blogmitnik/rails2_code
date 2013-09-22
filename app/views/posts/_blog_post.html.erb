@@ -1,0 +1,36 @@
+<li class="post">
+  <p> 
+    <a name="post_<%= blog_post.id %>"></a>
+    <%= link_to sanitize(blog_post.title),
+                blog_post_path(@blog, blog_post),
+                :class => "show-follow" %>
+    <%- if is_logged_in? -%>
+	    <%- if (@blog.owner.class.to_s == "User" && logged_in_user?(@blog.owner)) ||
+	    (@blog.owner.class.to_s == "Group" && (@blog.owner.can_edit?(logged_in_user) || logged_in_user?(blog_post.user))) -%>
+	      <%= link_to image_tag("icons/page_white_edit.png",
+	                            :class => 'actioner'),
+	                  edit_blog_post_path(@blog, blog_post) %>
+	      <%= link_to image_tag("icons/page_white_delete.png",
+	                            :class => 'actioner'),
+	                  blog_post_path(@blog, blog_post),
+	                  :method => :delete,
+	                  :confirm => "你確定刪除這篇文章嗎？" %>
+	    <%- end -%>
+    <%- end -%>
+  </p>
+  
+  <%= display blog_post.body %>
+  
+  <p class="meta published">
+  <%= link_to "#{blog_post.user.name}", profile_path(blog_post.user) %> 於 
+  <% if blog_post.created_at > Time.now.utc-24.hours%>
+    <%= time_ago_in_words(blog_post.created_at).sub(/about /, '') %> 前張貼 |
+  <% else %>
+    <%= blog_post.created_at.strftime('%y年%m月%d日 %H:%M') %> 張貼 | 
+  <% end %>
+  
+  <%- n = blog_post.wall_comments_count -%>
+  <%= link_to "#{n}則回應", blog_post_path(@blog, blog_post, :comments => n),
+               :class => "show-follow" %>    
+  </p>
+</li>

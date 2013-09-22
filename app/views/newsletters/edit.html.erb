@@ -1,0 +1,17 @@
+<h1>編輯Newsletter</h1>
+
+<%= error_messages_for :newsletter %>
+
+<% form_for(:newsletter, :url => newsletter_path(@newsletter), 
+						:html => { :method => :put }) do |f| %>
+<p><b>標題</b><br><%= f.text_field :subject, :size => 70 %></p>
+
+<p><b>內容</b><br><%= f.text_area :body, :cols => 60, :rows => 10 %>
+	<br>可以使用@user來存取User模型<br>
+例如: &lt;%= @user.username %&gt; 或 &lt;%= @user.email %&gt;
+</p>
+
+<p>
+	<%= submit_tag "儲存草稿" %> 或 <%= link_to '取消', newsletters_path %>
+</p>
+<% end %>

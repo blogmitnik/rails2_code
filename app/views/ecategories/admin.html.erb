@@ -1,0 +1,13 @@
+<h2>網誌文章分類管理</h2>
+
+<p><%= link_to '建立新的文章分類', new_ecategory_path %></p>
+
+<ul>
+<% @ecategories.each do |ecategory| %>
+	<li>
+	<%= link_to ecategory.name, ecategory_entries_url(:ecategory_id => ecategory) %>
+	[<%= link_to '編輯分類', edit_ecategory_path(ecategory) %>]
+	[<%= link_to '刪除分類', ecategory_path(ecategory), :method => :delete, :confirm => 'Are you shore?' %>]
+	</li>
+<% end %>
+</ul>

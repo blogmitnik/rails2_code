@@ -1,0 +1,29 @@
+<ul class="grid contacts medium">
+  <%- friends.each do |friend| -%>
+    <li class="vcard contact"><span>
+      <%= image_link friend, :image_options => { :class => "photo" },
+                              :link_options => { :class => "url" },
+                              :vcard => true,
+                              :image => :tiny %>
+      <%- unless Friendship.exists?(friend, logged_in_user) or logged_in_user?(friend) -%>
+      	<%= link_to image_tag("icons/friend_added.gif"), 
+	      				new_user_friend_path(:user_id => logged_in_user, :friend_id => friend), 
+	        				:title => "將 #{friend.name} 加為朋友", 
+	        				:confirm => "你確定要將 #{friend.name} 加為你的朋友嗎？" %>
+      <%- end -%>
+      <%- if Friendship.pending?(logged_in_user, friend) -%>
+      		已要求成為朋友
+      <% end %>
+      <%- if Friendship.pending?(friend, logged_in_user) -%>
+      	<%= link_to image_tag("icons/friend_accept.gif"), 
+                     {:controller => "friends", :action => "accept", :id => friend },
+                      :title => "接受 #{friend.name} 成為我的朋友" %>
+		   <%= link_to image_tag("icons/friend_request.gif"), 
+		               { :controller => "friends", :action => "decline", 
+		                 :id => friend, }, 
+		                 :title => "略過來自 #{friend.name} 的朋友邀請", 
+		                 :confirm => "你確定要略過這個朋友邀請嗎？" %>
+      <% end %>
+  </span></li>
+  <%- end %>
+</ul>

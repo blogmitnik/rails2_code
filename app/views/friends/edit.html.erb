@@ -1,0 +1,20 @@
+<%- column_div :type => :primary do -%>
+<h3>編輯朋友關係</h3>
+
+<%= error_messages_for :friendship %>
+
+<% form_for(:friendship,
+            :url => user_friend_path(:user_id => @logged_in_user,
+            :friend_id => @friend),
+            :html => { :multipart => true, :method => :put }) do |f| %>
+
+<%= render :partial => 'select_friendship', :locals => {:f => f} -%>
+
+<div class="row button">
+	<%= submit_tag '儲存變更', :class => 'button' %> 或 
+	<%= link_to '返回', user_path(@friend) %>
+</div>
+
+<% end %>
+
+<%- end -%>

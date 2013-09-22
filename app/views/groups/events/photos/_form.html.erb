@@ -1,0 +1,11 @@
+<div id="upload_a_photo">
+  <h3>上傳活動相片</h3>
+  <% cate_form_for @photo, :url => group_event_photos_path(@group, @event), :html => {:multipart=>true} do |f| %>
+  	<%= f.file_field 'uploaded_data', :label => '選擇相片', :size => 15 %>
+  	<%= f.text_area :body, :label => '相片描述' %>	
+  	<div class="row button">
+    	<%= f.submit '上傳相片', :class=>"button" %>
+  	</div>
+  <% end %>
+  <div class="clear"></div>
+</div>

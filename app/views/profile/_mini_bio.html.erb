@@ -1,0 +1,12 @@
+<% 
+size = 5 
+count = user.notes.count > size ? size : user.notes.count
+%>
+
+<div class="mini-bio">
+	<div class="left"><%= image_link user, :image => :icon %></div>
+	<div class="left">
+		<p><%= link_to h(user.name), profile_path(user) -%></p>
+	</div>
+	<div class="clear"></div>
+</div>

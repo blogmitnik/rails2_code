@@ -1,0 +1,2 @@
+module FindfriendHelper
+end

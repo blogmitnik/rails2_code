@@ -1,0 +1,10 @@
+<h2>編輯文章</h2>
+<% form_for :article, :url => article_url(@article), :html => { :method => :put } do |f| -%>
+
+<p>標題:<br><%= f.text_field :title, :size => 60 %></p>
+<p>概要:<br><%= f.text_area :synopsis, :rows => 4, :cols => 60 %></p>
+<p>內容:<br><%= f.text_area :body, :rows => 20, :cols => 60 %></p>
+<p>分類:<br><%= f.collection_select :category_id, Category.find(:all), :id, :name, :include_blank => true %></p>
+<p>發佈? <%= f.check_box :published %></p>
+<%= submit_tag '儲存' %> or <%= link_to '取消', articles_url %>
+<% end -%>

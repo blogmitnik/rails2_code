@@ -1,0 +1,21 @@
+<ul class="grid contacts medium">
+  <%- friends.each do |friend| -%>
+    <li class="vcard contact"><span>
+      <%= image_link friend, :image_options => { :class => "photo" },
+                              :link_options => { :class => "url" },
+                              :vcard => true,
+                              :image => :tiny %>
+      <% if logged_in_user?(@user) %>
+      <%= link_to image_tag("icons/user_edit.png"), 
+                  { :controller => "friends", :action => "edit", 
+                    :id => friend }, 
+                    :title => "編輯我和 #{friend.name} 的相識關係" %>
+      <%= link_to image_tag("icons/user_delete.png"), 
+                  { :controller => "friends", :action => "delete", 
+                    :id => friend }, 
+                    :title => "將 #{friend.name} 從朋友名單中移除", 
+                    :confirm => "你確定要刪除這位好友嗎？" %>
+      <% end %>
+  </span></li>
+  <%- end %>
+</ul>

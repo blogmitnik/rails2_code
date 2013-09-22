@@ -1,0 +1,36 @@
+<h2>編輯基本資訊</h2>
+
+<p><%= link_to '顯示基本資訊', info_path(@user) -%></p>
+
+<%= error_messages_for :info -%>
+
+<div id="profile_edit">
+
+<div>基本資訊</div>
+<div id="profile_show">
+<% form_for :info, :url => info_url(@info), :html => { :method => :put } do |f| -%>
+	<div class="form_row">生日：<%= f.date_select :birthday, :start_year => 1926, :end_year => (Time.now.year - 13) -%>
+		<br><%= f.select :show_birthday, Info::SHOW_BIRTHDAY_SELECT -%></div>
+		
+	<div class="form_row">性別：<%= f.select :gender, Info::GENDER_SELECT, :prompt=>"選擇性別：" -%>
+		<br><%= f.check_box :show_gender -%>在個人檔案中顯示我的性別</div>
+	
+	<div class="form_row">家鄉：<%= f.text_field :hometown, :size => Info::COMMON_FIELD_SIZE, 
+		:maxlength => Info::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">感情狀況：<%= f.select :affection, Info::AFFECTION_SELECT, :prompt => "我現在是：" -%></div>
+		
+	<div class="form_row">政治觀：<%= f.text_field :polity, :size => Info::COMMON_FIELD_SIZE, 
+		:maxlength => Info::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">宗教信仰：<%= f.text_field :religion, :size => Info::COMMON_FIELD_SIZE, 
+		:maxlength => Info::COMMON_MAX_LENGTH -%></div>
+	
+	<%= hidden_field_tag "attribute", "基本資訊", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '儲存變更', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>
+
+</div>

@@ -1,0 +1,64 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%- column_div :type => :primary do -%>
+	<h3>動態快報</h3>
+	<div id="send-message-error" style="display:none;margin-bottom:10px">
+	  你無法發送一項空白的訊息，請填寫訊息主旨和內容。
+	  <small><a href='#' onclick="$$('div#send-message-error')[0].hide();return false">關閉</a></small>
+	</div>
+
+   <%- if is_logged_in? -%>
+		<%= render :partial => 'users/status_update' %>
+	<%- end -%>
+	
+	<div id="activity_feed" class="inside_box">
+		<% @feed.each do |activity| -%>
+		  <%= render :partial => 'shared/activity', :locals => {:activity => activity} %>
+		<% end -%>
+		<div class="clear"></div>
+		
+		<%- if is_logged_in? -%>
+	  	  <%= will_paginate @feed, :previous_label => '&laquo; 較新的', :next_label => '較早的 &raquo;' %>
+	   <%- end -%>
+	</div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%- if is_logged_in? -%>
+    <%= render :partial => 'searches/box' %>
+	<%- unless logged_in_user.is_facebook_user? -%>
+	  <h3>連結 Facebook</h3>
+	  <p>你有Facebook帳戶嗎？馬上將你的Facebook連結至<%= app_name %>，可以分享消息到Facebook塗鴉牆並瀏覽你的Facebook好友。</p>
+	  <%= render :partial => '/shared/fbconnect_button' %>
+	<%- end -%>
+    <%= render :partial => 'requested_friends' %>
+    <%= render :partial => 'messages_preview' %>
+    <%= render :partial => 'requested_memberships' %>
+    <%= render :partial => 'invitations' %>
+    <%= render :partial => 'shared/friends_preview',
+               :locals => { :user => logged_in_user } %>
+    <%= render :partial => 'profile/groups', 
+               :locals => {:groups => logged_in_user.own_groups,
+               :title => "管理的群組", :link => "admin"} %>
+    <%= render :partial => 'profile/groups',
+               :locals => {:groups => logged_in_user.groups,
+               :title => "參與的群組", :link => "groups"} %>
+    <%= render :partial => 'google_docs' %>
+    <%= render :partial => 'friend_invite' %>
+  <%- else -%>
+    <%- unless global_prefs.app_name.blank? -%>
+      <h3>關於 <%= global_prefs.app_name %></h3>
+    	<%= app_name %>，讓您和親朋好友保持聯繫，隨時分享生活中的每一刻。
+    <%- end -%>
+	
+    <h3>連結 Facebook</h3>
+	<p>你有Facebook帳戶嗎？馬上將你的Facebook連結至<%= app_name %>，可以分享消息到Facebook塗鴉牆並瀏覽你的Facebook好友。</p>
+	<%= render :partial => '/shared/fbconnect_button' %>
+	
+    <h3>加入 <%= global_prefs.app_name.blank? ? "Cateplaces" : global_prefs.app_name %></h3>
+    <div style="text-align: center;">
+      <%= link_to image_tag( 'home_create_button.png', { :alt => '註冊你的新帳號' } ), signup_url %>
+	  <%= link_to  image_tag( 'twitter_login.png', { :alt => '透過 Twitter 帳號登入' } ), twitterOAuth_url  %>
+    </div>
+  <%- end -%>
+<%- end -%>

@@ -1,0 +1,47 @@
+<% content_for :head do  -%>
+	<%= auto_discovery_link_tag :rss, formatted_gallery_url(@gallery, :rss), :title=>"#{@gallery.owner.name} 的相簿" %>
+<% end -%>
+
+<div id="photos">
+  <h3><%= h(@gallery.title) %></h3>
+    <% unless @gallery.description.nil? %>
+    <div class="gallery-description">
+    	<p><strong>相簿標題：</strong> <%= @gallery.title %></p>
+      <%- unless @gallery.description.blank? -%>
+      	<p><strong>相簿內容：</strong> <%= @gallery.description %></p>
+      <%- end -%>
+      <%- unless @gallery.location.blank? -%>
+      	<p><strong>相簿地點：</strong> <%= @gallery.location %></p>
+      <%- end -%>
+    </div>
+    <% end %>
+  
+    <p>
+    	<% if @gallery.owner_type == "User" %>
+    		<% if logged_in_user?(@gallery.owner) %>
+		   	<%= link_to "新增相片", new_gallery_photo_path(@gallery) %> |
+		      <%= link_to "編輯相簿內容", edit_user_gallery_path(@gallery.owner) %> |
+	      <% end %>
+	      <%= link_to "返回 #{@gallery.owner.name} 的相簿", user_galleries_path(@gallery.owner) %> |
+	      <%= link_to "返回 #{@gallery.owner.name} 的個人檔案", profile_path(@gallery.owner) %>
+      <% elsif @gallery.owner_type == "Group" %>
+      	<% if @gallery.owner.can_participate?(logged_in_user) %>
+	         <%= link_to "新增相片", new_gallery_photo_path(@gallery) %> |
+	         <%= link_to "編輯相簿內容", edit_group_gallery_path(@gallery.owner) %> |
+         <% end %>
+         <%= link_to "返回 #{@gallery.owner.name} 的相簿", group_galleries_path(@gallery.owner) %> |
+         <%= link_to "返回 #{@gallery.owner.name}", group_path(@gallery.owner) %>
+      <% end %>
+    </p>
+  
+    <%- if @photos.empty? -%>
+    	<h4>這本相簿裡目前沒有任何相片.</h4>
+    <%- else -%>
+   	<ul id="photos">
+        <%= render :partial=>"shared/photo", :collection => @photos %>
+      </ul>
+      <div class="clear"></div>
+        <%= will_paginate(@photos) %>
+      <div class="clear"></div>
+    <%- end -%>
+</div>

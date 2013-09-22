@@ -1,0 +1,84 @@
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+photo ||= @photo
+user ||= @user
+-%>
+
+<h3>編輯相片</h3>
+
+<% if photo.owner_type == "User" && logged_in_user?(photo.owner) %>
+	<p>
+	<%= link_to '返回相片', user_photo_path(photo.owner, photo) %> | 
+	<%= link_to '上傳相片', new_gallery_photo_path(photo.gallery) %> |
+	<%= link_to '返回相簿', gallery_path(photo.gallery) %>
+	</p>
+<% elsif photo.owner_type == "Group" && logged_in_user.own_groups.include?(photo.owner) %>
+	<p>
+	<%= link_to '返回相片', group_photo_path(photo.owner, photo) %> | 
+	<%= link_to '上傳新相片', new_gallery_photo_path(photo.gallery) %> |
+	<%= link_to '返回相簿', gallery_path(photo.gallery) %>
+	</p>
+<% end %>
+
+<% if photo.owner_type == "User" %>
+	<%= link_to image_tag(photo.public_filename('thumb')), 
+								user_photo_path(photo.owner, photo) %>
+<% elsif photo.owner_type == "Group" %>
+	<%= link_to image_tag(photo.public_filename('thumb')), 
+								group_photo_path(photo.owner, photo) %>
+<% end %>
+
+<%= error_messages_for :photo %>
+
+<p>相片標籤：</p>
+<ul id="taglist">
+	<%= render :partial => 'edit_tag', :collection => photo.tags %>
+</ul>
+
+<% remote_form_for(:tag,
+                   :url => add_tag_user_photo_path(photo.owner, photo),
+                   :html => {:id => 'submit-tag-form'}, 
+                   :method => :put,
+                   :complete => "Field.clear('tag-name')") do |f| %>
+	<%= f.text_field :name, :id => 'tag-name' %>
+	<%= submit_tag '新增標籤', :id => 'add-tag-button' %>
+	<div id="spinner-loader" style="display:none;">
+   	<img src="/images/loadingAnimation.gif" alt="progress bar">
+	</div>
+<% end %>
+
+<% form_for(:photo, :url => user_photo_path(photo.owner, photo), 
+						:html => { :method => :put }) do |f| %>
+	<p>相片標題：<br><%= f.text_field 'title' %></p>
+	<p>相片描述：<br><%= f.text_area 'body', :rows => 6, :cals => 40 %></p>
+	<h3>編輯相片地點</h3>
+	<p>緯度座標：<%= f.text_field 'geo_lat', :size => '8' %></p>
+	<p>經度座標：<%= f.text_field 'geo_long', :size => '8' %></p>
+	<p>是否顯示圖片地圖？<%= f.check_box 'show_geo' %></p>
+	
+	<div id="gmap">
+		<%= @map.to_html %>
+		<%= @map.div(:width => 650, :height => 300) %>
+	</div>
+	
+	<div class="row button">
+		<%= submit_tag "儲存內容", :class => "button" %> 或 
+		<%= link_to '返回相簿', gallery_path(photo.gallery) %>
+	</div>
+<% end %>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+
+	jQuery("#submit-tag-form").submit(function() {
+	  jQuery("#add-tag-button").hide();
+	  jQuery("#spinner-loader").show();
+  });
+  
+});
+</script>

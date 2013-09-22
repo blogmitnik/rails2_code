@@ -1,0 +1,13 @@
+<h2>傳送訊息郵件</h2>
+
+<% form_for :message do |f| %>
+	<%= tiny_tag(@recipient) %>
+	<p><b>傳送給：</b><br><%= text_field_tag :recipient, h(@recipient.f), :size => 50 %></p>
+	<p><b>訊息標題：</b><br><%= f.text_field :subject, :size => 50 %></p>
+	
+	<p><b>郵件內容：</b><br><%= f.text_area :body, :cols => 50, :rows => 10 %></p>
+	
+	<p>
+		<%= submit_tag "送出訊息", :class => 'button' %>
+	</p>
+<% end %>

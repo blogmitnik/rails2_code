@@ -1,0 +1,20 @@
+<h3>自訂網誌模版</h3>
+
+<table>
+	<tr>
+		<th>模版名稱</th>
+		<th>模板描述</th>
+	</tr>
+	
+	<tr>
+		<td><%= link_to 'blog_index', edit_usertemplate_path(
+				@usertemplates.find {|ut| ut.name == 'blog_index'}) -%></td>
+		<td>網誌的主要模版</td>
+	</tr>
+	
+	<tr>
+		<td><%= link_to 'blog_entry', edit_usertemplate_path(
+				@usertemplates.find {|ut| ut.name == 'blog_entry'}) -%></td>
+		<td>網誌文章的模版</td>
+	</tr>
+</table>

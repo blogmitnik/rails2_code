@@ -1,0 +1,24 @@
+<% content_for :head do  -%>
+  <%= auto_discovery_link_tag :rss, formatted_forum_topic_url(@topic.forum, @topic, :rss), :title=>"#{@topic.title} 的討論文章" %>
+<% end -%>
+
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+   <div class="crumbs" style="margin-top:1.1em;">
+    <%= link_to "回到討論區", group_forums_path(@group) %> <span class="arrow">&rarr;</span>
+   </div>
+	<div id="forum-container">
+    <%= render :partial => 'topics/show'%>
+   </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

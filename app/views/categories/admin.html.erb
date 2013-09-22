@@ -1,0 +1,13 @@
+<h2>編輯文章分類</h2>
+
+<p><%= link_to '建立新的文章分類', new_category_path %></p>
+
+<ul>
+<% @categories.each do |category| %>
+	<li>
+	<%= link_to category.name, category_articles_url(:category_id => category) %>
+	[<%= link_to '編輯文章分類', edit_category_path(category) %>]
+	[<%= link_to '刪除文章分類', category_path(category), :method => :delete, :confirm => '確定要刪除該分類嗎?' %>]
+	</li>
+<% end %>
+</ul>

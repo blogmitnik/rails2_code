@@ -1,0 +1,18 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div class="crumbs">
+	  <%= link_to '回到討論區', forums_path %> <span class="arrow">&rarr;</span>
+	</div>
+  <%= render :partial => 'forums/list', :locals => {:group => @group} %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

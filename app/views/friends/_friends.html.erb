@@ -1,0 +1,83 @@
+  <tr>
+    <th colspan="5" align="left">
+     	共有 <%= h(@user.friends.count) %> 位好友
+    </th>
+  </tr>
+  <% @user.friends.each do |friend| %>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td width="50">
+      <%= image_link friend, :image => :tiny %>
+    </td>
+    <td><%= link_to friend.f, profile_path(friend) %></td>
+    <td>
+    	<%= time_ago_in_words(friend.last_activity_at) %> 前 
+    	<%= friend.last_activity %>
+    </td>
+    
+    <% if is_logged_in? and logged_in_user == @user %>
+    <td>
+        <%= link_to "刪除好友", 
+                    { :controller => "friends", :action => "delete", 
+                      :id => friend.id }, :confirm => "你確定要刪除這位好友嗎？" %>
+    </td>
+    <% end %>
+    
+    <% if is_logged_in? and logged_in_user == @user %>
+    <td>
+        <%= link_to "編輯關係", 
+                    { :controller => "friends", :action => "edit", 
+                      :id => friend.id } %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  
+  <tr></tr>
+  
+  <% if is_logged_in? and logged_in_user == @user %>
+	  <% unless @user.requested_friends.empty? %>
+	    <tr>
+	      <th colspan="5" align="left">
+	        	你有 <%= h(@user.requested_friends.count) %> 個需要確認的好友請求
+	      </th>
+	    </tr>
+	    <% @user.requested_friends.each do |requester| %>
+	    <tr>
+	      <td><%= image_link requester, :image => :tiny %></td>
+	      <td><%= link_to requester.f, profile_path(requester) %></td>
+	      <td>
+	          <%= link_to "接受請求", 
+	                      :controller => "friends", :action => "accept", 
+	                      :id => requester.id %> 或 
+	          <%= link_to "取消請求", 
+	                      { :controller => "friends", :action => "decline", 
+	                      :id => requester.id, }, 
+	                      :confirm => "你確定要取消這個好友請求嗎？" %>
+	      </td>
+	    </tr>
+	    <% end %>
+	  <% end %>
+  <% end %>
+
+  <tr></tr>
+  
+  <% if is_logged_in? and logged_in_user == @user %>
+	  <% unless @user.pending_friends.empty? %>
+	    <tr>
+	      <th colspan="5" align="left">
+	        	你有 <%= h(@user.pending_friends.count) %> 個等待被確認的好友邀請
+	      </th>
+	    </tr>
+	    <% @user.pending_friends.each do |pending_friend| %>
+	    <tr>
+	      <td><%= image_link pending_friend, :image => :tiny %></td>
+	      <td><%= link_to pending_friend.f, 
+	                      profile_path(pending_friend) %></td>
+	      <td><%= link_to "取消邀請", 
+	                      { :controller => "friends", :action => "cancel", 
+	                        :id => pending_friend.id }, 
+	                      :confirm => "你確定要取消傳送這個好友邀請嗎？" %></td>
+	    </tr>
+	    <% end %>
+	  <% end %>
+  <% end %>

@@ -1,0 +1,38 @@
+<% content_for :head do  -%>
+<%= auto_discovery_link_tag :rss, formatted_user_entries_url(@user, :rss), :title=>"#{@user.name} 的美食評論" %>
+<% end -%>
+
+<% column_div :type => :primary do -%>
+<h3><%= @user.name %> 的美食評論</h3>
+
+<% if @user.blog_title == @user.f && logged_in_user == @user %>
+<small>(<%= link_to '設定你的美食評論標題', edit_user_path(logged_in_user) %>)</small>
+<% end %>
+
+<% if logged_in_user?(@user) -%>
+	<%= link_to '發表新的評論', new_user_entry_path %>
+<% end -%>
+
+<%- if @entries.empty? -%>
+  <h4 class="blankslate">
+   	目前沒有分享任何美食評論
+  </h4> 
+<%- else -%>
+  <ul class="list blog full">
+    <%= render :partial => 'entry', :collection => @entries %>
+  </ul>
+  <div class="clear"></div>
+<%- end -%>
+
+<% if @entry_pages.page_count > 1 %>
+  <p class="pagination">頁次: <strong>
+    <%= pagination_links @entry_pages, :params => params %>
+  </strong></p>
+<% end %>
+
+<% end %>
+
+<% column_div :type => :secondary do -%>
+	<%= render :partial => "searches/box" %>
+	<%= render :partial => 'history' %>
+<% end -%>

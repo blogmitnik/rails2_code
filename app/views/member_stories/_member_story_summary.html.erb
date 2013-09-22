@@ -1,0 +1,10 @@
+<div class="left story-container">
+  <div class="story-icon left">
+		<%= icon member_story_summary, :big -%>
+	</div>
+	<div class="activity_box left story-summary">
+			<p><%= link_to "#{summarize(member_story_summary.title, 80)}", member_story_path(member_story_summary) %></p>
+			<%= summarize(member_story_summary.body, 250) %> <a href="<%=member_story_path(member_story_summary)%>">繼續閱讀</a>
+	</div>
+  <%= render :partial => 'member_stories/admin', :locals => { :member_story => member_story_summary } -%>
+</div>

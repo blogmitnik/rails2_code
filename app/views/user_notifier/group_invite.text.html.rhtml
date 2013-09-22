@@ -1,0 +1,21 @@
+<p><b><%= @inviter.short_name %> 邀請你加入 Cateplaces 的 <%= @group.name %> 群組。</b></p>
+
+<p>----------<br><%= @message %><br>----------</p>
+
+<p>查看更多詳情及確認此群組加入邀請，請前往以下連結：<br>
+<a href="http://<%= @domain %><%= @group_url %>">
+http://<%= @domain %><%= @group_url %></a></p>
+
+<p>你可以從下面網址查看 <%= @inviter.name %> 在 Cateplaces 的個人檔案頁面：<br>
+<a href="http://<%= @domain %><%= @inviter_profile_url %>">
+http://<%= @domain %><%= @inviter_profile_url %></a></p>
+
+<p>Cateplaces 是一個聯繫大眾的社交工具，同時也是一個分享美食的平台。藉著 Cateplaces，工作同事、讀書夥伴和生活週遭的朋友們可以互相保持聯絡，
+隨心所欲地上傳相片、張貼文章及分享、檔案、連結、Youtube 影片，並建立群組和舉辦活動，從而對彼此得到更深入的了解。
+同時還可以使用圖片、文章和地圖座標來分享你曾經去過的美食餐廳或者旅遊景點等心得給網路上的所有同好。</p>
+
+<p>欲註冊 Cateplaces，請點取下列連結：<br>
+<%= link_to "#{@url}", @url %></p>
+
+<p>謝謝，<br>
+<%= @group.name %></p>

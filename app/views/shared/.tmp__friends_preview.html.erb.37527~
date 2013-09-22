@@ -1,0 +1,26 @@
+<%-
+#locals
+size ||= 12
+total = user.entries.count
+-%>
+
+<%- unless @some_friends.empty? -%>
+  <h3>朋友清單</h3>
+  <%- @some_friends.each do |friend| -%>
+    <div class="left my_network">
+      <%= image_link(friend, :image_options => { :class => "photo fn" },
+                             :link_options =>  { :class => "url" }) %>
+      <%= link_to h(friend.name), profile_path(friend) %>
+    </div>
+  <%- end -%>
+  <div class="clear"></div>
+    
+  <%- if connected_to?(@user) || logged_in_user?(@user) -%>
+    <span class="left">
+      <%= link_to "#{user.friends.count} 位朋友", user_friends_path(user) %>
+    </span>
+    <span class="right">
+      <%= link_to "顯示全部", user_friends_path(user) %>
+    </span>
+  <%- end -%>
+<%- end -%>

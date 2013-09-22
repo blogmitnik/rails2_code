@@ -1,0 +1,44 @@
+<%-
+group ||= @group
+event ||= @event
+wall_comments ||= @wall_comments
+size ||= 10
+total = event.wall_comments_count
+
+parent ||= @event
+parent = @event || nil
+-%>
+
+<h3>活動留言板</h3>
+<a name="add-event-comment"></a>
+  <% if total > 0 %>
+	 <span class="left">顯示全部 <%= total > size ? link_to("#{total} 則留言", group_event_comments_path(group, event)) + "中的其中 #{size} 則。" : "#{total} 則留言" %></span>
+  <% else %>
+	 <span class="left">活動目前尚無留言。</span>
+  <% end %>
+	 
+  <%- if can_participate? && has_attending? -%>
+	 <span class="right">
+		<%= inline_tb_link("回應活動", "new_comment", :title => "在 '#{@event.title}' 的活動頁面留言") %>
+		<% if total > 0 -%>
+		| <%= link_to "顯示全部", group_event_comments_path(@group, @event) %>
+		<% end -%>
+	 </span>
+	 <div class="clear"></div>
+    <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	 	<%= render :partial => 'events/form' %>
+	 </div>
+    <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+	 	<%= render :partial => 'events/hidden_form' , :locals => {:with_form => true} %>
+	 </div>
+  <%- else -%>
+    <div class="clear"></div>
+  	 <div class="notice">你必須參與這個活動才能發表回應。</div>
+  <%- end -%>
+  
+  <a name="group-event-comment"></a>
+  <div id="<%= "comments_for_#{dom_id(parent)}" %>">
+ 	  <% @event.wall_comments.each do |c| %>
+      <%= render :partial => 'wall_comments/comment', :locals => { :comment => c } %>
+    <% end %>
+  </div>

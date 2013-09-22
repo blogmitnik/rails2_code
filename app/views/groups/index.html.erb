@@ -1,0 +1,28 @@
+<% content_for :head do  -%>
+	<%#= auto_discovery_link_tag :rss, formatted_groups_url(:rss), :title=> "瀏覽群組" -%>
+<% end -%>
+
+<%- column_div :type => :primary do -%>
+<h3>群組</h3>
+  <p class="link-button"><%= link_to '建立新的群組', new_group_path if is_logged_in? %></p>
+  <%= render :partial => 'shared/alpha_index' %>
+  
+  <% unless @groups.empty? -%>
+    <div id='profile-list'>
+    <% @groups.each do |result| %><%= render :partial => 'groups/group_cache', :locals => {:group => result} %><% end %>
+    </div>
+  <% else %>
+    <h3>目前沒有任何群組</h3>
+  <% end -%>
+<span class="pagination" style="padding-left:3px;"><%= will_paginate(@results, :container => false) %></span>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'profile/groups', 
+             :locals => {:groups => logged_in_user.own_groups,
+             :title => "管理的群組", :link => "admin"} if is_logged_in? %>
+  <%= render :partial => 'profile/groups',
+             :locals => {:groups => logged_in_user.groups,
+             :title => "參與的群組", :link => "groups"} if is_logged_in? %>
+<%- end -%>

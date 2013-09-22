@@ -1,0 +1,9 @@
+<%= error_messages_for :topic %>
+<% custom_form_for :topic, :url  => forum_topics_path(@forum) do |f| -%>
+  <%= render :partial => "form", :object => f %>
+  <div class="row button">
+    <%= submit_tag '張貼討論話題', :class => 'button', :or => link_to('取消', forum_path(@forum)) %>
+  </div>
+<% end -%>
+
+<%= javascript_tag "jQuery('topic_title').focus();" %>

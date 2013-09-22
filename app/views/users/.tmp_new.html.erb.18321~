@@ -1,0 +1,97 @@
+<%= javascript_include_tag 'mootools', 'formcheck', 'jquery' %>
+
+<script type="text/javascript">
+window.addEvent('domready', function(){
+    new FormCheck('formular');
+});
+</script>
+
+<%- column_div :type => :primary do -%>
+<h3>註冊新的使用者</h3>
+<%= error_messages_for :user %>
+<div id="send-error" class="hidden">你必須填滿所有的欄位。</div>
+
+<p><%= link_to '已經是會員了?', login_url, :title => "請至登入頁面登入你的使用者帳號" -%> 或者您也可以使用 
+<%= link_to 'Yahoo!', yahooLogin_url, :title => "我們接受使用 Yahoo! 帳號來登入網站" %> 或是
+<%= link_to 'Twitter', twitterOAuth_url, :title => "我們接受使用 Twitter OAuth 認證來登入網站" %> 帳號來註冊</p>
+<%= link_to  image_tag( 'twitter_login.png', { :alt => '透過 Twitter 帳號登入' } ), twitterOAuth_url  %>
+<p>馬上註冊，開始體驗 <%= app_name %> 的樂趣。</p>
+
+<div style="padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+趕快加入 <%= app_name %> 建立你的 <%= app_name %> 個人檔案，即刻與朋友取得聯繫，隨時保持聯絡並分享照片。 
+只要填寫下面表格，就可以馬上加入！<br><small>（全為必填欄位）</small>
+</div>
+
+<% form_for :user, :url => users_path, :html => {:id => "formular", :class => "formular"} do |f| -%>
+	<div class="form_row">暱稱：<em>(只能包含英文字母，數字或底線)</em><br><%= f.text_field :username, 
+		:size => User::USERNAME_SIZE, :maxlength => User::USERNAME_MAX_LENGTH, 
+		:class => "validate['required','length[4,16]','alphanum'] text-input" -%></div>
+		
+	<div class="form_row">姓氏：<br><%= f.text_field :first_name, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+		:class => "validate['required','length[1,-1]','nodigit'] text-input" -%></div>
+		
+	<div class="form_row">名字：<br><%= f.text_field :last_name, 
+		:size => User::LAST_NAME_SIZE, :maxlength => User::LAST_NAME_MAX_LENGTH, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH, 
+		:class => "validate['required','length[1,-1]','nodigit'] text-input" -%></div>
+		
+	<div class="form_row">電子郵件：<em>(這是你用來登入的帳號)</em><br><%= f.text_field :email, 
+		:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH, 
+		:class => "validate['required','email'] text-input" -%></div>
+		
+	<% if @user.yahoo_userhash == nil %>
+	
+	<div class="form_row">密碼：<em>(最少須包含6位數，數字加字母的組合更好)</em><br><%= f.password_field :password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH, 
+		:class => "validate['required','length[6,-1]','alphanum'] text-input" -%></div>
+		
+	<div class="form_row">確認密碼:<br><%= f.password_field :password_confirmation, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH, 
+		:class => "validate['confirm[password]'] text-input" -%></div>
+	
+	<% else %>
+		<%= f.hidden_field :yahoo_userhash %>
+	<% end %>
+		
+	<div class="form_row">安全驗證：<em>(輸入以下所有字，並以空格來分隔)</em><br>
+		<script type="text/javascript">
+							var RecaptchaOptions = {
+								theme : 'clean',
+								tabindex : 0
+							};
+		</script>
+		<%= recaptcha_tags %></div>
+	
+	<div class="form_row">
+		<input type="checkbox" name="check" class="validate['required'] checkbox">
+		我已閱讀，並同意使用條款和隱私權政策。
+	</div>
+	
+	<div class="form_row">
+		按下註冊按鈕表示您已經成年並且同意遵守 <%= app_name %> 的使用條款和隱私權政策
+	</div>
+		
+	<div class="row button" style="padding-bottom: 10px; border-bottom: 1px solid #ccc;">
+		<%= submit_tag '立即註冊', :class => 'button', :id => 'signup' -%>
+		<div id="progress-bar" style="display:none;">
+			<img src="/images/loadingAnimation.gif" alt="progress bar"> 
+			<div>請稍後...我們正在建立您的帳號</div>
+	  	</div>
+	</div>
+	<div class="form_row">
+		無法註冊？查詢 <%= app_name %> 使用說明
+	</div>
+<% end -%>
+<% end -%>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#signup").click(function()
+    {
+        jQuery("#signup").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

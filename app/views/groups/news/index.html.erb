@@ -1,0 +1,27 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %>的新聞訊息</h3>
+	<div id="news" class="activity_box">
+		<div>顯示最近<%= h(@group.news_items.size) %>篇新聞訊息 <% if manager? -%><span><a href="<%= new_group_news_path(@group) %>" class="view-all">撰寫新聞訊息</a></span> |<% end -%>
+		<%= link_to "返回 #{@group.name}", group_path(@group) %></div>
+    <% unless @group.news_items.empty? %>
+      <ol class="list full">
+    	  <%= render :partial => 'news_item_min', :collection => @news %>
+      </ol>
+    <% else %>
+    	<p>目前沒有任何新的新聞訊息</p>
+	 <%- end -%>
+	 
+    <div class="clear"></div>
+  	 	<%= will_paginate @news %>
+  </div>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

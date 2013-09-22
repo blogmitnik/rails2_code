@@ -1,0 +1,67 @@
+<%- column_div :type => :primary do -%>
+<h3>全域組態設定</h3>
+
+<div>
+	<%= link_to '編輯設定', edit_admin_preference_path(@preferences) %>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">應用程式名稱</div>
+  <div class="prefValue"><%= h @preferences.app_name %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">Email 網域名稱</div>
+  <div class="prefValue"><%=h @preferences.domain %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">伺服器名稱</div>
+  <div class="prefValue"><%=h @preferences.server_name %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">Smtp 伺服器</div>
+  <div class="prefValue"><%=h @preferences.smtp_server %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">Email 寄信功能</div>
+  <div class="prefValue"><%=h @preferences.email_notifications %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">Email 註冊認證</div>
+  <div class="prefValue"><%=h @preferences.email_verifications %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">顯示測試網站</div>
+  <div class="prefValue"><%=h @preferences.demo %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">使用新版Facebook Graph API</div>
+  <div class="prefValue"><%=h @preferences.graph_api %></div>
+</div>
+
+<div class="prefItem">
+  <div class="prefLabel">白名單功能</div>
+  <div class="prefValue"><%=h @preferences.whitelist %></div>
+</div>
+
+<div class="prefItem">
+  <b>網站敘述 (內容將會產生在 'about' 連結的頁面中)</b>
+  <div class="prefAbout"><%= display @preferences.about %></div>
+</div>
+
+<div class="prefItem">
+  <b>網站分析程式碼 (將會被插入於頁面的 <%= h("</body>") %> 標籤中)</b>
+  <%- unless @preferences.analytics.blank? -%>
+    <div class="prefAbout">
+    	<%=h @preferences.analytics %>
+    </div>
+  <%- end -%>
+</div>
+
+<%- end -%>

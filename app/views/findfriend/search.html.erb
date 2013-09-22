@@ -1,0 +1,14 @@
+<h3>在 Cateplaces 中搜尋朋友</h3>
+
+<% unless is_logged_in? %>
+	<p>搜尋結果僅提供你 Cateplaces 尋找到的預覽結果。</p>
+	<p><%= link_to '註冊 Cateplaces 帳號', signup_url %> 可以聯繫你的朋友並觀看他們的個人檔案。</p>
+<% end %>
+
+<%= render :partial => "search_form" %>
+
+<% if @invalid %>
+	<p>請使用合法的輸入資料來搜尋</p>
+<% end %>
+<%= render :partial => "result_summary" %>
+<%= render :partial => "user_table" %>

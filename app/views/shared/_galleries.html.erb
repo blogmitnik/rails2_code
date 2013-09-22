@@ -1,0 +1,19 @@
+<h3><%= @parent.name %>的相簿</h3>
+<% if params[:controller] == "users" or !params[:user_id].nil?  %>
+  <% if logged_in_user?(@parent) %>
+    <%= link_to "建立新的相簿", new_user_gallery_path(@parent) %> |
+  <% end %>
+  <%= link_to "返回 #{@parent.name} 的個人檔案", profile_path(@parent) %>
+<% elsif params[:controller] == "groups" or !params[:group_id].nil? %>
+  <% if @parent.can_participate?(logged_in_user) %>
+    <%= link_to "建立新的相簿", new_group_gallery_path(@parent) %> |
+  <% end %>
+  <%= link_to "返回群組 #{@parent.name}", group_path(@parent) %>
+<% end %>
+
+<ul id="gallery_list" class="grid">
+	<%= render :partial => "shared/gallery", :collection => galleries %>
+</ul>
+<div class="clear"></div>
+  <%= will_paginate(galleries) %>
+<div class="clear"></div>

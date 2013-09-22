@@ -1,0 +1,16 @@
+<p>嗨，<%= @friend.f %></p>
+
+<p>在 Cateplaces 有一位使用者 <%= @user.f %> 希望成為你的好友，</p>
+
+<p>你可以連結至以下的網址瀏覽 <%= @user.f %> 的個人檔案：<br>
+<%= link_to @user_url, @user_url %></p>
+
+<p>你可以接受他的好友請求：<br><%= link_to @accept_url, @accept_url %></p>
+<p>或是取消他的好友請求：<br><%= link_to @decline_url, @decline_url %></p>
+
+<p>謝謝，<br>
+Cateplaces 團隊</p>
+
+<p>___
+<br>想要掌握從 Cateplaces 收到什麼類型的電子郵件？請前往：<br>
+http://railscode.mine.nu/users/<%= @friend.to_param %>/edit</p>

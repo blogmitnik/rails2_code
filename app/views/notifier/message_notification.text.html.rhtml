@@ -1,0 +1,12 @@
+<p><%= @message.sender.f %> 傳送一則訊息給你：</p>
+
+<p>"<%= @message.content %>"</p>
+
+<p>欲閱讀或回覆此訊息，請按下面的連結：<br>
+http://<%= @domain %>/messages/<%= @message.to_param %></p>
+
+<p>謝謝，<br>
+Cateplaces 團隊</p>
+
+<p>___
+<br><%= @preferences_note %></p>

@@ -1,0 +1,152 @@
+<% can_send = !@user.blank? %>
+
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<% column_div :type => :primary do -%>
+<div class="profile vcard">
+
+<h3>個人檔案</h3>
+
+<%- if admin? && !@user.active? -%>
+  <div class="error">這個使用者帳號尚未啟用</div>
+<%- end -%>
+
+<%- if logged_in_user?(@user) && logged_in_user.description.blank? -%>
+  <div class="error">
+     你的個人簡介目前是空白的。
+    <%= link_to "編輯個人簡介", edit_user_path(@user) %>
+  </div>
+<%- end -%>
+
+<div id="send-message-error" style="display:none;margin-bottom:10px">
+	你無法發送一項空白的訊息，請填寫訊息主旨和內容。
+	<small><a href='#' onclick="$$('div#send-message-error')[0].hide();return false">關閉</a></small>
+</div>
+
+<div class="toolbox">
+<%= image_tag @user.main_photo, :class => "profile-image photo",
+                                :alt => h(@user.f) %>
+<ul class="tools">
+<% if logged_in_user?(@user) and @user.photo.nil? %>
+	<li>
+		<%= link_to image_tag('upload.gif'), upload_avatar_path %>
+		<%= link_to '上傳個人檔案相片', upload_avatar_path %>
+	</li>
+<% end %>
+
+<% if logged_in_user?(@user) %>
+	<li>
+		<%= link_to image_tag('icons/edit_profile.gif'), edit_user_path(@user) %>
+		<%= link_to '編輯我的帳號設定', edit_user_path(@user) %>
+	</li>
+<% end %>
+
+<%= render :partial => 'friend_status' %>
+
+<%- unless @user.photos.empty? -%>
+	<li>
+		<%= link_to "查看 #{@user.name} 的相片 (#{@user.photos.count})", user_galleries_path(@user) %>
+	</li>
+<% end %>
+
+<% if can_send -%>
+	<div id="new_direct_message" class="hidden">
+	  <%= render :partial => 'messages/form', :locals => {:hide_header => true} %>
+	</div>
+<% end -%>
+
+<% if is_me?(@user) %>
+	<li><%= inline_tb_link "寫私人訊息給我的朋友", "new_direct_message", {:title => "撰寫訊息"}, {:height => 380} %></li>
+<% else %>
+	<li><%= inline_tb_link "寫訊息給 #{h @user.name}", "new_direct_message", {:title => "寫訊息給 #{h @user.name}"}, {:height => 380} %></li>
+<% end %>
+
+<% if logged_in_user.has_wall_with(@user) -%>
+	<li><%= link_to "我和 #{h @user.short_name} 的雙向留言板", user_wall_comments_path(@user) -%></li>
+<% end -%>
+
+<% if admin? -%>
+	<%= render :partial => "profile/account_option" %>
+<% end %>
+</ul>
+
+</div>
+	<%= link_to "#{profile_url}", profile_url(@user) %>
+	<%= display @user.description %>
+</div>
+
+<%= render :partial => 'recent_activity' %>
+<%= render :partial => 'profile/wall', :locals => {:with_form => true} %>
+<%= will_paginate @wall_comments %>
+
+<%= render :partial => 'posts/list' %>
+<%= render :partial => 'user_photos/gallery', :locals => {:mini => true} %>
+
+<h3>相片標籤</h3>
+<%- unless @tags.empty? -%>
+	<% tag_cloud @tags, %w(tag1 tag2 tag3 tag4 tag5) do |name, css_class| %>
+		<%= link_to name, tag_path(name), :class => css_class %>
+	<% end %>
+<%- else -%>
+	目前沒有任何相片標籤
+<%- end -%>
+
+<%- if @video -%>
+<h3>最近上傳的 Youtube 影片</h3>
+<ul id="photos">
+	<%= @video.embed_html %>
+</ul>
+<%- end -%>
+
+<% if @flickr_feed %>
+<h3>最近上傳的 Flickr 相片</h3>
+	<ul id="photos">
+	<% @flickr.each do |flickr|%>
+		<li>
+			<a href="http://www.flickr.com/photos/<%= flickr.owner_id %>/<%= flickr.id %>" target="_blank">
+		   <%= image_tag flickr.url('t'), :alt => 'FlickrHolder', :class => 'flickr_image' %>
+		   </a>
+		</li>
+	<% end %>
+	</ul>
+	
+	<p>
+		<%= link_to "其他 Flickr 照片", "http://flickr.com/photos/#{@user.flickr_id}" %>
+	</p>
+<% end %>
+
+<h3>個人資料</h3>
+<%= render :partial => "contact/info_show" %>
+<%= render :partial => "contact/contact_show" %>
+<%= render :partial => "contact/academic_show" %>
+<%= render :partial => "spec/spec_show" %>
+
+<% end -%>
+
+<%- column_div :type => :secondary do -%>
+  <% if @blog_rss -%>
+	 <div id="remote-blog">
+		<%= render :partial => 'remote_blog', :object => @blog_rss %>
+	 </div>
+  <% end -%>
+  <%= render :partial => 'shared/minifeed' %>
+  <!-- If a facebook user, then show info about their friends -->
+  <%- if is_me?(@user) and facebook_user -%>
+    <%= render :partial => '/shared/fbfriends' %>
+  <%- end -%>
+  <%= render :partial => 'shared/friends_preview',
+             :locals => { :user => @user } %>
+  
+  <%- unless logged_in_user?(@user) -%>
+    <%= render :partial => 'common_friends' %>
+  <%- end -%>
+  
+  <%= render :partial => 'groups', 
+             :locals => {:groups => @own_groups, :title => "管理的群組", :link => "admin"} %>
+  <%= render :partial => 'groups', 
+             :locals => {:groups => @groups, :title => "參與的群組", :link => "groups"} %>
+  <%= render :partial => 'profile/notes_history', :locals => {:profile => true} %>
+  
+  <%= render :partial => 'shared_entry', :locals => {:profile => true} %>
+  <%= render :partial => 'google_docs', :locals => {:profile => true} %>
+<%- end -%>

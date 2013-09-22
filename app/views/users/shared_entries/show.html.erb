@@ -1,0 +1,5 @@
+<h3 class='google_doc_title'>
+    <%= @entry.title %>
+    <%= ('<span class="link-button" style="vertical-align:middle;letter-spacing:0;font-weight:normal;">' + link_to('編輯內容', edit_user_shared_entry_path(@user, @shared_entry)) + '</span>') if @can_edit == true %>
+</h3>
+<%= @html %>

@@ -1,0 +1,576 @@
+body { 
+  margin: 0;	
+  padding: 0;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+  background: #fff url(/images/scenery.jpg);
+  height: 100px;
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: left;
+  padding-top: 1px;
+}
+
+#container {
+  width: 780px;
+  margin: 0 auto;
+  padding: 0px;
+  background: #fff;
+}
+
+#sidemenu {
+  background: #fff;
+  font-size: 80%;
+  float: left;
+  width: 110px;
+  padding: 0;
+  margin-left: 5px;
+}
+
+#sidemenu ul {
+  list-style: none; 
+  padding: 0;
+}
+
+a { font: normal  "Arial", sans-serif; text-decoration: none; color: #b00; }
+a:hover { text-decoration: underline; }
+
+#content { float: right; width: 660px;  background: #fff;  margin-right: 5px; }
+
+#content h2 {
+  color: #222;
+  padding: 2px 0;
+}
+
+#content h3 {
+background: url(/images/yellow-grad.jpg) 30px 10px repeat-x;
+border-bottom: 1px solid #ccc;
+color: #333;
+clear: both;
+font-family: Georgia, "Times New Roman", Times, serif;
+font-size: 22px;
+font-weight: normal;
+line-height: 1.4em;
+margin-top: 24px;
+padding-left: 6px;
+}
+
+/* Styles for when the site is (nearly) blank, as for new users. */
+
+#content h3.blankslate {
+  text-align: center;
+}
+
+#h4 {
+  text-decoration: none;
+  color: #b00;
+}
+
+#h4 a, a.visited, a:hover {
+  text-decoration: underline;
+  color: #fcc;
+}
+
+.row input.checkbox	{width: auto; border: none; background: none; padding: 0 0 0 0;}
+
+.row label		{width: 140px; float: left;}
+.row input,
+.row select		{width: 220px; background: #d88; border: none; padding: 3px;}
+.row textarea	{height: 150px; margin-bottom: 10px;}
+input.button	{background: #555; font-size: 12px; color: #fff; width: auto; height: auto; padding: 5px;}
+input.button:hover	{background: #a35; }
+div.button		{background: #fff; border-top: 1px dotted #666; padding: 10px; height: 25px; margin-top: 5px;}
+div.hidden		{background: #fff; border-top: 1px dotted #666; margin-bottom: 5px;}
+
+/* Pagination Styling */
+.pagination {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-SIZE: 80%; PADDING-BOTTOM: 3px; MARGIN-TOP: 3px; MARGIN-BUTTOM: 3px; COLOR: #ff6500; PADDING-TOP: 3px; TEXT-ALIGN: left
+}
+.pagination a {
+	BORDER-RIGHT: #ff9600 1px solid; PADDING-RIGHT: 7px; BACKGROUND-POSITION: 50% bottom; BORDER-TOP: #ff9600 1px solid; PADDING-LEFT: 7px; BACKGROUND-IMAGE: url(/images/meneame.jpg); PADDING-BOTTOM: 5px; BORDER-LEFT: #ff9600 1px solid; COLOR: #ff6500; MARGIN-RIGHT: 3px; PADDING-TOP: 5px; BORDER-BOTTOM: #ff9600 1px solid; TEXT-DECORATION: none
+}
+.pagination a:hover {
+	BORDER-RIGHT: #ff9600 1px solid; BORDER-TOP: #ff9600 1px solid; BACKGROUND-IMAGE: none; BORDER-LEFT: #ff9600 1px solid; COLOR: #ff6500; BORDER-BOTTOM: #ff9600 1px solid; BACKGROUND-COLOR: #ffc794
+}
+.pagination a:active {
+	BORDER-RIGHT: #ff9600 1px solid; BORDER-TOP: #ff9600 1px solid; BACKGROUND-IMAGE: none; BORDER-LEFT: #ff9600 1px solid; COLOR: #ff6500; BORDER-BOTTOM: #ff9600 1px solid; BACKGROUND-COLOR: #ffc794
+}
+.pagination span.current {
+	BORDER-RIGHT: #ff6500 1px solid; PADDING-RIGHT: 7px; BORDER-TOP: #ff6500 1px solid; PADDING-LEFT: 7px; FONT-WEIGHT: bold; PADDING-BOTTOM: 5px; BORDER-LEFT: #ff6500 1px solid; COLOR: #ff6500; MARGIN-RIGHT: 3px; PADDING-TOP: 5px; BORDER-BOTTOM: #ff6500 1px solid; BACKGROUND-COLOR: #ffbe94
+}
+.pagination span.disabled {
+	BORDER-RIGHT: #ffe3c6 1px solid; PADDING-RIGHT: 7px; BORDER-TOP: #ffe3c6 1px solid; PADDING-LEFT: 7px; PADDING-BOTTOM: 5px; BORDER-LEFT: #ffe3c6 1px solid; COLOR: #ffe3c6; MARGIN-RIGHT: 3px; PADDING-TOP: 5px; BORDER-BOTTOM: #ffe3c6 1px solid
+}
+
+/* Profile Item Styling */
+#profile_item { 
+  font-size: 14px;
+  color: #333;
+  padding: 5px 5px 5px 5px;
+  margin-bottom: 10px;
+  background-color: #ffffcc; 
+  width: 200px;
+}
+
+/* Comment Div Styling */
+#comment { 
+  font-size: 14px;
+  margin-bottom: 5px;
+  padding: 0 0 0 5px;
+  border-bottom: 1px dotted #666;
+}
+
+/* Avatar Div Styling*/
+#avatar_edit { 
+  font-size: 14px;
+  padding: 10px 0 10px 10px;
+  background-color: #ffffcc; 
+  width: 210px;
+}
+
+#avatar_show { 
+  margin-bottom: 1em; 
+  padding: 10px 0 10px 0;
+  background-color: #fff; 
+}
+
+/* user profile textfield styling */
+#profile_show { 
+  color: #333; 
+  border: 1px solid #a35;
+  padding: 0.5em; 
+  margin-bottom: 1em; 
+  background-color: #fff; 
+  font-size: 14px;
+}
+
+#profile_edit { 
+  border: 1px solid #a35; 
+  padding: 0.5em; 
+  margin-bottom: 1em; 
+  background-color: #fff3f5; 
+  color: #333; 
+  font-size: 14px;
+}
+
+/* User Data */
+#user_data { 
+  border: 1px solid #a35; 
+  padding: 0.5em; 
+  margin-bottom: 1em; 
+  background-color: #fff3f5; 
+  color: #333; 
+  font-size: 14px;
+}
+
+#data_title { 
+  color: #111; 
+  font-size: 14px;
+  float :right;
+}
+
+#tag_cloud { 
+  border: 1px solid #ffa337; 
+  padding: 1em; 
+  margin: 1em; 
+  margin-bottom: 2em; 
+  background-color: #ffffcc; 
+}
+
+/* Textfield Styling */
+#openid_url { 
+  border: 1px solid #c88; 
+  background-color: #fff;
+  background-image: url(/images/login-bg.gif);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding: 5px 0 5px 20px;
+  font-size: 14px;
+}
+
+#openid_url_big { 
+  border: 1px solid #c88; 
+  background-color: #fff;
+  background-image: url(/images/bg-openid.jpg);
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  padding: 10px 0 10px 50px;
+  font-size: 18px;
+}
+
+th { background-color: #555; color: #fff; }
+tr.odd { background-color: #fff4d6; }
+tr.even { background-color: #fff; }
+
+/* User table styling */
+table#users { width: 100%;}
+table#users th { font-size: 95%; }
+table#users td { font-size: 90%; }
+
+/* Forum styling */
+table#forums { width: 100%; background-color: #fff; border: 1px solid #555; }
+table#forums td.name  { width: 60% }
+table#forums td.topic { width: 20%; text-align: center; }
+
+table#topics { width: 100%; background-color: #fff; border: 1px solid #555; }
+table#topics td.name   { width: 60% }
+table#topics td.reply  { width: 20%; text-align: center; }
+table#topics td.author { width: 20%; text-align: center; }
+
+table#posts { width: 100%; background-color: #fff; border: 1px solid #555; }
+table#posts td.author { width: 20%; vertical-align: top; }
+table#posts td.body   { width: 80% }
+
+.forumname { font-size: 1.1em; }
+.forumdescription { font-size: 0.7em; padding-top: 0.4em; }
+
+/* Photo gallery styling */
+#photos ul { list-style: none; }
+#photos li { display: inline; }
+
+#photos li a img {
+  margin: 10px;
+  background: #d88;
+}
+
+#photo {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+
+#photo_describe { 
+  color: #333; 
+}
+
+/* Tags Styling */
+#tag { 
+  padding: 1em; 
+  margin: 1em; 
+  margin-bottom: 1em; 
+  background-color: #ffffcc; 
+}
+
+/* XFN Styling */
+a.xfnRelationship {
+	padding-right :26px;
+	background: url(/images/xfn-set/xfn-me.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="colleague"], 
+a.xfnRelationship[rel~="coworker"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-colleague.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="colleague"][rel~="met"], 
+a.xfnRelationship[rel~="coworker"][rel~="met"] {
+	padding-right :26px;
+	background: url(/images/xfn-set/xfn-colleague-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="friend"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-friend.png) no-repeat right;
+}
+ 
+a.xfnRelationship[rel~="friend"][rel~="met"] {
+	padding-right :26px;
+	background: url(/images/xfn-set/xfn-friend-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="sweetheart"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-sweetheart.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="sweetheart"][rel~="met"] {
+	padding-right :26px;
+	background: url(/images/xfn-set/xfn-sweetheart-met.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="child"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-child.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="parent"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-parent.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="spouse"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-spouse.png) no-repeat right;
+}
+
+a.xfnRelationship[rel~="me"] {
+	padding-right :21px;
+	background: url(/images/xfn-set/xfn-me.png) no-repeat right;
+}
+
+/* Tag cloud styling */
+.tag1 { font-size: 100%; color: #ca5; }
+.tag2 { font-size: 120%; color: #c68; }
+.tag3 { font-size: 140%; color: #1cb; }
+.tag4 { font-size: 160%; color: #d36; }
+.tag5 { font-size: 180%; color: #f32; }
+.tag6 { font-size: 200%; color: #c02; }
+
+/* Form Styles */ 
+fieldset { 
+  background: #fff;
+  margin-bottom: 1em;
+} 
+
+legend { 
+  color: white; 
+  background: #555; 
+  padding: .4em 1em; 
+} 
+
+label { 
+  width: 10em; 
+  float: left; 
+  text-align: right; 
+  margin-right: 0.2em; 
+  display: block; 
+} 
+
+.form_row { 
+  padding: .5em; 
+} 
+
+.form_row.full input {
+  width: 375px;
+}
+
+.submit { 
+  margin-top: 1em; 
+} 
+
+/* Debug Style */ 
+#debug {
+  background: #fff;
+  margin-top: 0em;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#debug a, #debug a.visited {
+  text-decoration: none;
+  color: #b00;
+}
+#debug a:hover {
+  text-decoration: underline;
+  color: #b00;
+}
+fieldset.debug_info {
+  text-align: left; 
+  margin: 1em; 
+  background: #fcc;
+}
+
+/* Error Reporting Styles */ 
+.fieldWithErrors { 
+  border: 0px solid #b00; 
+  background-color: #b00;
+  display: table;
+} 
+
+#errorExplanation { 
+  border: 1px solid #ffcc66; 
+  padding: 7px; 
+  padding-bottom: 5px; 
+  margin-bottom: 20px; 
+  background-color: #ffffcc; 
+} 
+
+#errorExplanation h2 { 
+  text-align: left; 
+  font-weight: bold; 
+  padding: 15px 5px 5px 15px; 
+  font-size: 12pt; 
+  margin: -7px; 
+  color: #7d5f2f; 
+} 
+
+#errorExplanation h3 { 
+  text-align: left; 
+  font-size: 10pt; 
+  padding: 5px 5px 0 5px; 
+  color: #7d5f2f; 
+} 
+
+#errorExplanation p { 
+  color: #7d5f2f; 
+  margin-bottom: 0; 
+  margin-left: 10px;
+} 
+
+#errorExplanation ul li { 
+  color: #7d5f2f; 
+  font-size: 11pt; 
+  list-style: square; 
+} 
+
+/* Flash Notice Style */ 
+#notice { 
+  border: 1px solid #ffa337; 
+  padding: 1em; 
+  margin: 1em; 
+  margin-bottom: 2em; 
+  background-color: #ffffcc; 
+  font: bold smaller sans-serif; 
+}
+
+/* Flash Error Style */ 
+#error { 
+  border: 1px solid #a35; 
+  padding: 1em; 
+  margin: 1em; 
+  margin-bottom: 2em; 
+  background-color: #fcc; 
+  font: bold smaller sans-serif; 
+}
+
+/* Flash Success Style */ 
+#success { 
+  border: 1px solid #e6efc2; 
+  padding: 1em; 
+  margin: 1em; 
+  margin-bottom: 2em; 
+  background-color: #c6d880; 
+  font: bold smaller sans-serif; 
+}
+
+/* FriendSearch Styles */
+
+.letter, .letter_current {
+  width: 1em;
+  text-align: center;
+  border: 1px solid gray; 
+  background: #fff; 
+  padding: 5px 2px 1px 2px; 
+  float: left; 
+  margin: 2px
+}
+
+.letter:hover {
+  background: #666;
+}
+
+.letter_current {
+  background: #666;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+/* Messages */
+
+#message-nav {
+  background: url(/images/silver-grad.jpg) bottom repeat-x;
+  border-bottom: 1px solid #ccc;
+  float: left;
+  height: 24px;
+  margin-top: -24px;
+  position: relative;
+  width: 94%;
+}
+#message-nav li {
+  background: none;
+  float: left;
+  font-size: 12px;
+  line-height: 24px;
+  list-style-type: none;
+  margin: 0;
+  text-align: center;
+  padding: 0;
+  width: 78px;
+}
+#message-nav li.active a, #message-nav li a:hover {
+  background: url(/images/silver-grad-inv.jpg) bottom repeat-x;
+}
+#message-nav li.compose {
+  background: url(/images/compose-t.png) top no-repeat;
+  float: right;
+  line-height: 10px;
+  margin: 3px 3px 0;
+  width: 154px;
+}
+#message-nav li.compose a, #message-nav li.compose a:hover {
+  background: url(/images/compose-b.png) bottom no-repeat;
+  color: #fff;
+  margin-top: 4px;
+  padding-bottom: 4px;
+}
+#message-nav li a {
+  color: #333;
+  display: block;
+  font-weight: normal;
+  height: 100%;
+}
+.message .tools {
+  margin-right: 6px;
+  text-align: right;
+}
+
+/* Site elements */
+
+/* List */
+.list {
+  margin-right: 6px;
+}
+.list li {
+  border-bottom: 1px solid #eee;
+  background: none;
+  clear: both;
+  display: inline;
+  float: left;
+  list-style: none;
+  margin: 0 0 12px 6px;
+  padding: 0 0 6px 0;
+  width: 100%;
+}
+.list .profile-image {
+  clear: left;
+  float: left;
+  display: inline;
+}
+.list.full .profile-image {
+  float: left;
+  width: 72px;
+  overflow: hidden;
+  position: relative;
+  width: 102px;
+}
+.list.small .profile-image {
+  position: relative;
+  width: 60px;
+}
+.list.small li {
+  display: block;
+}
+.list p {
+  margin-bottom: 0;
+  margin-left: 102px;
+}
+.list .forum p {
+  margin-bottom: 1em;
+  
+}
+.list.small p {
+  font-size: 12px;
+  margin-left: 60px;
+}
+.list.full .profile-image img {
+  border: 1px solid #fff;
+}
+.list .profile-image img.icon {
+  position: absolute;
+  right: 3px;
+  top: 0;
+}

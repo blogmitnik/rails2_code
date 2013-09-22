@@ -1,0 +1,45 @@
+<h2>編輯學歷和工作經驗</h2>
+
+<p><%= link_to '顯示學歷和工作經驗', academic_path(@user) -%></p>
+
+<%= error_messages_for :academic -%>
+
+<div id="profile_edit">
+
+<div>學歷和工作經驗</div>
+<div id="profile_show">
+<% form_for :academic, :url => academic_url(@academic), :html => { :method => :put } do |f| -%>
+	<div class="form_row">大專院校：<br><%= f.text_field :school, :size => Academic::SCHOOL_SIZE, 
+		:maxlength => Academic::SCHOOL_MAX_LENGTH -%> 
+		<%= f.select :school_year, Academic::SCHOOL_YEAR_SELECT, :prompt => "畢業年份：" -%><br>
+		<%= f.select :dept, Academic::DEPT_SELECT, :prompt => "選擇學院部：" -%></div>
+	
+	<div class="form_row">目前主修：<br><%= f.text_field :major, :size => Academic::COMMON_SIZE, 
+		:maxlength => Academic::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">高中職 / 五專：<br><%= f.text_field :high_school, :size => Academic::SCHOOL_SIZE, 
+		:maxlength => Academic::SCHOOL_MAX_LENGTH -%> 
+		<%= f.select :high_school_year, Academic::SCHOOL_YEAR_SELECT, :prompt => "畢業年份：" -%></div>
+		
+	<div class="form_row">雇主：<br><%= f.text_field :employer, :size => Academic::COMMON_SIZE, 
+		:maxlength => Academic::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">職位：<br><%= f.text_field :position, :size => Academic::COMMON_SIZE, 
+		:maxlength => Academic::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">工作簡述：<br><%= f.text_area :brief, :rows => Academic::BRIEF_ROWS, 
+		:cols => Academic::BRIEF_COLS -%></div>
+		
+	<div class="form_row">城市 / 鄉鎮：<br><%= f.text_field :country, :size => Academic::COMMON_SIZE, 
+		:maxlength => Academic::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">任職：<%= f.check_box :is_working %>我目前在這裡工作。</div>
+
+	<%= hidden_field_tag "attribute", "學歷和工作經驗", :id => nil -%>
+		<div class="row button">
+			<%= submit_tag '儲存變更', :class => 'button' -%>
+		</div>
+<% end -%>
+</div>
+
+</div>

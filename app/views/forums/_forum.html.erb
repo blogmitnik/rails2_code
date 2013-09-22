@@ -1,0 +1,22 @@
+<li class="forum">
+  <a name="forum_<%= forum.id %>"></a>
+  <div class="forum_body">
+  	 <%- n = forum.topics.count -%>
+    <%= link_to h(forum.name), forum_path(forum) %>
+    <span class="meta">（共有<%= n %>個討論主題）</span>
+      <%- if moderator? -%>
+        <%= link_to image_tag("icons/note_edit.png", :class => 'actioner'),  
+          edit_forum_path(forum),
+          :title => '編輯討論區內容' %>
+      <%= link_to image_tag("icons/note_delete.png", :class => 'actioner'), 
+               forum_path(forum), 
+               :method => :delete,
+               :confirm => "你確定要刪除這個討論區嗎？",
+          :title => "刪除這個討論區" %>
+      <%- end -%>
+  </div>
+  <div class="forum_description">
+	 <%= forum.description %>
+  </div>
+  <div class="clear"></div>
+</li>

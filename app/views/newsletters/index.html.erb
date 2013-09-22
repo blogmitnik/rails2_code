@@ -1,0 +1,32 @@
+<h3>已發送的即時訊息</h3>
+
+<p>
+	<%= link_to '建立新的即時訊息', new_newsletter_path %>
+</p>
+
+<table>
+	<tr>
+		<th>訊息標題</th>
+		<th>發送狀態</th>
+		<th>建立時間</th>
+		<th>更新時間</th>
+		<th>操作選項</th>
+	</tr>
+	
+	<% for newsletter in @newsletters %>
+		<tr>
+			<td><%=h newsletter.subject %></td>
+			<td><%= yes_no(newsletter.sent) %></td>
+			<td><%=h newsletter.created_at.to_s(:short) %></td>
+			<td><%=h newsletter.updated_at.to_s(:short) %></td>
+			<% if !newsletter.sent %>
+			<td>
+				<%= link_to '顯示', newsletter_path(newsletter) %>/
+				<%= link_to '編輯', edit_newsletter_path(newsletter) %>/
+				<%= link_to '刪除', newsletter_path(newsletter), 
+					:confirm => '你確定要刪除這筆訊息嗎?', :method => :delete %>
+			</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

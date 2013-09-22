@@ -1,0 +1,22 @@
+<h2>所有圖片</h2>
+
+<% if @photo_pages.page_count > 1 %>
+<p class="pagination">
+	<% if @photo_pages.current.previous %>
+	<%= link_to '&laquo; 上一頁', :page => @photo_pages.current.previous %>
+	<% end %>
+	
+	<% if @photo_pages.current.next %>
+	<%= link_to '下一頁 &raquo;', :page => @photo_pages.current.next %>
+	<% end %>
+</p>
+<% end %>
+
+<ul id="photos">
+	<% @photos.each do |photo| -%>
+	<li id="photo-<%= photo.id %>">
+		<%= link_to image_tag(photo.public_filename('tiny')), 
+					mobile_user_photo_path(:user_id => photo.user, :id => photo) %>
+	</li>
+	<% end %>
+</ul>

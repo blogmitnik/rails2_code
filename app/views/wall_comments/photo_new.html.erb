@@ -1,0 +1,15 @@
+<% @title = "圖片評論" %>
+
+<h3>圖片評論</h3>
+
+<%= error_messages_for :wall_comment %>
+
+<% form_for :wall_comment, :url => user_photo_wall_comments_path(@user, @photo) do |f| %>
+  <div class="form_row">
+        <%= f.text_area :body, :rows => 5, :cols => 40 %>
+      </div>
+  
+      <div class="form_row">
+        <%= submit_tag "送出回覆", :class => "button" %>
+      </div>
+<% end %>

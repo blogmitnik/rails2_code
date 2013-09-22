@@ -1,0 +1,20 @@
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<% column_div :type => :primary do -%>
+
+<h3>編輯文章內容</h3>
+
+<%= error_messages_for :entry %>
+
+<% form_for(:entry, :url => entry_path(:user_id => logged_in_user.id, :id => @entry), 
+					:html => { :method => :put }) do |form| %>
+	<%= render :partial => "form", :locals => { :form => form } %>
+	<div class="row button">
+		<%= submit_tag "儲存內容", :class => 'button' %> 或 
+		<%= link_to '返回', user_entries_path %>
+	</div>
+<% end %>
+
+<% end -%>

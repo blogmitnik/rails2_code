@@ -1,0 +1,19 @@
+<% content_for :head do %>
+	<%= GMap.header %>
+<% end %>
+
+<% column_div :type => :primary do -%>
+
+<h3>分享美食評論</h3>
+
+<%= error_messages_for :entry %>
+
+<% form_for(:entry, :url => entries_path) do |form| %>
+	<%= render :partial => "form", :locals => { :form => form } %>
+	<div class="row button">
+		<%= submit_tag "發佈文章", :class => 'button' %> 或 
+		<%= link_to '返回文章', user_entries_path(:user_id => logged_in_user) %>
+	</div>
+<% end %>
+
+<% end -%>

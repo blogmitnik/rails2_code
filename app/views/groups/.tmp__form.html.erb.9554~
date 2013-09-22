@@ -1,0 +1,38 @@
+<% remote_form_for(:wall_comment, :url => group_wall_comments_path(@group.id),
+						 :html => {:id => "submit-comment-form", :title => "留言..."},
+	  					 :method => :post, :complete => "Field.clear('comment-body')") do |f| %>
+
+	<div id="send-error" class="hidden">你無法發送一項空白的留言，且字數不可超過500個字。</div>
+	
+	<div id="progress-bar" style="display:none;" align="center">
+		<img src="/images/indicator_blue_large.gif" alt="progress bar">
+		<div><small>正在送出你的留言...請稍後</small></div>
+	</div>
+  
+	<div class="form_row">
+		<%= f.text_area :body, :value => '留言...', :id => 'comment-body', 
+							 :rows => WallComment::BODY_ROWS, :cols => WallComment::BODY_COLS %>
+	</div>
+	
+	<div id="submit-comment" class="row button">
+		<%= submit_tag "新增留言", :class => "button" %>
+	</div>
+<% end %>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function() {
+
+	jQuery('#comment-body').val("留言...");
+	jQuery('#comment-body').click(function(){
+	  jQuery('#comment-body').val("");
+	});
+	
+	jQuery("#submit-comment-form").submit(function() {
+	  jQuery("#comment-body").hide();
+	  jQuery("#submit-comment").hide();
+	  jQuery("#send-error").hide();
+	  jQuery("#progress-bar").show();
+  });
+  
+});
+</script>

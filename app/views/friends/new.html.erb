@@ -1,0 +1,15 @@
+<h2>新增好友</h2>
+
+<%= error_messages_for :friendship %>
+
+<% form_for(:friendship, :url => user_friends_path(:user_id => @logged_in_user, 
+			:friend_id => @friend), 
+			:html => { :multipart => true }) do |f| %>
+<%= render :partial => 'select_friendship', :locals => {:f => f} -%>
+
+<%= f.hidden_field :friend_id %>
+<p>
+	<%= submit_tag '儲存' %> or <%= link_to '取消', user_path(@friend) %>
+</p>
+
+<% end %>

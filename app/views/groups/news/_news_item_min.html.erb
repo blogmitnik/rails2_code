@@ -1,0 +1,22 @@
+<li class="group-news-item-min">
+	<div class="profile-image">
+		<%= link_to icon_tag(news_item_min, :medium), group_news_path(@group, news_item_min) %>
+	</div>
+	<div>
+		<%= link_to "#{sanitize textilize(news_item_min.title)}", group_news_path(@group, news_item_min) %>
+		<p>
+			<%= summarize(news_item_min.body, 300) %>
+			<%= link_to "繼續閱讀", group_news_path(@group, news_item_min) %>
+		</p>
+		<p class="meta">由 <%= link_to "#{news_item_min.creator.short_name}", profile_path(news_item_min.creator) %> 
+			張貼於 <%= time_ago_in_words news_item_min.created_at %> 前
+			<% if manager? -%>
+				<%= link_to "編輯", edit_group_news_path(@group, news_item_min) -%> |
+				<%= link_to "刪除", group_news_path(@group, news_item_min), :method => :delete -%>
+			<%- end -%>
+			<% if news_item_min.wall_comments.count > 0 %>
+			| <%= link_to "#{news_item_min.wall_comments.count} 則回應", group_news_path(@group, news_item_min) %>
+			<% end %>
+		</p>
+	</div>
+</li>

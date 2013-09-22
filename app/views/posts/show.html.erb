@@ -1,0 +1,30 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+blog ||= @blog
+post ||= @post
+
+parent ||= @post
+parent = @post || nil
+-%>
+
+<%- column_div :type => :primary do -%>
+	<h3><%= h (@blog.owner.name) %> 的文章</h3>
+	  
+	<% if blog.owner_type == "User" %>
+	  <%= link_to "瀏覽全部文章", blog_path(@blog) %> |
+	  <%= link_to "返回 #{@blog.owner.short_name} 的個人檔案", profile_path(@blog.owner) %>
+	<% elsif blog.owner_type == "Group" %>
+	  <%= link_to "瀏覽全部文章", blog_path(@blog) %> |
+	  <%= link_to "返回 #{@blog.owner.name}", group_path(@blog.owner) %>
+	<% end %>
+	
+	<ul class="list blog">
+	  <%= render :partial => 'posts/blog_post', :object => @post %>
+	</ul>
+	<%= render :partial => 'posts/wall' %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+	<%= render :partial => 'shared/minifeed' %>
+<%- end -%>

@@ -1,0 +1,1 @@
+<fb:login-button v="1" onclick='facebook_button_onclick()'></fb:login-button>

@@ -1,0 +1,16 @@
+<%- column_div :type => :primary do -%>
+	<h3>編輯群組活動內容</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<% custom_form_for @event, :url => group_event_path(@group, @event), :html => { :multipart => true, :class => "box no_top" } do |f| -%>
+		<%= render :partial => 'events/event_form', :locals => {:f => f, :show_photo_upload => true } %>
+	<% end %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

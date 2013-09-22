@@ -1,0 +1,49 @@
+# Logfile created on Wed Apr 01 16:39:15 +0800 2009 by /
+[04/01/09 16:39:15 (6190)] INFO : New Relic RPM Agent Initialized: pid = 6190
+[04/01/09 16:39:15 (6190)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3001.log
+[04/01/09 16:39:15 (6190)] INFO : Runtime environment: Mongrel
+[04/01/09 16:39:15 (6190)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 03:22:28 (22116)] INFO : New Relic RPM Agent Initialized: pid = 22116
+[06/17/10 03:22:28 (22116)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 03:22:28 (22116)] INFO : Runtime environment: Mongrel
+[06/17/10 03:22:28 (22116)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 03:24:56 (22131)] INFO : New Relic RPM Agent Initialized: pid = 22131
+[06/17/10 03:24:56 (22131)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 03:24:56 (22131)] INFO : Runtime environment: Mongrel
+[06/17/10 03:24:56 (22131)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 03:26:18 (22142)] INFO : New Relic RPM Agent Initialized: pid = 22142
+[06/17/10 03:26:18 (22142)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 03:26:18 (22142)] INFO : Runtime environment: Mongrel
+[06/17/10 03:26:18 (22142)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 03:45:53 (22490)] INFO : New Relic RPM Agent Initialized: pid = 22490
+[06/17/10 03:45:53 (22490)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 03:45:53 (22490)] INFO : Runtime environment: Mongrel
+[06/17/10 03:45:53 (22490)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 04:03:40 (22644)] INFO : New Relic RPM Agent Initialized: pid = 22644
+[06/17/10 04:03:40 (22644)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 04:03:40 (22644)] INFO : Runtime environment: Mongrel
+[06/17/10 04:03:40 (22644)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 04:14:22 (22875)] INFO : New Relic RPM Agent Initialized: pid = 22875
+[06/17/10 04:14:22 (22875)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 04:14:22 (22875)] INFO : Runtime environment: Mongrel
+[06/17/10 04:14:22 (22875)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 04:26:30 (22989)] INFO : New Relic RPM Agent Initialized: pid = 22989
+[06/17/10 04:26:30 (22989)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 04:26:30 (22989)] INFO : Runtime environment: Mongrel
+[06/17/10 04:26:30 (22989)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 04:50:55 (23321)] INFO : New Relic RPM Agent Initialized: pid = 23321
+[06/17/10 04:50:55 (23321)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 04:50:55 (23321)] INFO : Runtime environment: Mongrel
+[06/17/10 04:50:55 (23321)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 05:04:12 (23440)] INFO : New Relic RPM Agent Initialized: pid = 23440
+[06/17/10 05:04:12 (23440)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 05:04:12 (23440)] INFO : Runtime environment: Mongrel
+[06/17/10 05:04:12 (23440)] INFO : Transaction tracing is enabled in the agent
+[06/17/10 05:33:19 (23688)] INFO : New Relic RPM Agent Initialized: pid = 23688
+[06/17/10 05:33:19 (23688)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/17/10 05:33:19 (23688)] INFO : Runtime environment: Mongrel
+[06/17/10 05:33:19 (23688)] INFO : Transaction tracing is enabled in the agent
+[06/28/10 00:16:30 (17255)] INFO : New Relic RPM Agent Initialized: pid = 17255
+[06/28/10 00:16:30 (17255)] INFO : Agent Log is found in /home/mitnik/workspace/railscode/log/newrelic_agent.3001.log
+[06/28/10 00:16:30 (17255)] INFO : Runtime environment: Mongrel
+[06/28/10 00:16:30 (17255)] INFO : Transaction tracing is enabled in the agent

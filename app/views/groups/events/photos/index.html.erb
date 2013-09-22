@@ -1,0 +1,25 @@
+<% content_for :head do  -%>
+<%#= auto_discovery_link_tag :rss, formatted_group_event_photos_url(@group, @event, :rss), :title=>"#{@event.title}的活動相片" %>
+<% end -%>
+
+<%- column_div :type => :primary do -%>
+	<h3>來自<%= @event.title %>的相片</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<p><%= link_to "回到#{@event.title}", group_event_path(@group, @event) %>
+	<% if can_participate? && has_attending? %>
+	  | <%= link_to '新增相片', new_group_event_photo_path(@group, @event) %>
+	<% end %></p>
+	<div id="photos">
+  	<h4>近期張貼的活動相片</h4>
+  	<%= render :partial => 'gallery' %>
+  </div>
+	<div class="clear"></div>	
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+	<% if can_participate? && has_attending? -%>
+	  <div class="upload_form">
+	    <%= render :partial => 'form' %>
+	  </div>
+	<% end -%>
+<%- end -%>

@@ -1,0 +1,51 @@
+<%-
+# Locals
+event ||= @event
+photos ||= @photos
+mini ||= false
+
+if mini
+	size ||= 5
+	photos = event.photos.find :all, :limit => size, :order => 'created_at DESC'
+	total = event.photos.count -%>
+
+<h3>最近張貼的相片</h3>
+<%- unless photos.empty? -%>
+  <span class="left">顯示 <%= total > size ? link_to("#{total} 張相片", event_photos_path(event)) + "中的其中 #{photos.size} 張。" : "#{total} 張相片" %></span>
+  <span class="right">
+  <% if can_participate? && has_attending? %>
+    <%= link_to "新增相片", new_event_photo_path(event) %> |
+  <% end %>
+  <%= link_to "顯示全部", event_photos_path(event) if total > 0 %>
+  </span>
+  <div class="clear"></div>
+  
+  <% photos.each do |photo|%>
+  <div class="image left">
+	 <div>
+	   <%= link_to image_tag(photo.public_filename('small')), 
+	          	   event_photo_path(event, photo) %>
+	 </div>
+  </div>
+  <% end %>
+<%- else -%>
+	<p>目前尚無上傳相片。
+	<% if has_attending? %>
+		<%= link_to '新增相片', new_event_photo_path(event) %>。
+	<% end %></p>
+<%- end -%>
+
+<%- else -%>
+
+  <% unless @photos.empty? %>
+    <div id="photo_wall">
+      <%= render :partial => 'photo', :collection => @photos %>
+      <div class="clear"></div>
+    </div>
+    <%= will_paginate @photos, :previous_label => "&laquo 較新的", :next_label => "較舊的 &raquo;" %>
+    <div class="clear"></div>
+  <% else %>
+    <div>目前沒有<%= event.title %>相關之相片.</div>
+  <% end %>
+
+<%- end -%>

@@ -1,0 +1,16 @@
+<% column_div :type => :primary do %>
+  <h3>搜尋結果</h3>
+  <%= will_paginate(@search) %>
+    <%- if @results.empty? -%>
+      <h4>找不到任何符合的資料</h4>
+    <%- else -%>
+      <ul class="list people">
+        <%= render :partial => partial(@results), :collection => @results %>
+      </ul>
+    <%- end -%>
+  <%= will_paginate(@search) %>
+<%- end -%>
+
+<% column_div :type => :secondary do %>
+  <%= render :partial => 'searches/box' %>
+<%- end -%>

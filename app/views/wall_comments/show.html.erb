@@ -1,0 +1,33 @@
+<%= javascript_include_tag 'prototype', 'effects' %>
+
+<%
+#locals
+comments ||= @wall_comments
+parent ||= @parent
+user ||= @user
+banter ||= @banter
+
+@count = comments.total_entries
+%>
+
+<% column_div :type => :primary do -%>
+	<h3><%= user.short_name %> 與 <%= banter.short_name %> 的雙向塗鴉牆</h3>
+	
+	<p>
+	  <%= link_to "#{banter.name} 的個人檔案", profile_path(banter) %>
+	</p>
+	
+	<% @wall_comments.each do |c| %>
+	<div id="<%= "comments_for_#{dom_id(parent)}" %>" class="inside_box">
+		<%= render :partial => 'wall_comments/comment', :locals => { :comment => c, :leave_comment => true } %>
+	</div>
+	<% end %>
+
+	<div class="clear"></div>
+		<%= will_paginate comments %>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

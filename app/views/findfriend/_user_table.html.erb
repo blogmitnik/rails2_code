@@ -1,0 +1,39 @@
+<% if @users and not @users.empty? %>
+<table class="users" border="0" cellpadding="5" cellspacing="1">
+  <tr class="header">
+    <th>使用者姓名</th> 
+    <th>年齡</th> 
+    <th>性別</th> 
+    <th>目前居住地點</th> 
+    <th>家鄉</th> 
+    <th>好友狀態</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr class="<%= cycle('odd', 'even') %>">
+    <td>
+    	<%= link_to small_tag(user), profile_path(user) %><br>
+    	<%= link_to user.f, profile_path(user) %>
+    </td>
+    <td><%= user.contact.age %>歲</td>
+    <td>
+    	<% if user.contact.show_gender == true %>
+    		<%= user.contact.gender %>
+    	<% else %>
+    		不公開
+    	<% end %>
+    </td>
+    <td><%= user.contact.location %></td>
+    <td><%= user.contact.hometown %></td>
+    <td><%= render :partial => "findfriend/friend_status", :locals => { :user => user } %></td>
+  </tr>
+  <% end %>
+  
+  <% if paginated? %>
+  <tr>
+    <td colspan="8" align="right">
+    <strong>頁次：</strong> <%= pagination_links(@pages, :params => params) %>
+    </td>
+  </tr>
+  <% end %>
+</table>
+<% end %>

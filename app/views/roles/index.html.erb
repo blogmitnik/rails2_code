@@ -1,0 +1,7 @@
+<h2><%= @user.f %> 的權限</h2>
+
+<h3>指派權限:</h3>
+<ul><%= render :partial => 'role', :collection => @user.roles %></ul>
+
+<h3>允許的權限:</h3>
+<ul><%= render :partial => 'role', :collection => (@all_roles - @user.roles) %></ul>

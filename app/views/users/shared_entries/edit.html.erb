@@ -1,0 +1,4 @@
+<span class="link-button"><%= link_to '預覽內容', user_shared_entry_path(@user, @shared_entry) %></span>
+<span class="link-button"><%= link_to '在新視窗編輯', @entry.permalink %></span>
+<iframe width="100%" height="800px" src="<%= @entry.permalink %>" border="1px solid black">
+</iframe>

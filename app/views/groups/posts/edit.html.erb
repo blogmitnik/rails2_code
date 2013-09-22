@@ -1,0 +1,29 @@
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %> 討論</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+	<div id="forum-container">
+    <h4>編輯回覆內容</h4>
+    <%= error_messages_for :post %>
+    <% custom_form_for :post, :html => { :method => :put }, 
+         :url  => post_path(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :id => @post, :page => params[:page], :per_page => @per_page) do |f| -%>
+      <div class="crumbs">
+        <%= link_to("返回#{h(@post.topic.title)}", forum_topic_path(@post.forum_id, @post.topic)) %>
+      </div>  
+      <%= f.text_area :body, :label => '回覆' %>
+      <%= submit_tag '儲存變更' %>
+      <span class="button_or">或 <%= link_to('取消', forum_topic_path(:forum_id => params[:forum_id], :topic_id => params[:topic_id], :page => params[:page], :per_page => @per_page)) %></span>
+      <span class="button_or">或 <%= link_to('刪除回覆', post_path(:forum_id => @post.forum_id, :topic_id => @post.topic, :id => @post, :page => params[:page], :per_page => @per_page), 
+            :method => :delete, :confirm => '確定要刪除此張貼？') %></span>           
+    <% end -%>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+	<%= render :partial => 'forums/info' %>
+<%- end -%>

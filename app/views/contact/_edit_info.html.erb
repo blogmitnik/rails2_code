@@ -1,0 +1,26 @@
+<div>基本資訊</div>
+<div id="profile_show">
+<% form_for :contact, :url => contact_url(@contact), :html => { :method => :put } do |f| -%>
+	<div class="form_row">生日：<%= f.date_select :birthday, :start_year => 1926, :end_year => (Time.now.year - 13) -%>
+		<br><%= f.select :show_birthday, Contact::SHOW_BIRTHDAY_SELECT -%></div>
+		
+	<div class="form_row">性別：<%= f.select :gender, Contact::GENDER_SELECT, :prompt=>"選擇性別：" -%>
+		<br><%= f.check_box :show_gender -%>在個人檔案中顯示我的性別</div>
+	
+	<div class="form_row">家鄉：<%= f.text_field :hometown, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">感情狀況：<%= f.select :affection, Contact::AFFECTION_SELECT, :prompt => "我現在是：" -%></div>
+		
+	<div class="form_row">政治觀：<%= f.text_field :polity, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::COMMON_MAX_LENGTH -%></div>
+		
+	<div class="form_row">宗教信仰：<%= f.text_field :religion, :size => Contact::COMMON_FIELD_SIZE, 
+		:maxlength => Contact::COMMON_MAX_LENGTH -%></div>
+	
+	<%= hidden_field_tag "attribute", "基本資訊", :id => nil -%>
+	<div class="row button">
+		<%= submit_tag '儲存變更', :class => 'button' -%>
+	</div>
+<% end -%>
+</div>

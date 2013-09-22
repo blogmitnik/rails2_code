@@ -1,0 +1,15 @@
+<h2>最新建立的網誌文章</h2>
+
+<% @entries.each do |entry| -%>
+<p>
+	'<%= link_to entry.title, 
+		mobile_entry_url(:user_id => entry.user, :id => entry) %>'<br>
+	<%= entry.user.username %> 在 <%= time_ago_in_words(entry.created_at) %> 前發佈
+</p>
+<% end %>
+
+<% if @entry_pages.page_count > 1 %>
+<p class="pagination">頁次: 
+	<%= pagination_links @entry_pages, :params => params %>
+</p>
+<% end %>

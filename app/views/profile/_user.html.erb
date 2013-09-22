@@ -1,0 +1,8 @@
+<li class="vcard person">
+  <div class="profile-image">
+    <%= image_link user, :class => "photo", :image => :tiny %>
+  </div>
+  <p><%= user_link user, :class => "url fn" %></p>
+  <%= display(truncate(user.description, 150), :class => "note") %>
+  <div class="clear"></div>
+</li>

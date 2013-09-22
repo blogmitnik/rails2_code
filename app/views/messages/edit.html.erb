@@ -1,0 +1,22 @@
+<%- column_div :type => :primary do -%>
+<h3>編輯郵件訊息</h3>
+
+<%= error_messages_for :message %>
+
+	<% form_for(:message,
+	            :url => edit_user_message_url(logged_in_user, @message)) do |f| %>
+	  <p>
+	    <b>訊息內容：</b><br />
+	    <%= f.text_field :content %>
+	  </p>
+	
+	  <p>
+	    <%= f.submit "Update" %>
+	  </p>
+	<% end %>
+<% end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

@@ -1,0 +1,45 @@
+<tr class="vevent" id="<%= event.dom_id %>">
+  <td class="date">
+    <div class="date-month"><%= event.start_time.strftime("%b") %></div>
+    <div class="date-day"><%= event.start_time.day %></div>
+  </td>
+  <td>
+    <%= image_tag "icons/event.gif", :class => "icon" %>
+    <a href="<%= group_event_path(@group, event) %>" title="<%= event.title %>">
+      <span class="title"><%= event.title %></span>
+    </a>
+    <div class="summary">
+    	<%= image_tag("start_quote_gray.gif") %> <%= event.summary %> <%= image_tag("end_quote_gray.gif") %>
+    </div>
+    <% if event.uri -%>
+      <a href="<%= event.uri %>" class="url" target="_blank"><%= event.uri %></a>
+    <% end -%>
+    <div class="location"><%= event.location %></div>
+    <div class="meta">由 <%= user_link event.user %> 發起
+        <% if manager? -%>
+        | <%= link_to "編輯",  edit_group_event_path(@group, event) %>
+        <% end -%>
+        <% if admin? || manager? -%>
+        | <%= link_to "刪除",  group_event_path(@group, event), :confirm => "你確定要刪除這項活動嗎？", :method  => :delete %>
+        <% end -%>
+    </div>
+  </td>
+  <td class="attendees">
+    <div id="attend_<%=event.dom_id%>">
+      <% if event.start_time > DateTime.now -%>
+        <% @event_attendee = @user_events.find {|event_user| event_user.event_id == event.id } if @user_events.length > 0 -%>
+        <% has_attended = EventAttendee.find_by_user_id_and_event_id(logged_in_user, event) %>
+        <% if @event_attendee && has_attended -%>
+          <%= render :partial => 'events/not_attending', :locals => {:event => event, :event_attendee => @event_attendee, :has_attended => has_attended} %>
+        <% else -%>
+          <%= render :partial => 'events/attending', :locals => {:event => event} %>
+        <% end -%>
+      <% else -%>
+        <p>活動已經結束</p>
+      <% end -%>
+    </div>
+  </td>
+  <td class="avatar">
+    <img class="alignleft" src="<%= icon_url(event, {:size => :tiny, :file_column_version => :tiny }) -%>" />
+  </td>
+</tr>

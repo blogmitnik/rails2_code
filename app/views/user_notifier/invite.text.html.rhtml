@@ -1,0 +1,20 @@
+<p><b>來看看我在 Cateplaces 上的個人檔案吧</b></p>
+
+<p>嗨 <%= @name %>，我建立了可以張貼我的相片、網誌和活動的 Cateplaces 個人檔案，並且我想將你新增成為朋友讓你也可以看到。
+首先，您需要加入 Cateplaces！當你加入後，你也可以建立你自己的個人檔案。</p>
+
+<p>你可以從下面網址查看我在 Cateplaces 的個人檔案頁面：<br>
+<a href="http://<%= @domain %><%= @inviter_profile_url %>">
+http://<%= @domain %><%= @inviter_profile_url %></a></p>
+
+<p>----------<br>
+<%= @message %><br>
+----------</p>
+
+<p>謝謝，<br>
+<%= @inviter.short_name %></p>
+
+<p>Cateplaces 不但能幫助你與家人和朋友保持聯繫，還可以讓你聯絡上失聯已久的朋友。
+你可以無止境地和朋友分享相片、規劃活動並加入社團。所有的功能服務都不收費，人人都可以加入。
+趕快點取下列連結註冊：<br>
+<%= link_to "#{@url}", @url %></p>

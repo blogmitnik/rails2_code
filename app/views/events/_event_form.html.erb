@@ -1,0 +1,151 @@
+<div id="event">
+	<%= f.text_field :title, {:label => "活動名稱："} %>
+	
+	<label for="event_start_time"></label>
+	<%= f.text_field :start_time, {:label => "開始時間：", :class => 'date_pick'} %>
+	<%= select_time @event.start_time || Time.now, :time_separator => ':', :prefix => "start" %>
+	<%= hidden_field :date, :start %>
+		
+	<label for="event_end_time"></label>
+	<%= f.text_field :end_time, {:label => "結束時間：", :class => 'date_pick'} %>
+	<%= select_time @event.end_time || Time.now, :time_separator => ':', :prefix => "end" %>
+	<%= hidden_field :date, :end %>
+	
+	<%= f.text_field :summary, {:label => "活動標語："} %>
+	<div class="clear"></div>
+	<div class="meta instruction">例如：「就在今夜」，或是「她一生只有一次21歲生日......」</div>
+	
+	<%= f.text_field :sponsor, {:label => "主辦者："} %>
+	
+	<%= f.text_area :description, {:label => "活動簡介："} %>
+	
+	<%= f.text_field :location, {:label => "地點："} %>
+  	<%= f.text_field :city, {:label => "城市 / 鄉鎮："} %>
+  	
+   <%= label_tag "map", "地點：" %>
+   <%= f.hidden_field :lat %>
+   <%= f.hidden_field :lng %>
+   <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<%= Geokit::Geocoders::google %>"
+       type="text/javascript"></script>
+   <div id="map_div"></div>
+   <%= text_field_tag :address %>
+   <%= submit_to_remote 'geolocate_button', '搜尋位置',
+        :url => {:action => 'geolocate', :map => @map, :method => :get},
+        :after => '$("#loading").css("visibility","visible")',
+        :complete => '$("#loading").css("visibility","hidden")' %>
+   <%= image_tag "loader.gif", :id => "loading", :class => "hidden" %>
+  	
+  	<%= f.text_field :uri, {:label => "活動網址："} %>
+  	<%= f.text_field :phone, {:label => "聯絡電話："} %>
+  	<%= f.text_field :email, {:label => "電子郵件："} %>
+  	
+  	<%= f.check_box :reminder, {:label => "是否要接受事件活動通知？"} %>
+  	<% if params[:group_id].nil? %>
+  		<%= f.select :privacy, [["所有人都可以參與這個活動", Event::PRIVACY[:public]],["只有朋友名單中的朋友可以參與這個活動", Event::PRIVACY[:friends]]], {:label => "活動隱私設定"}  %>
+	<% else  %>
+		<%= f.select :privacy, [["所有人都可以參與這個活動", Event::PRIVACY[:public]],["只有這個群組的成員可以參與這個活動", Event::PRIVACY[:friends]]], {:label => "活動隱私設定"}  %>
+	<% end %>
+	
+	<%= f.text_field :tag_list, { :label => 'Tag標籤：'} -%>
+	<div class="clear"></div>
+   <div class="meta instruction">建立一些標籤來幫助使用者搜尋這個活動，使用逗號來分隔標籤</div>
+  
+  <% if defined?(show_photo_upload) && show_photo_upload -%>
+    <div id="upload_icon">
+  		<h4>上傳文章相片</h4>
+  		<label>為這個活動頁面上傳相片</label>
+  		<%= file_column_field( "event", "icon", :size => 15) %>
+  		<div class="clear"></div>
+  		<% unless @event.icon.blank? %>
+  		<div id="avatar_edit">
+  		  <span id="user_icon_picture">
+  		    <%= icon @event %>
+  		    <%= link_to_remote "刪除圖片", :url => delete_icon_event_path(@event), :method => :delete, :confirm => "你確定要刪除這張相片嗎？" %>
+  		  </span>
+  		</div>
+  		<% end %>
+  		<input type="hidden" name="switch" value="image" />
+    </div>
+  <% end -%>
+  
+	<div class="row button">
+	  <%= f.submit @event.new_record? ? "建立活動" : "儲存內容", :class => 'button', :id => 'create_event' %>
+	  <div id="progress-bar" style="display:none;">
+	  		<img src="/images/loadingAnimation.gif" alt="progress bar"> 
+	  		<div>請稍後...正在建立你的活動</div>
+	  </div>
+	</div>
+</div>
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'ui.all.css' -%>
+  <%= javascript_include_tag 'ui.core.js' %>
+  <%= javascript_include_tag 'ui.datepicker.js' %>
+  <%# FIXME: change the next line to become a property%>
+  <%= javascript_include_tag 'ui/i18n/ui.datepicker-zh-TW.js' %>
+  <%= javascript_include_tag 'gmaps.js' %>
+<% end -%>
+
+<script type='text/javascript'>
+$(document).ready(function(){
+    $('#event_start_time').val(get_date_or_new("start"));
+    $('#event_end_time').val(get_date_or_new("end"));
+
+    $('#event_start_time').datepicker({
+      minDate:"-10d",
+      altField: '#date_start'
+    });
+    
+    $('#event_end_time').datepicker({
+      beforeShow:customRange,
+      altField: '#date_end'
+    });
+
+    //set defaults to all datepickers
+    $.datepicker.setDefaults({
+      onSelect:change_time,
+      altFormat: 'yy-mm-dd'
+    });
+
+    $('#date_start').val($('#event_start_time').datepicker("getDate"));
+    $('#date_end').val($('#event_end_time').datepicker("getDate"));
+    
+    function change_time(dateText){
+        //if start_time bigger than end_time, will change end_time
+        start_date = $('#event_start_time').datepicker("getDate");
+        end_date = $('#event_end_time').datepicker("getDate");
+        if (start_date > end_date){
+          $('#event_end_time').datepicker("setDate",start_date);
+        }
+    }
+
+    function get_date_or_new(start_end){
+      where = '#event_'+start_end+'_time';
+      if ($(where).val() != ''){
+        return(new Date($(where).val().replace(/-/g,',')).toLocaleDateString());
+      } else {
+        return (new Date().toLocaleDateString());
+      }
+    };
+
+    function customRange(input) {
+      return {
+        minDate: ( (input.id == 'event_end_time' ? $('#event_start_time').datepicker("getDate") : null) )
+      };
+    }
+    
+    //For Google Maps Geolocate
+    initialize_map();
+    map.clearOverlays();
+    
+    if (parseFloat($('#event_lat').val()) != 0 && parseFloat($('#event_lng').val()) != 0){
+      geolocateAddress($('#event_lat').val(),$('#event_lng').val(),'Event Location');
+    }
+    
+    jQuery("#create_event").click(function()
+    {
+        jQuery("#create_event").hide();
+        jQuery("#progress-bar").show();
+    });
+});
+</script>

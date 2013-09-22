@@ -1,0 +1,36 @@
+<%- column_div :type => :primary do -%>
+<h3>邀請你的朋友</h3>
+	<%= render :partial => 'shared/invite', :locals => {:name => h(@group.name), :url => group_invites_path(@group) } -%>
+	<div class="clear"></div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>尋找聯絡人</h3>
+	<% form_tag :action => 'import', :group_id => @group, :id => @user do %>
+		<select name="from" id="from">
+		<option value="">選擇Email類型：</option>
+		<option value="gmail">GMail</option>
+		<option value="yahoo">Yahoo! Mail</option>
+		<option value="hotmail">Hotmail</option>
+		<option value="aol">Aol Mail</option>
+		</select>
+		
+		<br />
+		<p>你的電郵地址：<br />
+		<input type="text" name="login"></p>
+		<p>電郵登入密碼：<br />
+		<input type="password" name="password"></p>
+		
+		<p class="meta"><%= app_name %>將不會儲存你的帳號密碼!</p>
+		<div class="row button">
+			<%= submit_tag "匯入通訊錄", :class => "button", :id => "import_contacts" %>
+		</div>
+	<% end %>
+	
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

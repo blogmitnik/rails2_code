@@ -1,0 +1,67 @@
+<%-
+news_item ||= @news_item ||= @note
+wall_comments ||= @wall_comments
+total = news_item.wall_comments_count
+
+parent ||= @parent
+parent = @news_item || nil
+-%>
+
+<div class="news-item">
+	<h4><%= sanitize news_item.title -%></h4>
+	<div class="meta">
+	文章由 <%= link_to "#{news_item.creator.short_name}", profile_path(news_item.creator) %> 在 <%= news_item.created_at.strftime('%m月%d日 %H:%M') %> 張貼
+	</div>
+	<div class="left">
+		<img class="alignleft" src="<%= icon_url(news_item, {:size => :bigger, :file_column_version => :bigger }) -%>" />
+		<div class="standard-format">
+			<%= process_body_content(news_item) %>
+		</div>
+		
+    	<% if news_item.tags.length > 0 -%>
+      	<p class="tags">
+        	Tag標籤：
+        	<% news_item.tags.each do |tag| -%>
+          	<a href="/groups/news/tags/<%=tag.name%>" rel="tag"><%=tag.name%></a> 
+        	<% end -%>
+      	</p>
+    	<% end -%>
+	</div>
+
+	<div class="clear"></div>
+	<h3>回應新聞訊息</h3>
+	<a name="add-news-comment"></a>
+	<a name="group-wall"></a>
+	<% if total > 0 %>
+	  <span class="left">顯示全部 <%= total %> 則留言</span>
+	<% else %>
+	  <span class="left">目前尚無留言。</span>
+	<% end %>
+	
+	<% if (news_item.newsable_type == "User" && connected_to?(news_item.creator)) || 
+			(news_item.newsable_type == "Group" && can_participate?) || 
+			(news_item.newsable_type == "Widget" && is_logged_in?) -%>
+	  <span class="right">
+	    <%= inline_tb_link("新增回應", "new_comment", :title => "回應文章 '#{h(news_item.title)}'") %>
+	  </span>
+	  <div class="clear"></div>
+	  
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'form' %>
+	  </div>
+	  <div id="<%= "new_comment_form_for_#{dom_id(parent)}" %>">
+		  <%= render :partial => 'hidden_form', :locals => { :parent => news_item } %>
+	  </div>
+	<%- end -%>
+
+	<div class="clear"></div>
+	<%- unless news_item.wall_comments.empty? -%>
+		<a name="news-comment"></a>
+		<div id="<%= "comments_for_#{dom_id(parent)}" %>">
+			<% news_item.wall_comments.each do |c| %>
+				<%= render :partial => 'wall_comments/comment', :locals => { :comment => c, :leave_comment => false } %>
+			<% end %>
+		</div>
+	<%- end -%>
+
+</div>

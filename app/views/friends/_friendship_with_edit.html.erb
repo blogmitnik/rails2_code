@@ -1,0 +1,33 @@
+<tr class="<%= cycle('odd', 'even') %>">
+   <td width="50">
+      <%= link_to tiny_tag(friendship_with_edit.friend), profile_path(friendship_with_edit.friend) %>
+   </td>
+    
+	<td id="friendname">
+    	<%= link_to friendship_with_edit.friend.username,
+	                profile_path(friendship_with_edit.friend),
+	                :class => 'xfnRelationship',
+	                :rel => xfn_rel_tag(@user, friendship_with_edit),
+	                :id => "friend-#{friendship_with_edit.friend.id}" %>
+	</td>
+
+	<td id="activity">
+		<% if friendship_with_edit.friend.last_activity_at %>
+			在 <%= time_ago_in_words(friendship_with_edit.friend.last_activity_at) %> 前
+			<%= friendship_with_edit.friend.last_activity %>
+		<% end %>
+	</td>
+	
+	<td id="editfriendship">
+    <%= link_to "編輯關係", 
+               { :controller => "friends", :action => "edit", 
+                 :id => friendship_with_edit.friend.id } %>
+  </td>
+  
+  <td>
+    <%= link_to "刪除好友", 
+               { :controller => "friends", :action => "delete", 
+                 :id => friendship_with_edit.friend.id }, 
+                 :confirm => "你確定要刪除這位好友嗎？" %>
+  </td>
+</tr>

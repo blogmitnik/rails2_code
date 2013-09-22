@@ -1,0 +1,24 @@
+<%-
+#locals
+user ||= @user
+size ||= 5
+google_docs ||= user.google_docs.find :all, :limit => size
+
+total = user.google_docs.count
+-%>
+
+<% if !google_docs.empty? %>
+  <div id="google_docs">
+  	<h3>轉貼文件 <span class="meta"><%= link_to '轉貼連結', '/share' %></span></h3>
+	  <span class="left">顯示 <%= total > size ? link_to("#{total} 個連結", user_shared_entries_path(@user)) + "中的其中 #{size} 個" : "#{total} 個連結" %></span>
+  	  <div class="clear"></div>
+  	  
+	  <% google_docs.each do |doc| %>
+       <div class="shared-entry" id="shared_entry_<%= doc.id %>">
+         <%= link_to(doc.title, doc.displayable == true ? user_shared_entry_path(@user, doc) : edit_user_shared_entry_path(@user, doc)) %>
+         <%= link_to("[編輯]", edit_user_shared_entry_path(@user, doc), :style => 'color:navy') if (doc.can_edit == '1' && doc.displayable == '1') -%>
+		   <%= link_to_remote image_tag('spr_pymk_x.gif', :title => '刪除', :class => 'png', :width=>'12', :height=>'12'), :url => user_shared_entry_path(@user, doc), :method => :delete %>
+		 </div>
+     <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%- if is_logged_in? -%>
+  <%- unless is_me?(@user) || @common_friends.empty? -%>
+    <h3>共同的朋友</h3>
+
+    <%- @some_common_friends.each do |friend| -%>
+      <div class="left my_network">
+        <%= image_link(friend, :image_options => { :class => "photo fn" },
+                         		 :link_options =>  { :class => "url" }) %>
+        <%= link_to h(friend.name), profile_path(friend) %>
+      </div>
+    <%- end -%>
+    <div class="clear"></div>
+
+    <span class="left">
+      <%= link_to "#{@common_friends.length} 位共同的朋友", common_friends_profile_path(@user) %>
+    </span>
+    <span class="right">
+      <%= link_to "顯示全部", common_friends_profile_path(@user) %>
+    </span>
+  <%- end -%>
+<%- end -%>

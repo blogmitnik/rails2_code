@@ -1,0 +1,10 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<h3>編輯新聞訊息</h3>
+<%= link_to "返回新聞訊息", admin_member_stories_path -%>
+<% custom_form_for @news_item, :url => admin_member_story_path(@news_item), :html => { :method => :put, :multipart => true, :class => "box no_top" } do |f| -%>
+	<%= render :partial => 'news/form', :locals => { :f => f, :show_photo_upload => true } %>
+<% end %>
+
+
+

@@ -1,0 +1,39 @@
+<li class="message">
+  <div class="profile-image">
+    <%= image_link message.other_user(logged_in_user),
+                   :image => :small,
+                   :image_options => { :class => "photo" } %>
+  </div>
+  <p>
+    <span class="label">主旨：</span>
+    <%= link_to sanitize(message.subject), message %>
+  </p>
+  <p>
+    <%= message_icon(message) %>
+    <%- if logged_in_user?(message.sender) -%>
+      <span class="label">傳送給：</span>
+      <%= user_link message.recipient, :class => "url fn" %>
+    <%- else -%>
+      <span class="label">來自：</span>
+      <%= user_link message.sender, :class => "url fn" %>
+    <%- end -%>
+<br />
+  <span class="tools meta">
+  傳送於 <%= time_ago_in_words message.created_at %> 前 
+    <%= link_to image_tag("icons/email_edit.png", :class => 'actioner'), 
+                reply_message_path(message),
+                :title => "回覆訊息" %>
+    <% unless message.trashed?(logged_in_user) -%>
+      <%= link_to image_tag("icons/email_delete.png", :class => 'actioner'), 
+                  message_path(message), 
+                  :method => :delete, 
+                  :confirm => %(你確定要刪除這個訊息嗎？),
+                  :title => "刪除訊息" %>
+    <% else -%>
+      <%= link_to "放回收件匣", undestroy_message_path(message),
+                             :method => :put %>
+    <% end -%>    
+  </span>
+  </p>
+  <div class="clear"></div>
+</li>

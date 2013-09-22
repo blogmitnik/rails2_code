@@ -1,0 +1,139 @@
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3003
+** Starting Rails with development environment...
+/home/david/workspace/railscoder/config/routes.rb:41: undefined local variable or method `user' for main:Object (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:441:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:432:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `each'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /home/david/workspace/railscoder/config/routes.rb:39
+	 ... 25 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+/home/david/workspace/railscoder/config/routes.rb:41: undefined local variable or method `user' for main:Object (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:441:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/object/misc.rb:48:in `with_options'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:432:in `map_resource'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `each'
+	from /usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/resources.rb:351:in `resources'
+	from /home/david/workspace/railscoder/config/routes.rb:39
+	 ... 25 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+/home/david/workspace/railscoder/vendor/plugins/scriptaculous_slider/init.rb:2:in `evaluate_init_rb': undefined method `load_helpers' for ActionView::Base:Class (NoMethodError)
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:95:in `evaluate_init_rb'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/kernel/reporting.rb:11:in `silence_warnings'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:91:in `evaluate_init_rb'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:44:in `load'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:33:in `load_plugins'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:32:in `each'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:32:in `load_plugins'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:283:in `load_plugins'
+	 ... 15 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+/home/david/workspace/railscoder/vendor/plugins/scriptaculous_slider/init.rb:2:in `evaluate_init_rb': undefined method `load_helpers' for ActionView::Base:Class (NoMethodError)
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:95:in `evaluate_init_rb'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/kernel/reporting.rb:11:in `silence_warnings'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:91:in `evaluate_init_rb'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin.rb:44:in `load'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:33:in `load_plugins'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:32:in `each'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/rails/plugin/loader.rb:32:in `load_plugins'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/initializer.rb:283:in `load_plugins'
+	 ... 15 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+/usr/lib/ruby/1.8/mongrel/tcphack.rb:12:in `initialize_without_backlog': Address already in use - bind(2) (Errno::EADDRINUSE)
+	from /usr/lib/ruby/1.8/mongrel/tcphack.rb:12:in `initialize'
+	from /usr/lib/ruby/1.8/mongrel.rb:560:in `new'
+	from /usr/lib/ruby/1.8/mongrel.rb:560:in `initialize'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:128:in `new'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:128:in `listener'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:107:in `cloaker_'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:51:in `call'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:51:in `initialize'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:92:in `new'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:92:in `run'
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:3333
+** Writing PID file to /home/david/workspace/railscoder/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:93: undefined method `cattr_accessor' for ActionController::Dispatcher:Class (NoMethodError)
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/rails-2.1.0/lib/dispatcher.rb:23
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `require'
+	from /usr/lib/ruby/1.8/mongrel/rails.rb:156:in `rails'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:121:in `cloaker_'
+	from /usr/lib/ruby/1.8/mongrel/configurator.rb:138:in `call'
+	 ... 6 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel available at 0.0.0.0:3333
+** Writing PID file to /home/david/workspace/railscoder/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /home/david/workspace/railscoder/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3333
+** Starting Rails with development environment...
+/usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:492:in `const_missing': uninitialized constant ActionMailer::ARMailer::Email (NameError)
+	from /usr/lib/ruby/gems/1.8/gems/ar_mailer-1.3.1/lib/action_mailer/ar_mailer.rb:70
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `gem_original_require'
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:32:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+	from /usr/lib/ruby/gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+	from /home/david/workspace/railscoder/config/environment.rb:80
+	from /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	 ... 10 levels...
+	from /usr/lib/ruby/1.8/mongrel/command.rb:211:in `run'
+	from /usr/lib/ruby/gems/1.8/gems/swiftiply-0.6.1.1/bin/mongrel_rails:252
+	from /usr/bin/mongrel_rails:19:in `load'
+	from /usr/bin/mongrel_rails:19

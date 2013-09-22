@@ -1,0 +1,26 @@
+development:
+  partner_id: 6795
+  subpartner_id: 679500
+  secret: a940054ee5466bea5620c2bef18927e5
+  embed_ui_conf_id: 1
+  simple_editor_ui_conf_id: 1
+  simple_player_ui_conf_id: 1
+  staging: true
+
+test:
+  partner_id: 6795
+  subpartner_id: 679500
+  secret: a940054ee5466bea5620c2bef18927e5
+  embed_ui_conf_id: 1
+  simple_editor_ui_conf_id: 1
+  simple_player_ui_conf_id: 1
+  staging: true
+
+production:
+  partner_id: 6795
+  subpartner_id: 679500
+  secret: a940054ee5466bea5620c2bef18927e5
+  embed_ui_conf_id: 1
+  simple_editor_ui_conf_id: 1
+  simple_player_ui_conf_id: 1
+  staging: false

@@ -1,0 +1,113 @@
+<%- column_div :type => :primary do -%>
+  <h3>邀請人們加入群組</h3>
+  <%= link_to "回到 #{@group.name}", group_path(@group) %> |
+  <%= link_to "邀請非 #{app_name} 朋友參與群組", new_group_invite_path(@group) -%>
+  
+  <div id="progress-bar" style="display:none;" align="center">
+	 <img src="/images/indicator_blue_large.gif" alt="progress bar">
+	 <div>請稍後...正在傳送邀請...</div>
+	 <div>邀請人數多時會需要較多的時間，請耐心等候</div>
+  </div>
+
+  <div id="invite">
+    <h4>邀請朋友加入 <%= @group.name %></h4>
+    <p><small>想邀請誰加入呢？從清單中選擇你要邀請的朋友發送邀請函。</small></p>
+    
+    <% form_for("invitations",:url => { :action => "invite_them"}, 
+                    				:html => {:id => 'form', :method => "post"}) do -%>
+      <div id='friend-invite-list-select'>
+	  	<input type='checkbox' id="checkboxslt" class="check" value /> <small>全選/全不選</small>
+	  </div>
+	  <div id='friend-invite-list'>
+	  	  <div id="send-invite-notify" style="display:none; width:480px; margin:6px 6px 0 6px; padding:10px; color:#333; font:smaller sans-serif; background:#fff6bf; border:1px solid #ffd324;">
+	  	  	選擇全部的人在傳送時會需要較長的時間，過程中請勿離開此頁面。
+	  	  </div>
+	      <ul class="grid comments medium">
+	        <% @friends.each do |contact| %>
+	        <%- mem = Membership.mem(contact, @group) -%>
+	          <li class="vcard contact">
+					<div class="profile-image">
+	          	  <%= image_link(contact, :image_options => { :class => "photo" }, 
+	          									:link_options => { :class => "url" }, 
+	          									:image => :tiny) %>
+					</div>
+					<%= check_box('checkbox',contact.id.to_s, :class=>'check', :id => "check_#{contact.id}") unless mem || @group.owner?(contact) %>
+	    		 	<%= user_link contact %>
+	    		 </li>
+	        <% end %>
+	      </ul>
+      </div>
+      <div class="clear"></div>
+      <div class="meta" style="margin:3px;">已被邀請過或已經是群組成員的朋友將無法被選取。</div>
+      
+      <div class="row button">
+	     <input type='submit' id="checkboxall" value='選取全部' class="button" />
+	     <%= submit_tag "發送邀請函", :class => "button", :id => "submit_invite" %>
+      </div>
+    <% end %>
+  </div>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+  <h3>群組簡介</h3>
+  <div style="text-align:center">
+    <%= image_tag @group.main_photo, :class => "profile-image photo",
+	                                  :alt => h(@group.name) %>
+  </div>
+  <%= display @group.description %>
+  <%= render :partial => "groups/category" %>
+<%- end -%>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $("#checkboxall").click(function(){
+      var checked = false;
+      if ($("input#checkboxall").attr("value") == "選取全部"){
+        $("input#checkboxall").attr("value","取消全選");
+		$("input#checkboxslt").attr("value","checked");
+		$("#send-invite-notify").show();
+        var checked = !checked;
+      } else {
+        $("input#checkboxall").attr("value","選取全部");
+		$("input#checkboxslt").attr("value","checked");
+      };
+      $("input.check").each(function(){
+        this.checked = checked;
+      });
+      return false;
+    });
+  });
+</script>
+
+<script type='text/javascript'>
+  $(document).ready(function(){
+    $("#checkboxslt").click(function(){
+      var checked = false;
+      if ($("input#checkboxslt").attr("value") == ""){
+        $("input#checkboxslt").attr("value","checked");
+		$("input#checkboxall").attr("value","取消全選");
+		$("#send-invite-notify").show();
+        var checked = !checked;
+      } else {
+        $("input#checkboxslt").attr("value","");
+		$("input#checkboxall").attr("value","選取全部");
+      };
+      $("input.check").each(function(){
+        this.checked = checked;
+      });
+      return false;
+    });
+  });
+</script>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#submit_invite").click(function()
+    {
+        jQuery("#invite").hide();
+        jQuery("#progress-bar").show();
+    });
+    
+});
+</script>

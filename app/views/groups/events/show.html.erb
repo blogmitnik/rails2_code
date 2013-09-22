@@ -1,0 +1,130 @@
+<%= javascript_include_tag 'jquery', 'prototype', 'effects' %>
+
+<%-
+group ||= @group
+event ||= @event
+wall_comments ||= @wall_comments
+
+parent ||= @event
+parent = @event || nil
+-%>
+
+<%- column_div :type => :primary do -%>
+	<h3><%= @group.name %>的活動</h3>
+	<%= render :partial => 'groups/group_nav', :locals => {:group => @group} %>
+
+  <div id="hcalendar-event-title" class="event">
+	 <% if manager? -%>
+		<%= link_to "編輯活動內容", edit_group_event_path(@group, @event) -%> |
+		<%= link_to "刪除活動", group_event_path(@group, @event), :method => :delete -%>
+	 <%- end -%>
+	 
+	 <h4 class="summary"><%= @event.title %></h4>
+    <div>
+      <span class="desc">起始時間：</span>
+      <abbr title="<%=@event.start_time%>" class="dtstart"><%= @event.start_time.to_s(:short) %></abbr>    
+      <% if @event.end_time -%>
+      	至 <abbr title="<%=@event.end_time%>" class="dtend"><%= @event.end_time.to_s(:short) %></abbr> 
+      <% end -%>
+    </div>
+    
+    <div class="sponsor">
+      <span class="desc">主辦人：</span>
+      <span class="sponsor"><%= @event.sponsor %></span>
+    </div>
+
+    <% if @event.location && @event.location.length > 0 -%>  
+      <div>
+        <span class="desc">活動地點：</span>
+        <span class="location"><%= @event.location %></span>
+      </div>
+    <% end -%>
+    
+    <% if @event.address && @event.address.length > 0 -%>  
+      <div>
+        <span class="desc">街 / 路：</span>
+        <span class="address"><%= @event.address %></span>
+        <div class="clear"></div>
+        <span class="map">
+        	<a href="http://maps.google.com/maps?f=q&hl=en&q=<%= @event.address %>" target="_blank">	
+			查看 Google 地圖</a> |
+			<a href="http://maps.yahoo.com/?ard=1&q1=<%= @event.address %>" target="_blank">	
+			查看 Yahoo 地圖</a></span> |
+			<a href="http://maps.live.com/?q=<%= @event.address %>" target="_blank">	
+			查看 Microsoft 地圖</a></span>
+      </div>
+    <% end -%>
+    
+    <% if @event.city && @event.city.length > 0 -%>  
+      <div>
+        <span class="desc">城市 / 鄉鎮：</span>
+        <span class="city"><%= @event.city %></span>
+      </div>
+    <% end -%>
+    
+    <% if @event.phone && @event.phone.length > 0 -%>  
+      <div>
+        <span class="desc">聯絡電話：</span>
+        <span class="phone"><%= @event.phone %></span>
+      </div>
+    <% end -%>
+    
+    <% if @event.email && @event.email.length > 0 -%>  
+      <div>
+        <span class="desc">電子郵件：</span>
+        <span class="email"><a href="mailto:<%= @event.email %>" class="mail"><%= @event.email %></a></span>
+      </div>
+    <% end -%>
+        
+    <% if @event.uri && @event.uri.length > 0 -%>
+      <div>
+        <span class="desc">網址：</span>
+        <span class="uri"><a href="<%= @event.uri %>" class="url"><%= @event.uri %></a></span>
+      </div>
+    <% end -%>
+
+    <% if @event.tags.length > 0 -%>
+      <p class="tags">
+        Tag標籤：
+        <% @event.tags.each do |tag| -%>
+          <a href="/groups/events/tags/<%=tag.name%>" rel="tag"><%=tag.name%></a> 
+        <% end -%>
+      </p>
+    <% end -%>
+    
+    <h3>活動簡介</h3>
+    <div class="description">
+      <%= @event.description %>
+    </div>
+    
+    <%= render :partial => 'gallery', :locals => {:mini => true} %>
+    
+    <div>
+      <h3>將出席活動的成員</h3>
+		<% unless @event.attendees.empty? -%>
+		<p>共有<%= @event.event_attendees_count %>位成員將會出席這個活動:</p>
+	      <% @event.attendees.each do |attendee| -%>
+	        <div class="group-member">
+	    		<%= image_link(attendee, :image_options => { :class => "photo fn" },
+	                                	 :link_options =>  { :class => "url" }, 
+	                                	 :image => :tiny) %>
+	      	<div class="name"><%= link_to h(attendee.full_name), profile_path(attendee) %></div>
+			  </div>
+	      <% end -%>
+	  <% else -%>
+	  	<p>目前還沒有使用者參與這項活動</p>
+	  <% end -%>
+    </div>
+  </div>
+  
+  <%= render :partial => 'wall', :locals => {:with_form => true} %>
+<%- end -%>
+
+<%- column_div :type => :secondary do -%>
+<h3>群組簡介</h3>
+	<div style="text-align:center">
+		<%= image_link @group, :image => :main_photo, :title => "#{@group.name}" %>
+	</div>
+	<%= display @group.description %>
+   <%= render :partial => "groups/category" %>
+<%- end -%>

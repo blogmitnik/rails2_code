@@ -1,0 +1,11 @@
+<% column_div :type => :primary do -%>
+  <h3>建立活動事項</h3>
+  <% custom_form_for @event, :html => { :method => :post, :class => "box no_top" } do |f| -%>
+    <%= render :partial => 'event_form', :locals => {:f => f } %>
+  <% end %>
+<% end -%>
+
+<%- column_div :type => :secondary do -%>
+  <%= render :partial => 'searches/box' %>
+  <%= render :partial => 'shared/minifeed' %>
+<%- end -%>

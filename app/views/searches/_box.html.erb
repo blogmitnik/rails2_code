@@ -1,0 +1,10 @@
+<h3>搜尋<%= search_type %></h3>
+<% form_tag searches_path, :method => :get, :id => "frmSearch" do %>
+  <input class="txt" id="txtSearch" maxlength="50" name="q" type="text" value="搜尋" 
+    onfocus="if(this.value == '搜尋') this.value = ''" onblur="if(this.value == '') this.value = '搜尋'"/>
+  <%= submit_tag "搜尋", :name => nil, :id => "btnSearch" %>
+  <%= hidden_field_tag "model", search_model %>
+    <%- if search_model == 'Friendship' -%>
+      <%= hidden_field_tag "user_id", params[:user_id] %>
+    <%- end -%>
+<% end %>

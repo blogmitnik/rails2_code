@@ -1,0 +1,22 @@
+<ul class="list comments small">
+<li>
+  <div class="profile-image">
+    <%= image_link message.sender %>
+    
+    <%- if not message.read? and not logged_in_user?(message.sender) -%>
+      <%= image_tag("icons/email_add.png", :class => "icon") %>
+    <%- elsif message.replied_to? -%>
+      <%= image_tag("icons/email_go.png", :class => "icon" ) %>
+    <%- end -%>    
+  </div>
+  <span class="field">寄件人</span> <%= user_link message.sender %>
+  <p title="Subject">
+    <%= image_tag("start_quote_gray.gif") %>
+    <%= link_to sanitize(truncate(message.subject, 30)), message_path(message) %>
+    <%= image_tag("end_quote_gray.gif") %>
+  </p>
+  <p class="meta published">
+    <%= time_ago_in_words(message.created_at).sub(/about /, '') %> 前
+  </p>
+</li>
+</ul>

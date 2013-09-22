@@ -1,0 +1,20 @@
+<div id="attendees_for_<%=event.dom_id%>">有<%= event.event_attendees_count || 0 %>位使用者將出席活動</div>
+<div><%= image_tag("icons/vote.png") %>你已參與這項活動</div>
+<% remote_form_for :event_attendee, :url => event_attendee_path(has_attended), :format => 'js', :html => {:method => :delete, :id => "unattend_#{event.dom_id}"} do |f| %>
+ 	<%= f.submit "取消出席這項活動", :id => "#{event.dom_id}_unattend-button" -%>
+	<div id="<%=event.dom_id%>_loader" style="display:none;">
+		<img src="/images/loader.gif" alt="progress bar" float:left> 
+		<small>請稍後...</small>
+	</div>
+<% end %>
+
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#unattend_<%=event.dom_id%>").submit(function()
+    {
+        jQuery("#<%=event.dom_id%>_unattend-button").hide();
+        jQuery("#<%=event.dom_id%>_loader").show();
+    });
+});
+</script>

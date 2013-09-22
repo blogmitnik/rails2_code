@@ -1,0 +1,6 @@
+<h2>新增網誌分類</h2>
+<%= error_messages_for :ecategory %>
+<% form_for(:ecategory, :url => ecategories_path) do |f| -%>
+	<p>分類名稱:<br><%= f.text_field :name, :size => 60 %></p>
+	<%= submit_tag '建立' %> or <%= link_to '取消', admin_ecategories_url %>
+<% end %>

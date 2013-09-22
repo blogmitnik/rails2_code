@@ -1,0 +1,29 @@
+<div id="new_comment" class="hidden">
+<% custom_remote_form_for(:wall_comment, :url => user_wall_comments_path(@user), 
+							   :html => { :id => "#{dom_id(@user)}_comment_form", :title => "留言...", 
+							   :method => :post, :complete => "Field.clear('comment-body')"}) do |f| %>
+	<div id="thickbox_form">
+		<%= f.text_area :body, { :label => "留言內容", :maxlength => 500 } %>
+		你可以使用 [youtube: 影片網址] 來嵌入 Youtube 影片! 
+		<a href="http://www.youtube.com" target="_blank">上傳影片</a><br>
+		例如 [youtube: http://www.youtube.com/watch?v=xxx_xxxxxxx]
+		<div class="row button">
+		  <%= f.submit "送出回應", :class => "button", :id => "comment_submit" %>
+	      <span id="send-comment-progress" style="display:none;color:black">
+			<img src="/images/indicator_blue_small.gif" alt="progress bar">
+		  </span>
+		</div>
+		<div class="clear"></div>
+	</div>
+<% end %>
+</div>
+  
+<script type="text/javascript" language="JavaScript">
+jQuery(document).ready(function()
+{
+    jQuery("#comment_submit").click(function()
+    {
+        jQuery("#send-comment-progress").show();
+    });
+});
+</script>

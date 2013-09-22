@@ -1,0 +1,76 @@
+<h2>編輯個人資訊</h2>
+
+<p><%= link_to '顯示個人頁面', user_path(@user) -%></p>
+
+<%= error_messages_for :user -%>
+
+<div id="profile_edit">
+<% form_for :user, :url => user_url(@user), :html => { :method => :put } do |f| -%>
+	<div class="form_row">* 姓氏: <br><%= f.text_field :first_name, 
+		:size => User::FIRST_NAME_SIZE, :maxlength => User::FIRST_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">中間名: <small>(選填項目)</small><br><%= f.text_field :middle_name, 
+		:size => User::MIDDLE_NAME_SIZE, :maxlength => User::MIDDLE_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">* 名字: <br><%= f.text_field :last_name, 
+		:size => User::LAST_NAME_SIZE, :maxlength => User::LAST_NAME_MAX_LENGTH -%></div>
+		
+	<div class="form_row">全名: <small>(選填項目)</small><br><%= f.text_field :full_name, 
+		:size => User::FULL_NAME_SIZE, :maxlength => User::FULL_NAME_MAX_LENGTH -%><br>
+	<small>附註：全名只會用來搜尋，不會出現在您的個人檔案中。</small></div>
+	
+	<div class="form_row">* 生日: <%= f.date_select :birthday, :start_year => 1926, :end_year => (Time.now.year - 13) -%></div>
+		
+	<div class="form_row">* 我是: <%= f.select :sex, User::GENDER_SELECT, :prompt=>"選擇性別：" -%></div>
+	
+	<div class="form_row">* 所在城市: <br><%= f.select :city, User::USER_CITIES, 
+		:prompt => "Choose One City", :maxlength => User::CITY_MAX_LENGTH -%></div>
+		
+	<div class="form_row">郵遞區號: <small>(請輸入3或5碼的郵遞區號)</small><br><%= f.text_field :zipcode, 
+		:size => User::ZIPCODE_SIZE, :maxlength => User::ZIPCODE_MAX_LENGTH -%></div>
+	
+	<div class="form_row">* 聯絡電子信箱: <br><%= f.text_field :email, 
+		:size => User::EMAIL_SIZE, :maxlength => User::EMAIL_MAX_LENGTH -%><br>
+		<small>附註：你的聯絡電子郵件必須是有效的。</small></div>
+		
+	<div class="form_row">新密碼: <br><%= f.password_field :password, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+		
+	<div class="form_row">確認密碼: <br><%= f.password_field :password_confirmation, 
+		:size => User::PASSWORD_SIZE, :maxlength => User::PASSWORD_MAX_LENGTH -%></div>
+		
+	<div class="form_row">您的Blog標題: <small>(我們建議您填寫)</small><br><%= f.text_field :blog_title, 
+		:size => User::BLOG_TITLE_SIZE -%><br>
+		<small>附註：這是您在本站的個人網誌標題</small></div>
+		
+	<div class="form_row">Flickr帳號: <small>(選填項目)</small><br><%= f.text_field :flickr_username, 
+		:size => User::FLICKR_ACCOUNT_SIZE, :maxlength => User::FLICKR_MAX_LENGTH -%></div>
+		
+	<div class="form_row">個人網站: <small>(選填項目)</small><br><%= f.text_field :website, 
+		:size => User::WEBSITE_SIZE, :maxlength => User::WEBSITE_MAX_LENGTH -%></div>
+		
+	<div class="form_row">站外網誌: <small>(選填項目)</small><br><%= f.text_field :weblog, 
+		:size => User::WEBLOG_SIZE, :maxlength => User::WEBLOG_MAX_LENGTH -%></div>
+		
+	<div class="form_row">MSN Messenger: <small>(選填項目)</small><br><%= f.text_field :msn_account, 
+		:size => User::MSN_ACCOUNT_SIZE, :maxlength => User::MSN_ACCOUNT_MAX_LENGTH -%><br>
+		<small>例：你的帳號@hotmail.com</small></div>
+		
+	<div class="form_row">iChat: <small>(選填項目)</small><br><%= f.text_field :ichat_account, 
+		:size => User::ICHAT_ACCOUNT_SIZE, :maxlength => User::ICHAT_ACCOUNT_MAX_LENGTH -%><br>
+		<small>例：你的帳號@aol.tw</small></div>
+		
+	<div class="form_row">GTalk: <small>(選填項目)</small><br><%= f.text_field :gtalk_account, 
+		:size => User::GTALK_ACCOUNT_SIZE, :maxlength => User::GTALK_ACCOUNT_MAX_LENGTH -%><br>
+		<small>例：你的帳號@gmail.com</small></div>
+		
+	<div class="form_row">AIM: <small>(選填項目)</small><br><%= f.text_field :aim_account, 
+		:size => User::AIM_ACCOUNT_SIZE, :maxlength => User::AIM_ACCOUNT_MAX_LENGTH -%><br>
+		<small>Screen Name 或 E-mail</small></div>
+		
+	<div class="form_row">個人簡介: <small>(不可超過1000個字)</small><br><%= f.text_area :profile, 
+		:rows => User::PROFILE_ROWS, :cols => User::PROFILE_COLS -%></div>
+		
+	<%= submit_tag '儲存' -%> 或 <%= link_to '取消', user_path -%>
+<% end -%>
+</div>

@@ -1,0 +1,11 @@
+<h3>編輯聯絡資料</h3>
+
+<p><%= link_to '顯示個人檔案', profile_path(logged_in_user) -%></p>
+
+<%= error_messages_for :contact -%>
+
+<div id="profile_edit">
+	<%= render :partial => "contact/edit_info" %>
+	<%= render :partial => "contact/edit_contact" %>
+	<%= render :partial => "contact/edit_academic" %>
+</div>

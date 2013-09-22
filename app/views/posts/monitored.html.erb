@@ -1,0 +1,45 @@
+<% content_for :right do %>
+  <h4><%= "#{link_to(h(@user.name), profile_path(@user)} 監督的討論文章" %></h4>
+  <ul class="flat">
+    <% @user.monitored_topics.find(:all, :limit => 30).each do |topic| %>
+      <li><%= link_to topic.title, forum_topic_path(topic.forum_id, topic) %></li>
+    <% end %>
+  </ul>
+<% end -%>
+
+<h3><%= @page_title %></h3>
+<p class="subtitle">
+  <%= feed_icon_tag @page_title, formatted_monitored_posts_path(:user_id => @user, :format => 'rss') %>
+  找到 <%= count_for('則討論文章', @posts.total_entries) %>。
+</p>
+<%= will_paginate @posts, :previous_label => '&laquo; 上一頁', :next_label => '下一頁 &raquo;' %>
+<table border="0" cellspacing="0" cellpadding="0" class="posts wide">
+  <% for post in @posts do %>
+    <% unless post == @posts.first %>
+      <tr class="spacer">
+        <td colspan="2">&nbsp;</td>
+      </tr>
+    <% end %>
+    <tr class="post hentry" id="<%= dom_id post %>">
+      <td class="author vcard">
+        <div class="date">
+          <abbr class="updated" title="<%= post.created_at.xmlschema %>">
+            <% if post.created_at > Time.now.utc-24.hours%>
+              <%= time_ago_in_words(post.created_at).sub(/about /, '') %>
+            <% else %>
+              <%= post.created_at.strftime("%b %e, %Y")%>
+            <% end %>
+          </abbr>
+        </div>
+        <%= icon post.user %>
+        <span class="fn"><%= link_to truncate(h(post.user.name), 15), profile_path(post.user), :class => (post.user == @posts.first.user ? "admin" : nil) %></span>
+        <span class="posts">共 <%= count_for('則討論文章', post.user.posts.size) %>。</span>
+      </td>
+      <td class="body entry-content">
+        <p class="topic">討論主題: <%= link_to h(post.topic_title), forum_topic_path(post.forum_id, post.topic_id) %></p>    
+        <%= post.body_html %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<%= will_paginate @posts, :previous_label => '&laquo; 上一頁', :next_label => '下一頁 &raquo;' %>

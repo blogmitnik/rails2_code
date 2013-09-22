@@ -1,0 +1,175 @@
+# Logfile created on Sun Oct 26 02:10:57 +0800 2008 by /
+[10/26/08 02:10:57 (736)] INFO : New Relic RPM Agent Initialized: pid = 736
+[10/26/08 02:10:57 (736)] INFO : Agent Log is found in /Users/mitnik/Documents/Aptana Studio/railscode/log/newrelic_agent.3004.log
+[10/26/08 02:10:57 (736)] INFO : Runtime environment: Mongrel
+[10/26/08 02:10:57 (736)] INFO : Transaction tracing is enabled in the agent
+[10/26/08 04:16:14 (1016)] INFO : New Relic RPM Agent Initialized: pid = 1016
+[10/26/08 04:16:14 (1016)] INFO : Agent Log is found in /Users/mitnik/Documents/Aptana Studio/railscode/log/newrelic_agent.3004.log
+[10/26/08 04:16:14 (1016)] INFO : Runtime environment: Mongrel
+[10/26/08 04:16:14 (1016)] INFO : Transaction tracing is enabled in the agent
+[01/06/09 03:32:21 (689)] INFO : New Relic RPM Agent Initialized: pid = 689
+[01/06/09 03:32:21 (689)] INFO : Agent Log is found in /Users/mitnik/Documents/Aptana Studio/railscode/log/newrelic_agent.3004.log
+[01/06/09 03:32:21 (689)] INFO : Runtime environment: Mongrel
+[01/06/09 03:32:21 (689)] INFO : Transaction tracing is enabled in the agent
+[01/16/09 17:42:18 (7457)] INFO : New Relic RPM Agent Initialized: pid = 7457
+[01/16/09 17:42:18 (7457)] INFO : Agent Log is found in /Users/mitnik/Documents/Aptana Studio/railscode/log/newrelic_agent.3004.log
+[01/16/09 17:42:18 (7457)] INFO : Runtime environment: Mongrel
+[01/16/09 17:42:18 (7457)] INFO : Transaction tracing is enabled in the agent
+[01/20/09 20:50:16 (1181)] INFO : New Relic RPM Agent Initialized: pid = 1181
+[01/20/09 20:50:16 (1181)] INFO : Agent Log is found in /Users/mitnik/Documents/Aptana Studio/railscode/log/newrelic_agent.3004.log
+[01/20/09 20:50:16 (1181)] INFO : Runtime environment: Mongrel
+[01/20/09 20:50:16 (1181)] INFO : Transaction tracing is enabled in the agent
+[04/05/09 03:39:50 (27451)] INFO : New Relic RPM Agent Initialized: pid = 27451
+[04/05/09 03:39:50 (27451)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/05/09 03:39:50 (27451)] INFO : Runtime environment: Mongrel
+[04/05/09 03:39:50 (27451)] INFO : Transaction tracing is enabled in the agent
+[04/05/09 04:07:06 (27521)] INFO : New Relic RPM Agent Initialized: pid = 27521
+[04/05/09 04:07:06 (27521)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/05/09 04:07:06 (27521)] INFO : Runtime environment: Mongrel
+[04/05/09 04:07:06 (27521)] INFO : Transaction tracing is enabled in the agent
+[04/05/09 04:34:30 (27699)] INFO : New Relic RPM Agent Initialized: pid = 27699
+[04/05/09 04:34:30 (27699)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/05/09 04:34:30 (27699)] INFO : Runtime environment: Mongrel
+[04/05/09 04:34:30 (27699)] INFO : Transaction tracing is enabled in the agent
+[04/05/09 07:07:56 (27699)] INFO : Not reporting error (queue exceeded maximum length): No route matches "/images/icons/" with {:method=>:get}
+[04/05/09 07:11:49 (27699)] INFO : Not reporting error (queue exceeded maximum length): No route matches "/images/icons/" with {:method=>:get}
+[04/05/09 07:38:21 (27699)] INFO : Not reporting error (queue exceeded maximum length): No route matches "/images/icons/" with {:method=>:get}
+[04/05/09 08:16:28 (27699)] INFO : Not reporting error (queue exceeded maximum length): wrong number of arguments (1 for 2)
+[04/05/09 08:45:49 (27699)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find User without an ID
+[04/05/09 08:48:55 (27699)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/05/09 08:50:36 (27699)] INFO : Not reporting error (queue exceeded maximum length): Mysql::Error: Unknown column 'created_at' in 'order clause': SELECT * FROM `feeds`     WHERE (`feeds`.user_id = 3)  ORDER BY created_at desc LIMIT 0, 12
+[04/05/09 09:37:35 (29269)] INFO : New Relic RPM Agent Initialized: pid = 29269
+[04/05/09 09:37:35 (29269)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/05/09 09:37:35 (29269)] INFO : Runtime environment: Mongrel
+[04/05/09 09:37:35 (29269)] INFO : Transaction tracing is enabled in the agent
+[04/05/09 22:04:56 (30850)] INFO : New Relic RPM Agent Initialized: pid = 30850
+[04/05/09 22:04:56 (30850)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/05/09 22:04:56 (30850)] INFO : Runtime environment: Mongrel
+[04/05/09 22:04:56 (30850)] INFO : Transaction tracing is enabled in the agent
+[04/06/09 01:28:45 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:29:59 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:31:18 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:33:26 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:38:23 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:52:24 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 01:55:46 (30850)] INFO : Not reporting error (queue exceeded maximum length): Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
+[04/06/09 02:11:08 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.username
+[04/06/09 02:16:15 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:17:52 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:18:21 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:18:43 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:19:47 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:20:24 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:20:42 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:21:39 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 02:30:42 (30850)] INFO : Not reporting error (queue exceeded maximum length): undefined method `creator' for #<BlogPost:0xb0b70344>
+[04/06/09 02:44:51 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.topic
+[04/06/09 02:52:51 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find Topic with ID=105 AND (`topics`.forum_id = 18)
+[04/06/09 02:53:31 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find Topic with ID=105 AND (`topics`.forum_id = 18)
+[04/06/09 02:55:11 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find Topic with ID=105 AND (`topics`.forum_id = 18)
+[04/06/09 02:55:31 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find Topic with ID=104 AND (`topics`.forum_id = 18)
+[04/06/09 02:57:24 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.topic
+[04/06/09 03:07:07 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.locked?
+[04/06/09 03:20:34 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find NewsItem with ID=newsitems_default_bigger
+[04/06/09 03:22:28 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 04:17:13 (30850)] INFO : Not reporting error (queue exceeded maximum length): undefined method `short_name' for #<Group:0xb02f2e10>
+[04/06/09 04:43:33 (30850)] INFO : Not reporting error (queue exceeded maximum length): undefined method `creator' for #<Topic:0xb03d15ac>
+[04/06/09 04:45:56 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 05:06:51 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 05:11:40 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 05:11:48 (30850)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/06/09 05:13:58 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find NewsItem with ID=newsitems_default_bigger
+[04/06/09 05:14:31 (30850)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find NewsItem with ID=newsitems_default_bigger
+[04/06/09 05:43:12 (32235)] INFO : New Relic RPM Agent Initialized: pid = 32235
+[04/06/09 05:43:12 (32235)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/06/09 05:43:12 (32235)] INFO : Runtime environment: Mongrel
+[04/06/09 05:43:12 (32235)] INFO : Transaction tracing is enabled in the agent
+[04/06/09 07:34:35 (32548)] INFO : New Relic RPM Agent Initialized: pid = 32548
+[04/06/09 07:34:35 (32548)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/06/09 07:34:35 (32548)] INFO : Runtime environment: Mongrel
+[04/06/09 07:34:35 (32548)] INFO : Transaction tracing is enabled in the agent
+[04/06/09 10:51:06 (1103)] INFO : New Relic RPM Agent Initialized: pid = 1103
+[04/06/09 10:51:06 (1103)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/06/09 10:51:06 (1103)] INFO : Runtime environment: Mongrel
+[04/06/09 10:51:06 (1103)] INFO : Transaction tracing is enabled in the agent
+[04/06/09 21:51:31 (1103)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.name
+[04/07/09 06:41:05 (6063)] INFO : New Relic RPM Agent Initialized: pid = 6063
+[04/07/09 06:41:05 (6063)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/07/09 06:41:05 (6063)] INFO : Runtime environment: Mongrel
+[04/07/09 06:41:05 (6063)] INFO : Transaction tracing is enabled in the agent
+[04/07/09 19:51:13 (6063)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.title
+[04/07/09 19:51:36 (6063)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.title
+[04/07/09 19:52:40 (6063)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.title
+[04/07/09 20:59:23 (6063)] INFO : Not reporting error (queue exceeded maximum length): You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.has_role?
+[04/07/09 21:09:16 (6063)] INFO : Not reporting error (queue exceeded maximum length): No action responded to index
+[04/07/09 21:23:29 (6063)] INFO : Not reporting error (queue exceeded maximum length): ActionController::InvalidAuthenticityToken
+[04/07/09 21:23:43 (6063)] INFO : Not reporting error (queue exceeded maximum length): ActionController::InvalidAuthenticityToken
+[04/07/09 21:25:33 (6063)] INFO : Not reporting error (queue exceeded maximum length): No action responded to index
+[04/07/09 21:33:41 (6063)] INFO : Not reporting error (queue exceeded maximum length): undefined method `last_login_at' for :false:Symbol
+[04/07/09 21:44:06 (6063)] INFO : Not reporting error (queue exceeded maximum length): No action responded to index
+[04/07/09 21:48:40 (6063)] INFO : Not reporting error (queue exceeded maximum length): Couldn't find User with ID=logout
+[04/07/09 21:50:08 (8856)] INFO : New Relic RPM Agent Initialized: pid = 8856
+[04/07/09 21:50:08 (8856)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/07/09 21:50:08 (8856)] INFO : Runtime environment: Mongrel
+[04/07/09 21:50:08 (8856)] INFO : Transaction tracing is enabled in the agent
+[04/08/09 11:03:51 (9467)] INFO : New Relic RPM Agent Initialized: pid = 9467
+[04/08/09 11:03:51 (9467)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/08/09 11:03:51 (9467)] INFO : Runtime environment: Mongrel
+[04/08/09 11:03:51 (9467)] INFO : Transaction tracing is enabled in the agent
+[04/08/09 21:13:22 (11777)] INFO : New Relic RPM Agent Initialized: pid = 11777
+[04/08/09 21:13:22 (11777)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/08/09 21:13:22 (11777)] INFO : Runtime environment: Mongrel
+[04/08/09 21:13:22 (11777)] INFO : Transaction tracing is enabled in the agent
+[04/09/09 16:05:36 (23477)] INFO : New Relic RPM Agent Initialized: pid = 23477
+[04/09/09 16:05:36 (23477)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/09/09 16:05:36 (23477)] INFO : Runtime environment: Mongrel
+[04/09/09 16:05:36 (23477)] INFO : Transaction tracing is enabled in the agent
+[04/09/09 18:10:51 (23900)] INFO : New Relic RPM Agent Initialized: pid = 23900
+[04/09/09 18:10:51 (23900)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/09/09 18:10:51 (23900)] INFO : Runtime environment: Mongrel
+[04/09/09 18:10:51 (23900)] INFO : Transaction tracing is enabled in the agent
+[04/09/09 19:40:09 (24853)] INFO : New Relic RPM Agent Initialized: pid = 24853
+[04/09/09 19:40:09 (24853)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/09/09 19:40:09 (24853)] INFO : Runtime environment: Mongrel
+[04/09/09 19:40:09 (24853)] INFO : Transaction tracing is enabled in the agent
+[04/10/09 12:36:52 (6406)] INFO : New Relic RPM Agent Initialized: pid = 6406
+[04/10/09 12:36:52 (6406)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/10/09 12:36:52 (6406)] INFO : Runtime environment: Mongrel
+[04/10/09 12:36:52 (6406)] INFO : Transaction tracing is enabled in the agent
+[04/10/09 20:33:34 (14784)] INFO : New Relic RPM Agent Initialized: pid = 14784
+[04/10/09 20:33:34 (14784)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/10/09 20:33:34 (14784)] INFO : Runtime environment: Mongrel
+[04/10/09 20:33:34 (14784)] INFO : Transaction tracing is enabled in the agent
+[04/10/09 20:47:08 (15042)] INFO : New Relic RPM Agent Initialized: pid = 15042
+[04/10/09 20:47:08 (15042)] INFO : Agent Log is found in /home/mitnik/radrails_project/railscode/log/newrelic_agent.3004.log
+[04/10/09 20:47:08 (15042)] INFO : Runtime environment: Mongrel
+[04/10/09 20:47:08 (15042)] INFO : Transaction tracing is enabled in the agent

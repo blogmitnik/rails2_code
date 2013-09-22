@@ -1,0 +1,31 @@
+<% unless logged_in_user?(@user) %>
+	<%= friendship_status(logged_in_user, @user) %>
+      <%- if is_logged_in? -%>
+        <%- unless Friendship.exists?(@user, logged_in_user) -%>
+          <li><%= link_to "新增 #{@user.name} 為朋友", 
+	      						new_user_friend_path(:user_id => logged_in_user, :friend_id => @user), 
+	        						:confirm => "你確定要將 #{@user.name} 加為你的朋友嗎？" %></li>
+        <%- end -%>
+        <%- if Friendship.connected?(@user, logged_in_user) -%>
+          <li><%= link_to "編輯你和 #{@user.name} 的關係", edit_user_friend_url(:user_id => logged_in_user) %></li>
+	    	 <li><%= link_to "將他從朋友名單中刪除", 
+	                     	 { :controller => "friends", :action => "delete", 
+	                        	:id => @user }, :confirm => "你確定要刪除這位好友嗎？" %></li>
+        <%- end -%>
+          <%- if Friendship.pending?(logged_in_user, @user) -%>
+          <li><%= link_to "取消送出你的好友請求", 
+	                      { :controller => "friends", :action => "cancel", 
+	                        :id => @user }, 
+	                      	:confirm => "你確定要取消傳送這個好友邀請嗎？" %></li>
+          <%- end -%>
+          <%- if Friendship.pending?(@user, logged_in_user) -%>
+          <li><%= link_to "加為朋友", 
+                      :controller => "friends", :action => "accept", 
+                      :id => @user %> 或 
+          <%= link_to "略過請求", 
+                      { :controller => "friends", :action => "decline", 
+                      :id => @user, }, 
+                      :confirm => "你確定要取消這個好友請求嗎？" %></li>
+          <%- end -%>
+      <%- end -%>
+<% end %>

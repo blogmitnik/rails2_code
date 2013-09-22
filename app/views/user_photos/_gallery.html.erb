@@ -1,0 +1,50 @@
+<%-
+# Locals
+user ||= @user
+photos ||= @photos
+mini ||= false
+
+if mini
+	size ||= 5
+	photos = user.photos.find :all, :limit => size, :order => 'created_at DESC'
+	total = user.photos.count
+	total_gallery = user.galleries.count -%>
+
+<h3>最近分享的相片</h3>
+<%- unless photos.empty? -%>
+<span class="left">顯示最近的 <%= photos.size %> 張相片，共有 <%= link_to "#{total_gallery} 本相簿", user_galleries_path(user) %> 和 <%= total %> 張相片</span>
+<span class="left">
+<% if is_me?(user) %>
+  <%= link_to '顯示全部', user_photos_path(user) %>
+<% end %>
+</span>
+<div class="clear"></div>
+
+  <% photos.each do |photo|%>
+  <div class="image left">
+	 <div>
+	   <%= link_to image_tag(photo.public_filename('small')), 
+	          	   user_photo_path(photo.owner, photo) %>
+	 </div>
+    <%= link_to "(刪除此相片)", user_photo_path(photo.owner, photo), 
+    					:method => :delete, 
+    					:confirm => "你確定要刪除這張相片嗎？" if is_me?(photo.creator) %>
+  </div>
+  <% end %>
+<%- else -%>
+	<p>目前沒有任何相片
+	<% if logged_in_user?(@user) %>
+		<%= link_to '上傳相片', user_galleries_path(logged_in_user) %>
+	<% end %></p>
+<%- end -%>
+
+<%- else -%>
+
+	<div id="photo_wall">
+     <%= render :partial => 'user_photos/photo', :collection => @photos %>
+     <div class="clear"></div>
+   </div>
+   <%= will_paginate @photos, :previous_label => "&laquo 較新的", :next_label => "較舊的 &raquo;" %>
+   <div class="clear"></div>
+
+<%- end -%>

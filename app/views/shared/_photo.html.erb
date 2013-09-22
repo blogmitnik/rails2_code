@@ -1,0 +1,58 @@
+<li>
+  <div class='gallPhoto'>
+    <% if photo.owner_type == "User" %>
+      <%= link_to image_tag(photo.public_filename(:thumb)),
+                  user_photo_path(photo.owner, photo) %>
+    <% elsif photo.owner_type == "Group" %>
+      <%= link_to image_tag(photo.public_filename(:thumb)),
+                  group_photo_path(photo.owner, photo) %>
+    <% end %>
+  </div>
+
+  <div class='gallPhotoMeta'>
+  	<% if photo.owner_type == "User" %>
+  		<%- if is_logged_in? && logged_in_user?(photo.owner) -%>
+	      <%= link_to image_tag("icons/picture_edit.png", :class => 'actioner'), 
+	                  edit_user_photo_path(photo.owner, photo),
+	                  :title => "編輯相片內容" %>
+	      <%= link_to image_tag("icons/picture_delete.png", :class => 'actioner'), 
+	        user_photo_path(photo.owner, photo), :method => :delete,
+	        :confirm => "你確定要刪除這張相片嗎？",
+	         :title => "刪除這張相片" %>
+	      <%= link_to image_tag("icons/photo.png", :class => 'actioner', 
+	        :style => 'height: 16px;'), set_primary_user_photo_path(photo.owner, photo), 
+	        :method => :put, :title => "將相片設為這個相簿的封面" %>
+	      <%= link_to image_tag("default_icon.png", :class => 'actioner', 
+	        :style => 'height: 16px;'), set_avatar_user_photo_path(photo.owner, photo), 
+	        :method => :put, :title => "將相片設為我的個人檔案相片" %>
+      <%- end -%>
+	   <%= link_to image_tag("icons/photo-preview.gif", :class => 'actioner'), 
+	   				'#gpu' + photo_id(photo), :rel => 'facebox', :title => "預覽這張相片" %>
+  	<%- elsif photo.owner_type == "Group" -%>
+  		<%- if is_logged_in? && (photo.owner.can_edit?(logged_in_user) || logged_in_user?(photo.creator)) -%>
+	     <%= link_to image_tag("icons/picture_edit.png", :class => 'actioner'), 
+	                 edit_group_photo_path(photo.owner, photo),
+	                 :title => "編輯相片內容" %>
+	     <%= link_to image_tag("icons/picture_delete.png", :class => 'actioner'), 
+	        	group_photo_path(photo.owner, photo), :method => :delete,
+	        	:confirm => "你確定要刪除這張相片嗎？", :title => "刪除這張相片" %>
+	   <%- end -%>
+	   <%- if is_logged_in? && logged_in_user?(photo.creator) && logged_in_user?(photo.gallery.creator) -%>
+	     <%= link_to image_tag("icons/photo.png", :class => 'actioner', 
+	        	:style => 'height: 16px;'), set_primary_group_photo_path(photo.owner, photo), 
+	        	:method => :put, :title => "設定為這本相簿的封面" %>
+	   <%- end -%>
+	   <%- if is_logged_in? && photo.owner.can_edit?(logged_in_user) -%>
+		  <%= link_to image_tag("default_icon.png", :class => 'actioner', 
+		      :style => 'height: 16px;'), set_avatar_group_photo_path(photo.owner, photo), 
+		      :method => :put, :title => "設定為群組頁面的相片" %>
+	   <%- end -%>
+	   <%= link_to image_tag("icons/photo-preview.gif", :class => 'actioner'), 
+	   				'#gpu' + photo_id(photo), :rel => 'facebox', :title => "預覽這張相片" %>
+  	<%- end -%>
+    <div style="display: none;" id="gpu<%= photo_id(photo) -%>">
+      <%= image_tag photo.public_filename %> 
+      <div class="gpuTitle"><%= photo.label %></div>
+    </div>
+  </div>
+</li>
