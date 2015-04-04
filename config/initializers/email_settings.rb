@@ -7,8 +7,8 @@ begin
         :address    => global_prefs.smtp_server,
         :port       => 587,
 	     :authentication => :plain,
-        :user_name => 'cateplaces@gmail.com',
-        :password => 'XP2000Linux',
+        :user_name => 'example@gmail.com',
+        :password => 'pasword',
         :domain     => global_prefs.domain
       }
     end

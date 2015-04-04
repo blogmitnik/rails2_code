@@ -5,7 +5,7 @@ class GalleriesController < ApplicationController
   before_filter :correct_user_required, :only => [ :edit, :update, :destroy ]
   before_filter :authorize_for_friends, :only => :show
   before_filter :authorize_for_owner, :only => :show
-  
+
   def show
     @body = "galleries"
     @gallery = Gallery.find(params[:id])
